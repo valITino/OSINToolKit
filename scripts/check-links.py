@@ -29,7 +29,7 @@ renamed, or private - that is a real DEAD result.
 Standard library only. Run from the repository root:
 
     python3 scripts/check-links.py                 # check everything
-    python3 scripts/check-links.py --timeout 15     # per-request timeout (s)
+    python3 scripts/check-links.py --timeout 8      # per-request timeout (s)
     python3 scripts/check-links.py --delay 1.0      # seconds between requests
     python3 scripts/check-links.py --tier 3         # only check tier-3 tools
     python3 scripts/check-links.py --strict         # treat BLOCKED as failure too
@@ -40,7 +40,9 @@ Be polite: this touches third-party servers. The default delay is deliberate.
 from __future__ import annotations
 
 import argparse
+import http.client
 import os
+import re
 import socket
 import sys
 import time
@@ -48,7 +50,8 @@ import urllib.error
 import urllib.request
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-SKIP_DIRS = {".git", "templates", "scripts", ".github", "workflows"}
+SKIP_DIRS = {".git", "templates", "scripts", ".github", "workflows",
+             "__pycache__", "node_modules", "venv", ".venv", "SecLists"}
 UA = "osint-toolkit-linkcheck/1.0 (+https://github.com/valITino/OSINToolKit)"
 
 OK, BLOCKED, DEAD = "OK", "BLOCKED", "DEAD"
@@ -75,8 +78,10 @@ def parse_frontmatter(text):
             continue
         key, _, value = line.partition(":")
         value = value.strip()
-        if "  #" in value:
-            value = value.split("  #", 1)[0].strip()
+        # YAML needs only one space before '#'. A '#' with no leading
+        # whitespace stays part of the value, keeping URL fragments intact.
+        if value[:1] not in ("'", '"'):
+            value = re.split(r"\s#", value, maxsplit=1)[0].strip()
         meta[key.strip()] = value.strip("'\"")
     return meta
 
@@ -84,12 +89,13 @@ def parse_frontmatter(text):
 def collect(tier_filter):
     entries = []
     for dirpath, dirnames, filenames in os.walk(REPO_ROOT):
-        dirnames[:] = [d for d in dirnames if d not in SKIP_DIRS]
-        for fn in filenames:
+        dirnames[:] = sorted(d for d in dirnames if d not in SKIP_DIRS)
+        for fn in sorted(filenames):
             if not fn.endswith(".md") or fn in ("README.md", "INDEX.md"):
                 continue
             path = os.path.join(dirpath, fn)
-            with open(path, encoding="utf-8") as fh:
+            # utf-8-sig: an editor-written BOM must not hide a tool's url
+            with open(path, encoding="utf-8-sig") as fh:
                 meta = parse_frontmatter(fh.read())
             if not meta or "url" not in meta or "slug" not in meta:
                 continue
@@ -101,48 +107,58 @@ def collect(tier_filter):
 
 
 def check(url, timeout):
-    """Return (verdict, detail). Tries HEAD, falls back to a ranged GET."""
-    last = None
+    """Return (verdict, detail). Tries HEAD, falls back to a ranged GET.
+
+    A HEAD response never decides the verdict on its own: plenty of servers
+    answer 404 or 405 to HEAD and serve the same URL fine over GET. Since DEAD
+    is the only verdict that fails the job, the second request is worth
+    spending on any URL that is about to be condemned.
+    """
+    last = (BLOCKED, "no response")
     for method in ("HEAD", "GET"):
-        req = urllib.request.Request(url, method=method)
-        req.add_header("User-Agent", UA)
-        if method == "GET":
-            req.add_header("Range", "bytes=0-0")
         try:
+            req = urllib.request.Request(url, method=method)
+            req.add_header("User-Agent", UA)
+            if method == "GET":
+                req.add_header("Range", "bytes=0-0")
             with urllib.request.urlopen(req, timeout=timeout) as resp:
                 return OK, resp.status
         except urllib.error.HTTPError as e:
-            last = e.code
-            # Many servers reject HEAD specifically; retry those with GET.
-            if method == "HEAD" and e.code in (403, 405, 406, 501):
-                continue
             if e.code in DEAD_CODES:
-                return DEAD, e.code
-            if e.code in BLOCKED_CODES:
-                return BLOCKED, f"{e.code} (bot challenge or auth wall)"
-            return BLOCKED, e.code
+                verdict = (DEAD, e.code)
+            elif e.code in BLOCKED_CODES:
+                verdict = (BLOCKED, f"{e.code} (bot challenge or auth wall)")
+            else:
+                verdict = (BLOCKED, e.code)
+            if method == "HEAD":
+                last = verdict
+                continue
+            return verdict
         except urllib.error.URLError as e:
             reason = getattr(e, "reason", e)
-            last = reason
-            # DNS resolution failure usually means a genuinely dead host, but
-            # resolvers blip. Retry once before condemning the URL, since a
-            # DEAD verdict is the only thing that fails this check.
-            if isinstance(reason, socket.gaierror):
-                if method == "HEAD":
-                    continue
-                return DEAD, f"DNS failure: {reason}"
+            # DNS failure usually means a genuinely dead host, but resolvers
+            # blip; confirm on the second pass before condemning the URL.
+            verdict = ((DEAD, f"DNS failure: {reason}")
+                       if isinstance(reason, socket.gaierror)
+                       else (BLOCKED, str(reason)))
             if method == "HEAD":
+                last = verdict
                 continue
-            # Reset/timeout mid-handshake: inconclusive, often bot protection.
-            return BLOCKED, f"{reason}"
-        except (TimeoutError, socket.timeout):
-            last = "timeout"
-            if method == "HEAD":
-                continue
-            return BLOCKED, "timeout"
+            return verdict
         except ValueError as e:
+            # http.client.InvalidURL is a ValueError; catch before OSError so a
+            # malformed url is reported as such rather than as a socket error.
             return DEAD, f"malformed URL: {e}"
-    return BLOCKED, str(last)
+        except (OSError, http.client.HTTPException) as e:
+            # RemoteDisconnected, IncompleteRead and raw socket errors are not
+            # all URLError subclasses. Uncaught, one of them aborts the entire
+            # run partway through and the remaining URLs go unchecked.
+            verdict = (BLOCKED, f"{type(e).__name__}: {e}")
+            if method == "HEAD":
+                last = verdict
+                continue
+            return verdict
+    return last
 
 
 def main():
@@ -155,7 +171,16 @@ def main():
                     help="exit non-zero on BLOCKED results too (noisy; off by default)")
     args = ap.parse_args()
 
+    # Block buffering hides all progress when stdout is redirected, so a
+    # run killed by a CI timeout would log nothing at all.
+    sys.stdout.reconfigure(line_buffering=True)
+
     entries = collect(args.tier)
+    if not entries:
+        print("No tool files with a `url` were found. Check the layout and\n"
+              "frontmatter keys before trusting this result.", file=sys.stderr)
+        sys.exit(2)
+
     print(f"Checking {len(entries)} URL(s) with timeout={args.timeout}s, delay={args.delay}s\n")
 
     dead, blocked = [], []
@@ -188,6 +213,7 @@ def main():
         sys.exit(1)
 
     if blocked and args.strict:
+        print(f"\n--strict: failing on {len(blocked)} BLOCKED result(s).")
         sys.exit(1)
 
     print("\nNo dead URLs found.")
