@@ -1,0 +1,36 @@
+name: validate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  index-and-frontmatter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate frontmatter and check INDEX.md is current
+        run: python3 scripts/build-index.py --check
+
+  link-check:
+    runs-on: ubuntu-latest
+    # Link checking touches third-party servers and is inherently flaky, so it
+    # does not block merge. Read its log to catch tools that have gone dead.
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Check tool URLs
+        run: python3 scripts/check-links.py --timeout 15 --delay 0.3

@@ -1,0 +1,10 @@
+# Email OSINT
+
+Tie an email to the services it registered and the breaches it appears in.
+
+<!-- BEGIN:TOOLS -->
+| Tool | Answers | Tier | Contact |
+|---|---|---|---|
+| [Have I Been Pwned](hibp.md) | I have an email address. Which public data breaches has it appeared in, and what | 2 | passive |
+| [holehe](holehe.md) | I have an email address. Which online services is it registered with? | 2 | active |
+<!-- END:TOOLS -->
