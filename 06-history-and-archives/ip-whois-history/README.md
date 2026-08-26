@@ -16,12 +16,25 @@ may have hosted the origin last year.
 
 ## Where to get it
 
+- [Netcraft Site Report](netcraft.md) - free, no account; the fastest way to get a
+  site's first-seen date and its current netblock owner.
 - [viewdns.info](../../04-web-exploration/whois-domains/viewdns.md) - free IP history
   and historical lookups; the no-account starting point.
-- **SecurityTrails** - historical DNS, WHOIS history, and passive DNS; generous-ish
-  free tier, then paid. See [api-keys](../../99-resources/api-keys/README.md).
-- **Whoisology / DomainTools** - deep historical and reverse WHOIS; paid, aimed at
-  professional casework.
+- [SecurityTrails](securitytrails.md) - historical DNS and WHOIS back to 2008 over a
+  JSON API; small free tier, then paid. See
+  [api-keys](../../99-resources/api-keys/README.md).
+- [Whoisology](../../04-web-exploration/whois-domains/whoisology.md) and
+  [DomainTools](../../04-web-exploration/whois-domains/domaintools.md) - deep historical
+  and reverse WHOIS; paid, aimed at professional casework.
+
+## Tools in this category
+
+<!-- BEGIN:TOOLS -->
+| Tool | Answers | Tier | Contact |
+|---|---|---|---|
+| [Netcraft Site Report](netcraft.md) | How long has this site actually existed, and whose network is it really on? | 2 | passive |
+| [SecurityTrails](securitytrails.md) | What did this domain resolve to **before**, who registered it before the record was redacted, and what else has lived in the... | 2 | passive |
+<!-- END:TOOLS -->
 
 ## Caveats
 
