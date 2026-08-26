@@ -4,10 +4,24 @@ on:
   pull_request:
   push:
     branches: [main]
+  # Lets a maintainer re-run validation from the Actions tab without pushing a
+  # commit - useful after a GitHub Actions incident, when queued runs are lost.
+  workflow_dispatch:
+
+# This workflow only reads the checkout; it never writes to the repository.
+permissions:
+  contents: read
+
+# A newer push to a pull request supersedes its in-flight run. Runs on main are
+# never cancelled - they are the validation record for the branch's history.
+concurrency:
+  group: validate-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
 
 jobs:
   index-and-frontmatter:
     runs-on: ubuntu-latest
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
 
@@ -16,7 +30,7 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Validate frontmatter and check INDEX.md is current
+      - name: Validate frontmatter, INDEX.md freshness and internal links
         run: python3 scripts/build-index.py --check
 
   link-check:
@@ -27,6 +41,9 @@ jobs:
     # blip in CI would otherwise look like a dead host. Read its log to catch
     # tools that have actually gone away.
     continue-on-error: true
+    # ~90 URLs at up to 15s each plus delays; well under this, but bounded so a
+    # hung request cannot sit on a runner for the default six hours.
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
 
