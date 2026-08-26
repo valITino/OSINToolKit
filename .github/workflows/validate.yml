@@ -1,0 +1,39 @@
+name: validate
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  index-and-frontmatter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Validate frontmatter and check INDEX.md is current
+        run: python3 scripts/build-index.py --check
+
+  link-check:
+    runs-on: ubuntu-latest
+    # The script only fails on genuinely dead URLs (404/410/DNS failure); sites
+    # that merely refuse an automated client are reported as BLOCKED and do not
+    # fail it. This job still does not block merge, because a transient DNS
+    # blip in CI would otherwise look like a dead host. Read its log to catch
+    # tools that have actually gone away.
+    continue-on-error: true
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Check tool URLs
+        run: python3 scripts/check-links.py --timeout 15 --delay 0.3
