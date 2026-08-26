@@ -60,10 +60,19 @@ Reports export for both technical and executive audiences.
   when you report a number, because 1-1000 and 1-10 look confusingly similar.
 - Rapid7 also ships Metasploit and the two integrate. **Exploitation is out of scope for
   this reference** - Nexpose's role here ends at identifying and ranking exposure.
-- Nexpose and InsightVM share an engine but not a licence or a workflow. Documentation
-  found for one may not apply to the other; check which product a page describes.
-- Scanning fragile or embedded devices can knock them over. Scope conservatively.
-- A finding is evidence, not proof. Verify before it reaches a report.
+- **Nexpose and InsightVM are the same on-premise Security Console**, differing in
+  licence and cloud connectivity - the Nexpose installer is even served from a path
+  named after InsightVM. Expect three names for one lineage: Nexpose, InsightVM, and
+  "Vulnerability Management (InsightVM)" now marketed under Exposure Command. Check
+  which one a documentation page actually describes.
+- **Console credentials set during installation cannot be recovered.** Rapid7 says so
+  outright; forgetting them means reinstalling.
+- It is a heavyweight deployment - a dedicated host, a PostgreSQL back end, and a long
+  first-run initialisation. Not a laptop tool.
+- Rapid7 publishes no price for Nexpose at all. For scale, the InsightVM sibling is
+  listed from around $1.62 per asset per month at 500 assets.
+- Scanning fragile or embedded devices can knock them over. Scope conservatively, and
+  remember a finding is evidence, not proof.
 
 ## Alternatives
 - [Tenable Nessus](nessus.md) - the closest commercial equivalent, different scoring

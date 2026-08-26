@@ -33,7 +33,7 @@ checks at speed rather than a full assessment.
 
 ## Install
 ```bash
-# Download the .deb/.rpm for your platform, then activate with a licence code:
+# A Tenable account is required to download - the URL redirects to login.
 # https://www.tenable.com/downloads/nessus
 sudo dpkg -i Nessus-*.deb && sudo systemctl start nessusd    # UI at https://localhost:8834
 ```
@@ -53,9 +53,18 @@ XML - the XML is the one to keep, because it is what other tools ingest.
 ## Gotchas
 - **The free tier is far smaller than its reputation.** Nessus Essentials is now
   **5 IPs on a 30-day licence**, non-commercial only. The widely repeated "16 IPs, free
-  forever" is out of date. Essentials Plus (paid, non-commercial) raises it to 20 IPs;
-  verified students and instructors can get a free one-year Essentials Plus licence.
-  Anything commercial requires Nessus Professional.
+  forever" is out of date and will make you plan a lab that does not fit.
+- **Essentials' plugin feed runs on a 30-day delay**, not real-time - so its findings are
+  a month behind by design. It also has no reporting, no data export, no compliance or
+  configuration checks, and no support. And **scan data is not retained past expiry**;
+  treat an Essentials box as a disposable lab scanner, never a system of record.
+- Essentials Plus is $199/year for 20 IPs with real-time plugin updates and basic
+  PDF/HTML reporting - still non-commercial. Verified students and instructors get it
+  free through Tenable's education programme. Nessus Professional, the first edition
+  licensed for commercial work, is around $4,790/year.
+- **The licence scope is a legal trap.** Essentials and Essentials Plus are for personal,
+  educational and non-commercial use only. Running either on a client engagement or on
+  an employer's network breaches the licence, whatever the IP count.
 - **This is intrusive scanning and needs written authorisation** covering the exact
   targets and window. Credentialed scans additionally mean handing privileged
   credentials to a scanner. See [../../LEGAL.md](../../LEGAL.md).

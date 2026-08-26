@@ -22,50 +22,56 @@ see it?
 ## When to reach for it
 As the third opinion. Internet-wide scanners do not see the same internet: each runs its
 own crawlers from its own vantage points on its own schedule, so a host absent from one
-index is routinely present in another. ZoomEye is operated out of China and its coverage
+index is routinely present in another. ZoomEye is operated by Knownsec and its coverage
 of Chinese and wider APAC address space is materially better than the US-based
 alternatives, which makes it the one to check when an investigation touches that
 infrastructure.
 
 Treat it as a coverage check rather than a replacement. Run it when a negative result
-from Shodan or Censys matters to your conclusion.
+from [Shodan](shodan.md) or [Censys](censys.md) matters to your conclusion.
 
 ## Install
 ```bash
-pip3 install zoomeye                 # official CLI and SDK from Knownsec
-zoomeye init -apikey "YOUR-API-KEY"  # API key auth only
+pip install zoomeyeai              # NOT 'zoomeye' - that package targets the dead .org API
+zoomeyeai init -apikey "YOUR-KEY"  # API key auth only
 ```
 
 ## Usage
 ```bash
-zoomeye search "telnet"                                  # basic dork search
-zoomeye search "telnet" -facets product,port             # aggregate the whole result set
-zoomeye search "telnet" -pagesize 50 -save               # export results locally
-zoomeye info                                             # remaining quota on your account
+zoomeyeai search 'app="Cisco ASA SSL VPN" && country="CN"'   # v2 syntax uses '=', not ':'
+zoomeyeai search 'cidr="192.0.2.0/24" && service="ssh"'
+zoomeyeai search 'port=80' -facets product,country           # aggregate the whole result set
+zoomeyeai info                                                # remaining quota
 ```
 
 ## Output
 Host records with banners, service and product identification, port, location and ASN.
-The `-facets` option is the distinctive one: it returns aggregate counts across the full
-result set - by product, service, device, os, port, country, city - so you can see the
-shape of a population without paging through it.
+`-facets` is the distinctive option: it returns aggregate counts across the full result
+set - by product, device, service, os, port, country, subdivisions, city - so you can
+see the shape of a population without paging through it. `-sub_type` selects v4, v6 or
+web data.
 
 ## Gotchas
-- **Use `zoomeye.ai`, not `zoomeye.org`.** The `.org` domain is degraded - it returned a
-  Cloudflare origin error and its API host refuses connections, while `zoomeye.ai` and
-  `api.zoomeye.ai` answer normally. Older guides all point at the wrong one.
-- **An API key is mandatory**, including for the CLI, and the free tier's query allowance
-  is small. Check `zoomeye info` before planning a large sweep.
-- **Your queries go to a third party**, and in this case one subject to Chinese
-  jurisdiction. Searching a target's infrastructure tells that operator what you are
-  looking at. Weigh that against your case - see
+- **`zoomeye.org` is dead** - it returns HTTP 521 and its API host refuses connections.
+  Use `zoomeye.ai`. This matters beyond bookmarks: the legacy `zoomeye` PyPI package
+  hardcodes the `.org` API and no longer works. The maintained package is `zoomeyeai`,
+  whose console script is also `zoomeyeai` even though its own help text still prints
+  "zoomeye".
+- **The v1 dork syntax in most tutorials is wrong now.** `app:`, `port:`, `country:` was
+  the `.org` era. v2 uses `=`: `app="..."`, `port=80`, `country="CN"`. There is no
+  `ver=` operator any more.
+- **`=` is not exact.** A single `=` matches case-insensitively after tokenisation, so
+  it behaves like a substring match and is a large false-positive source; `==` is the
+  exact, case-sensitive form and `!=` negates. `&&`, `||` and parentheses work.
+- **Several response fields are gated by plan** - body, hashes and industry
+  classification need higher tiers - so a missing field may mean "not licensed" rather
+  than "not present".
+- Records come from ZoomEye's stored scan history, not a live probe. **Read
+  `update_time`**: a record can be months stale, and the host may have changed hands.
+- **Your queries go to a third party** subject to Chinese jurisdiction. Searching a
+  target's infrastructure tells that operator what you are looking at - see
   [../../00-methodology/opsec/README.md](../../00-methodology/opsec/README.md).
-- Banners are collected on a crawl schedule, so a record may be weeks old. A service
-  listed here may be long gone, and a missing one may simply not have been scanned.
-- **This is a database lookup, not a scan** - passive, and the target sees nothing from
-  you. But acting on what you find is a different contact level entirely.
-- Full dork syntax lives in ZoomEye's own documentation, which sits behind an account
-  and a bot check; the CLI above is the reliable route in.
+- This is a database lookup, not a scan: passive, and the target sees nothing from you.
 
 ## Alternatives
 - [Shodan](shodan.md) - the broadest index and the best tooling
