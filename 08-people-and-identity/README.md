@@ -25,6 +25,7 @@ You have a name, username, email, or photo. Search for the person, spread a user
 | [Sherlock](username-enum/sherlock.md) | I have a username. Which of hundreds of sites has an account registered under it? | 2 | active |
 | [ThatsThem](people-search/thatsthem.md) | I have a name, phone number, email, or IP. What publicly aggregated records connect to it - address, relatives, associated phone... | 2 | passive |
 | [TinEye](reverse-image/tineye.md) | Where did this exact image first appear, and how has it been used and modified since? | 2 | passive |
+| [WhatsMyName](username-enum/whatsmyname.md) | I have a username. Where does it exist - and can I see the actual detection rule for each site, so I can judge whether a hit is... | 2 | active |
 | [Yandex Images](reverse-image/yandex-images.md) | I have a photo. Where else does this image - or a visually similar one, or this person's face - appear online? | 2 | passive |
 | [EagleEye](reverse-image/eagleeye.md) | Given a name and some photos, can automated face comparison find that person's social media profiles? | 3 | active |
 | [IPLogger / Grabify](ip-luring/iplogger-grabify.md) | If I get someone to click a link I control, what is their IP address, approximate location, device, and browser? | 3 | active |
