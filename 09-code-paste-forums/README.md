@@ -20,6 +20,7 @@ Where secrets and identities leak in plain text: source repositories, commit his
 | [paaster](paste-sites/paaster.md) | I have a paaster link, or I have the device of someone who used paaster. What can I still recover? | 2 | passive |
 | [Pastebin](paste-sites/pastebin.md) | Has data relating to my target - credentials, a customer list, internal configuration - been posted publicly, and when did it... | 2 | passive |
 | [PrivateBin](paste-sites/privatebin.md) | I found a PrivateBin link in a chat log, an email, or another paste. Can I read it - and why can I not search for others like it? | 2 | passive |
+| [Sourcegraph public code search](code-search/sourcegraph.md) | Does this string - an internal hostname, an API key format, a distinctive function - appear anywhere in public source code... | 2 | passive |
 | [TruffleHog](secret-scanning/trufflehog.md) | Does this repository - across its **entire history**, not just its current files - contain credentials, and are any of them still... | 2 | passive |
 | [Gitrob](secret-scanning/gitrob.md) | Which files in an organisation's public repositories look sensitive - keys, credentials, database dumps, configuration? | 3 | passive |
 | [SearchCode](code-search/searchcode.md) | Does this string appear in public source code across several forges - not just GitHub, but Bitbucket, GitLab, SourceForge and... | 3 | passive |

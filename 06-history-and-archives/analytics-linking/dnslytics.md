@@ -20,16 +20,16 @@ This site carries a Google Analytics ID, a Google Tag, or an AdSense ID. What ot
 domains carry the same one - now, and at any point in the last decade?
 
 ## When to reach for it
-When [SpyOnWeb](spyonweb.md) comes back thin, and when the question has a time
-dimension. DNSlytics runs Reverse Analytics and Reverse Adsense over its own index and
-keeps roughly eight years of historical AdSense records, so it answers "who else does
-this publisher own" *and* "who did they used to be" - the second question being the one
-that usually cracks an attribution.
+When [SpyOnWeb](spyonweb.md) comes back thin. DNSlytics runs Reverse Analytics (Google
+tag IDs) and Reverse Adsense over its own index and will return up to 100,000 domains
+for a single identifier - far past the point where the free alternatives stop.
 
 Its distinctive extra is **ads.txt**. Ad-monetised sites publish a file declaring which
 ad networks may sell their inventory, keyed to a publisher account. DNSlytics indexes
-millions of them with five years of history, which links sites that share a monetisation
-account even when the page-level trackers have been cleaned up.
+millions of them with years of history, which links sites sharing a monetisation account
+even when the page-level trackers have been cleaned up. It also sits alongside Reverse
+IP, NS, MX, SPF and PTR lookups and a Hosting History tool, so one identifier can be
+walked across several kinds of infrastructure without changing sites.
 
 ## Install
 ```bash
@@ -43,6 +43,11 @@ https://dnslytics.com/reverse-adsense      # AdSense publisher ID -> other domai
 https://dnslytics.com/hosting-history      # how a domain's hosting has moved over time
 https://dnslytics.com/reverse-ip           # co-hosted domains, with the usual caveats
 ```
+```bash
+# API (prepaid credits): ReverseGAnalytics and ReverseAdsense cost 6 each,
+# ReverseHistory 20. Poll the free AccountInfo endpoint for your balance.
+curl 'https://api.dnslytics.net/v1/accountinfo?apikey=YOURKEY'
+```
 
 ## Output
 A list of domains sharing the identifier, with first- and last-seen dates on the
@@ -53,17 +58,22 @@ historical depth.
 - **It only reads the homepage and `ads.txt`.** DNSlytics says so itself. A tracking ID
   that appears only on an inner page, a subdomain, or a checkout flow will not be in the
   index - so a negative result is weak evidence, not clean.
-- **The historical data is the paid part.** Eight years of AdSense records, the ads.txt
-  archive, and full reports are premium; the free tier is a preview.
+- **Reverse Analytics and Reverse Adsense return current domains only.** They no longer
+  include domains that *used to* carry an ID; that needs the separate, much more
+  expensive `ReverseHistory` endpoint. Do not assume a reverse lookup is historical.
+- **Reverse PTR is fully premium-gated**, and other tools have individual fields marked
+  premium. Full historical data and the larger result caps are paid; the entry
+  subscription is advertised from around 30 cents a day.
+- **API credits are prepaid and do not auto-renew** - at zero the API simply stops
+  answering, and every page of a paginated result spends credits again. Rate limiting
+  comes back as either 403 or 429, so handle both.
 - **A shared analytics ID is strong evidence, a shared AdSense ID slightly weaker.**
-  Agencies, resellers, and template vendors legitimately reuse both across unrelated
-  clients. Establish that the identifier is unique to your subject before drawing a line.
-- Google Tag (`G-`) and legacy Universal Analytics (`UA-`) identifiers are different
-  namespaces; a site migrated between them may appear in one index and not the other.
-- Identifiers get rotated. Absence today says nothing about last year, which is exactly
-  why the historical view is worth paying for when a case turns on it.
-- Corroborate a link before reporting it: shared infrastructure is a lead that needs a
-  second, independent signal.
+  Agencies, resellers and template vendors legitimately reuse both across unrelated
+  clients. Establish the identifier is unique to your subject before drawing a line.
+- Google Tag (`G-`) and legacy Universal Analytics (`UA-`) IDs are different namespaces;
+  a site that migrated may appear under one and not the other.
+- Corroborate before reporting: shared infrastructure is a lead needing a second,
+  independent signal.
 
 ## Alternatives
 - [SpyOnWeb](spyonweb.md) - the free first check for the same question

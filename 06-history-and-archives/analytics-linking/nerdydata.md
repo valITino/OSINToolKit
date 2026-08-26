@@ -20,15 +20,16 @@ Which sites use this technology, tracker, or code snippet - and can I get the an
 a filtered, exportable list rather than a page of search results?
 
 ## When to reach for it
-Rarely, and only when you need the **list**. NerdyData indexes page source like
-[PublicWWW](publicwww.md), but the product around it has been built for sales teams:
-the interface is downloads, row counts, company filters, and domain enrichment. If your
-task is "give me every site running X, enriched with company details, as a CSV", that
-shape fits.
+For one specific capability, and otherwise rarely. Unlike [PublicWWW](publicwww.md),
+which indexes source as delivered, **NerdyData's crawler fully renders each page,
+JavaScript included** - so it captures tag-manager output, dynamically injected scripts,
+cookies, response headers, and network requests. An identifier that only exists after
+the page runs is visible here and invisible to a static index. That is a real gap-filler
+when a static search comes back empty.
 
-For an investigator chasing one identifier, it is the wrong end of the price curve.
-Check [SpyOnWeb](spyonweb.md) and [PublicWWW](publicwww.md) first; come here only if a
-case genuinely needs bulk enrichment and someone else is paying.
+Everything else about the product is built for sales teams: downloads, row counts,
+company filters, domain enrichment. For an investigator chasing one identifier it is the
+wrong end of the price curve. Check [SpyOnWeb](spyonweb.md) and PublicWWW first.
 
 ## Install
 ```bash
@@ -47,18 +48,22 @@ exportable. Domain enrichment adds company-level detail to each row - which is t
 feature the pricing is built around.
 
 ## Gotchas
-- **It is expensive for this job.** A free account unlocks up to 100 rows per report;
-  paid plans start around $200 a month, with the higher tier around $300. That is
+- **It is expensive for this job.** A free registered account gives 100 rows per report;
+  paid plans run $200 (Basic), $300 (Pro) and $1,000 (Enterprise) a month. That is
   lead-generation pricing, not research pricing.
-- **The framing is sales, not investigation.** Filters, enrichment and exports are aimed
-  at prospecting. Nothing is wrong with the data, but the tool will not help you reason
-  about attribution - it will help you build a list.
-- Same structural limits as any source-code index: it sees delivered HTML, JavaScript and
-  CSS only, so runtime-injected identifiers and anything behind a login are invisible,
-  and coverage is a crawl rather than a census. **Absence is not evidence.**
+- **The free tier still shows you the total result count**, which is the one thing worth
+  having for nothing: you can scope how widely an identifier is used before deciding
+  whether to pay for the tail.
+- **Its index is crawl-based and biased toward commercially relevant sites.** It is a
+  sales-intelligence product, so the long tail of low-traffic, throwaway and malicious
+  infrastructure - where investigations usually live - is exactly what it covers worst.
+  **Absence is not evidence.**
+- Domain enrichment is a separate metered quota from row downloads; a plan with 5,000
+  rows per download may allow only 1,000 enriched domains a month.
 - Verify your search string is unique to the subject. Common library and theme strings
   return large, meaningless result sets.
-- Results reflect the last crawl of each page, not the live site.
+- Results reflect the last crawl of each page, not the live site. The advertised annual
+  discount is marketing copy - check the real figure at checkout.
 
 ## Alternatives
 - [PublicWWW](publicwww.md) - the same capability, far better value for one-off lookups

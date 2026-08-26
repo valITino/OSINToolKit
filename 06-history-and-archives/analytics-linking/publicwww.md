@@ -38,32 +38,39 @@ to a plausible shape rather than drowning in matches.
 ## Usage
 ```text
 https://publicwww.com/
-  "UA-24230777-"                  # sites sharing a legacy Analytics property
-  "G-XXXXXXXXXX"                  # sites sharing a modern Google Tag
+  "UA-24230777-"                  # legacy Analytics: quote it, and KEEP the trailing hyphen
+  "G-XXXXXXXXXX"                  # GA4 tag: plain quoted literal, no trailing hyphen
   "fbq('init', '1234567890')"     # sites sharing one Facebook pixel
   "Server: nginx/1.4.7"           # fingerprint by response header
 ```
+`GTM-`, `AW-` and `DC-` tag IDs are worth querying the same way.
 
 ## Output
 A list of matching URLs with the matched snippet in context, and a count of total
 matches. The index stood at roughly 513 million pages when checked, dated the previous
-day - it is actively maintained. Free searches preview results; full result sets and
-exports need a paid plan.
+day - it is actively maintained.
 
 ## Gotchas
-- **It indexes source, so it only sees what is in the delivered HTML/JS/CSS.**
-  Identifiers injected at runtime by a tag manager, or present only behind a login, are
-  invisible. A negative result is weak.
-- **Coverage is a crawl, not a census.** Half a billion pages is a lot and is still a
-  fraction of the web, weighted toward popular sites. Absence is not evidence.
-- **Uniqueness is your responsibility.** Searching a string that appears in a common
-  library or theme returns thousands of unrelated sites. Verify the string is actually
-  specific to your subject before treating a match as a link.
-- Snapshots age. A match reflects when PublicWWW last crawled that page, not today, so
-  confirm the identifier is still live before reporting it.
-- Free use is capped and full results are paywalled; the tool is priced for marketing
-  research rather than investigation.
-- The site needs JavaScript, so it is not scriptable from the browser interface.
+- **The free tier is capped by site popularity, and that is the thing that will mislead
+  you.** Anonymous searches return matches only from the top 1 million sites; a free
+  account raises that to the top 3 million; the remaining ~510 million pages are paid.
+  Obscure, throwaway and malicious sites are essentially never in the top 3M, so **a
+  free-tier query about exactly the infrastructure you care about will return zero**.
+  Never read that as "no shared identifier".
+- **Keep the trailing hyphen on a UA ID.** `"UA-24230777-"` matches the whole property
+  across all its view numbers and avoids colliding with longer numeric IDs;
+  `"UA-24230777"` does neither reliably. GA4 `G-` IDs have no view suffix, so no hyphen.
+- **It indexes source as delivered.** An ID injected at runtime by a tag manager, or one
+  behind a login, is invisible - [NerdyData](nerdydata.md) renders pages and is the
+  complement here. A negative result is weak either way.
+- **Uniqueness is your responsibility.** A string from a common library or theme returns
+  thousands of unrelated sites. Verify it is specific to your subject before calling a
+  match a link.
+- Index freshness varies per page: a site that removed a tag can still appear, and a
+  recently added one may not. Corroborate before reporting.
+- **Scripted requests get a JavaScript proof-of-work challenge that returns HTTP 200**
+  with a ~6KB stub, so automation silently looks like it succeeded and found nothing.
+  Check the terms before automating at all.
 
 ## Alternatives
 - [SpyOnWeb](spyonweb.md) - free, and enough when the ID is a standard Analytics or AdSense one
