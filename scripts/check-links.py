@@ -124,8 +124,12 @@ def check(url, timeout):
         except urllib.error.URLError as e:
             reason = getattr(e, "reason", e)
             last = reason
-            # DNS resolution failure is a genuinely dead host.
+            # DNS resolution failure usually means a genuinely dead host, but
+            # resolvers blip. Retry once before condemning the URL, since a
+            # DEAD verdict is the only thing that fails this check.
             if isinstance(reason, socket.gaierror):
+                if method == "HEAD":
+                    continue
                 return DEAD, f"DNS failure: {reason}"
             if method == "HEAD":
                 continue

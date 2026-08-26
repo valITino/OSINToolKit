@@ -4,6 +4,10 @@ on:
   pull_request:
   push:
     branches: [main]
+  # Weekly sweep for dead tool URLs. Link rot happens on a timescale of months,
+  # so it is a periodic health check, not a per-commit gate.
+  schedule:
+    - cron: "0 6 * * 1"
   # Lets a maintainer re-run validation from the Actions tab without pushing a
   # commit - useful after a GitHub Actions incident, when queued runs are lost.
   workflow_dispatch:
@@ -24,6 +28,8 @@ jobs:
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -34,23 +40,29 @@ jobs:
         run: python3 scripts/build-index.py --check
 
   link-check:
+    # Deliberately not run on pull requests. It cannot gate a merge (nothing in
+    # a diff changes whether shodan.io is up), and firing ~90 requests at
+    # third-party OSINT services from shared runner IPs on every PR erodes the
+    # goodwill the check depends on - several already answer 403 to any
+    # scripted client. Weekly, or on demand, is the right cadence.
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
     runs-on: ubuntu-latest
-    # The script only fails on genuinely dead URLs (404/410/DNS failure); sites
-    # that merely refuse an automated client are reported as BLOCKED and do not
-    # fail it. This job still does not block merge, because a transient DNS
-    # blip in CI would otherwise look like a dead host. Read its log to catch
-    # tools that have actually gone away.
-    continue-on-error: true
-    # ~90 URLs at up to 15s each plus delays; well under this, but bounded so a
-    # hung request cannot sit on a runner for the default six hours.
+    # Worst case is 90 URLs x 16s (HEAD then GET fallback, 8s each) plus the
+    # inter-request delay, so about 25 minutes. Bounded well under the default
+    # six hours so a hung request cannot squat on a runner.
     timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
 
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: "3.11"
 
+      # Exits non-zero only on genuinely dead URLs (404/410/DNS). Sites that
+      # merely refuse an automated client are reported as BLOCKED and ignored,
+      # so a failure here is a real finding worth acting on.
       - name: Check tool URLs
-        run: python3 scripts/check-links.py --timeout 15 --delay 0.3
+        run: python3 scripts/check-links.py --timeout 8 --delay 0.3

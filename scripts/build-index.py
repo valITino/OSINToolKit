@@ -25,13 +25,28 @@ from __future__ import annotations
 
 import argparse
 import os
+import csv
 import re
 import sys
+import urllib.parse
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-# Directories we never treat as containing tool files.
-SKIP_DIRS = {".git", "templates", "scripts", ".github", "workflows"}
+# Top-level directories that never contain tool files, matched against the
+# repo-relative path so a nested directory of the same name is not dropped.
+# ".github" already covers CI config; the repo's own top-level "workflows/"
+# holds playbooks and stays in scope.
+SKIP_TOP_LEVEL = {".git", "templates", "scripts", ".github"}
+
+# Directory names skipped at any depth: vendored or generated trees a
+# contributor may create locally. SecLists is named explicitly because
+# 99-resources/wordlists tells contributors to clone it, and .gitignore
+# anticipates it landing in the repo root.
+SKIP_ANYWHERE = {"__pycache__", "node_modules", "venv", ".venv", "SecLists"}
+
+# A tool file is expected under a numbered category directory. Markdown found
+# there that does not parse is an error, not something to skip quietly.
+CATEGORY_DIR = re.compile(r"^\d\d-")
 
 REQUIRED_KEYS = [
     "name", "slug", "tier", "contact", "type", "cost",
@@ -44,7 +59,34 @@ VALID_STATUS = {"active", "stale", "broken", "archived", "unverified"}
 BEGIN_MARKER = "<!-- BEGIN:TOOLS -->"
 END_MARKER = "<!-- END:TOOLS -->"
 
-MD_LINK = re.compile(r"\[([^\]]*)\]\(([^)]+)\)")
+# Link targets may contain balanced parentheses, e.g. ./foo(1).md
+MD_LINK = re.compile(r"\[([^\]]*)\]\(((?:[^()]|\([^()]*\))+)\)")
+
+
+def prune(dirpath, dirnames):
+    """Filter os.walk's dirnames in place, and sort for deterministic order.
+
+    Ordering matters: os.walk yields os.listdir order, which is sorted on some
+    filesystems and hash-ordered on ext4. Without sorting, two entries that tie
+    on a sort key could swap between runs and make --check fail intermittently.
+    """
+    rel = os.path.relpath(dirpath, REPO_ROOT)
+    kept = []
+    for d in dirnames:
+        if d in SKIP_ANYWHERE:
+            continue
+        top = d if rel == "." else os.path.normpath(os.path.join(rel, d))
+        if top in SKIP_TOP_LEVEL:
+            continue
+        kept.append(d)
+    kept.sort()
+    dirnames[:] = kept
+
+
+def in_category_dir(path):
+    """True if path sits under a numbered top-level category directory."""
+    rel = os.path.relpath(path, REPO_ROOT)
+    return bool(CATEGORY_DIR.match(rel.split(os.sep)[0]))
 
 
 # --------------------------------------------------------------------------- #
@@ -73,13 +115,25 @@ def parse_frontmatter(text):
             continue
         key, _, value = line.partition(":")
         key = key.strip()
-        value = value.strip()
-        # strip inline comments that follow two spaces + '#'
-        if "  #" in value:
-            value = value.split("  #", 1)[0].strip()
-        meta[key] = _coerce(value)
+        meta[key] = _coerce(_strip_comment(value.strip()))
     body = "\n".join(lines[end + 1:])
     return meta, body
+
+
+def _strip_comment(value):
+    """Remove a YAML inline comment: whitespace then '#', outside quotes.
+
+    YAML needs only one space before '#', so the old two-space rule let
+    "tier: 2 # top tier" through as the string "2 # top tier". A '#' with no
+    leading whitespace is part of the value, which keeps URL fragments intact.
+    """
+    if value[:1] in ("'", '"'):
+        quote = value[0]
+        closing = value.find(quote, 1)
+        if closing != -1:
+            return value[: closing + 1]
+        return value
+    return re.split(r"\s#", value, maxsplit=1)[0].strip()
 
 
 def _coerce(value):
@@ -89,7 +143,12 @@ def _coerce(value):
         inner = value[1:-1].strip()
         if not inner:
             return []
-        return [item.strip().strip("'\"") for item in inner.split(",")]
+        # csv handles quoted items containing commas: ["dns, mx", spf]
+        try:
+            items = next(csv.reader([inner], skipinitialspace=True))
+        except (csv.Error, StopIteration):
+            items = inner.split(",")
+        return [item.strip().strip("'\"") for item in items if item.strip()]
     stripped = value.strip("'\"")
     if stripped.isdigit():
         return int(stripped)
@@ -143,21 +202,35 @@ class Tool:
 def discover_tools():
     tools, errors = [], []
     for dirpath, dirnames, filenames in os.walk(REPO_ROOT):
-        dirnames[:] = [d for d in dirnames if d not in SKIP_DIRS]
-        for fn in filenames:
+        prune(dirpath, dirnames)
+        for fn in sorted(filenames):
             if not fn.endswith(".md"):
                 continue
             if fn in ("README.md", "INDEX.md"):
                 continue
             path = os.path.join(dirpath, fn)
-            with open(path, encoding="utf-8") as fh:
+            # utf-8-sig so an editor-written BOM does not defeat the leading
+            # '---' test and silently drop the file from the index.
+            with open(path, encoding="utf-8-sig") as fh:
                 text = fh.read()
             meta, body = parse_frontmatter(text)
+            rel = os.path.relpath(path, REPO_ROOT)
             if meta is None or "slug" not in meta:
+                # Outside the numbered category tree this is expected - it is
+                # how LEGAL.md and the playbooks are skipped. Inside it, the
+                # file was meant to be a tool and vanishing quietly would leave
+                # CI green while the tool disappeared from every table.
+                if in_category_dir(path):
+                    reason = ("no YAML frontmatter (file must start with '---')"
+                              if meta is None else "frontmatter has no 'slug' key")
+                    errors.append(f"{rel}: {reason}")
                 continue
             errors.extend(validate(path, meta, fn))
             tools.append(Tool(path, meta, body))
-    tools.sort(key=lambda t: (t["tier"] or 9, str(t["categories"]), str(t["name"]).lower()))
+    # Sort keys are total (rel path last) and type-safe: a malformed tier must
+    # surface as a validation message, not a TypeError traceback.
+    tools.sort(key=lambda t: (t["tier"] if isinstance(t["tier"], int) else 9,
+                              str(t["categories"]), str(t["name"]).lower(), t.rel))
     return tools, errors
 
 
@@ -176,15 +249,23 @@ def validate(path, meta, filename):
     slug = meta.get("slug")
     if slug and filename != f"{slug}.md":
         errs.append(f"{rel}: filename must match slug '{slug}.md'")
+    # Compare against the path relative to the repository root. Deriving the
+    # category from basename(dirname(...)) made the result depend on what the
+    # checkout directory happened to be called, so the same file passed in one
+    # clone and failed in another.
     cats = meta.get("categories")
-    if isinstance(cats, list) and len(cats) >= 2:
-        parent = os.path.basename(os.path.dirname(path))
-        grandparent = os.path.basename(os.path.dirname(os.path.dirname(path)))
-        gp_clean = grandparent.split("-", 1)[1] if grandparent[:2].isdigit() else grandparent
-        if cats[1] != parent:
-            errs.append(f"{rel}: categories[1] '{cats[1]}' != directory '{parent}'")
-        if cats[0] != gp_clean:
-            errs.append(f"{rel}: categories[0] '{cats[0]}' != '{gp_clean}'")
+    parts = os.path.relpath(os.path.dirname(path), REPO_ROOT).split(os.sep)
+    if len(parts) != 2:
+        errs.append(f"{rel}: tool files must live at <NN-category>/<subcategory>/")
+    elif not isinstance(cats, list) or len(cats) < 2:
+        errs.append(f"{rel}: categories must list [top-category, sub-category]")
+    else:
+        strip_prefix = lambda p: re.sub(r"^\d+-", "", p)  # noqa: E731
+        expected = [strip_prefix(parts[0]), strip_prefix(parts[1])]
+        if cats[0] != expected[0]:
+            errs.append(f"{rel}: categories[0] '{cats[0]}' != '{expected[0]}'")
+        if cats[1] != expected[1]:
+            errs.append(f"{rel}: categories[1] '{cats[1]}' != '{expected[1]}'")
     return errs
 
 
@@ -193,6 +274,15 @@ def validate(path, meta, filename):
 # --------------------------------------------------------------------------- #
 def link(target_abs, from_dir):
     return os.path.relpath(target_abs, from_dir).replace(os.sep, "/")
+
+
+def cell(value):
+    """Escape a value for a markdown table cell.
+
+    A single unescaped '|' in a name or URL splits the row into extra columns
+    and corrupts the generated table with no validation error to explain it.
+    """
+    return str("" if value is None else value).replace("|", "\\|")
 
 
 def render_index(tools):
@@ -213,8 +303,8 @@ def render_index(tools):
         href = link(t.path, REPO_ROOT)
         url = t["url"] or ""
         out.append(
-            f"| [{t['name']}]({href}) | {t['tier']} | {t['contact']} "
-            f"| {cat} | {t['status']} | {url} |"
+            f"| [{cell(t['name'])}]({href}) | {cell(t['tier'])} | {cell(t['contact'])} "
+            f"| {cell(cat)} | {cell(t['status'])} | {cell(url)} |"
         )
     out.append("")
     return "\n".join(out)
@@ -225,17 +315,19 @@ def render_tools_table(tools, from_dir):
         "| Tool | Answers | Tier | Contact |",
         "|---|---|---|---|",
     ]
-    for t in sorted(tools, key=lambda x: (x["tier"] or 9, str(x["name"]).lower())):
+    ordered = sorted(tools, key=lambda x: (x["tier"] if isinstance(x["tier"], int) else 9,
+                                           str(x["name"]).lower(), x.rel))
+    for t in ordered:
         href = link(t.path, from_dir)
-        answer = (t.answer or "").replace("|", "\\|")
-        rows.append(f"| [{t['name']}]({href}) | {answer} | {t['tier']} | {t['contact']} |")
+        rows.append(f"| [{cell(t['name'])}]({href}) | {cell(t.answer)} "
+                    f"| {cell(t['tier'])} | {cell(t['contact'])} |")
     return "\n".join(rows)
 
 
 def update_readmes(tools, check):
     stale = []
     for dirpath, dirnames, filenames in os.walk(REPO_ROOT):
-        dirnames[:] = [d for d in dirnames if d not in SKIP_DIRS]
+        prune(dirpath, dirnames)
         if "README.md" not in filenames:
             continue
         readme = os.path.join(dirpath, "README.md")
@@ -263,6 +355,46 @@ def update_readmes(tools, check):
     return stale
 
 
+_LISTING_CACHE = {}
+
+
+def _listing(directory):
+    try:
+        names = set(os.listdir(directory))
+    except OSError:
+        names = set()
+    _LISTING_CACHE[directory] = names
+    return names
+
+
+def resolves_exactly(full_path):
+    """True if every path component exists with exactly this spelling.
+
+    os.path.exists() is case-insensitive on macOS, so a link written as
+    ./Geolocation/README.md resolves on the author's laptop and 404s on the
+    ext4 CI runner. Checking each component against the real directory listing
+    gives the same answer on every filesystem.
+    """
+    full_path = os.path.normpath(full_path)
+    try:
+        rel = os.path.relpath(full_path, REPO_ROOT)
+    except ValueError:
+        return os.path.exists(full_path)
+    if rel.startswith(".."):            # outside the repo; fall back
+        return os.path.exists(full_path)
+    current = REPO_ROOT
+    for part in rel.split(os.sep):
+        if part == ".":
+            continue
+        names = _LISTING_CACHE.get(current)
+        if names is None:
+            names = _listing(current)
+        if part not in names:
+            return False
+        current = os.path.join(current, part)
+    return True
+
+
 def check_internal_links():
     """Report relative markdown links that do not resolve to a file on disk.
 
@@ -270,22 +402,27 @@ def check_internal_links():
     template deliberately contains a placeholder link.
     """
     errs = []
+    _LISTING_CACHE.clear()
     for dirpath, dirnames, filenames in os.walk(REPO_ROOT):
-        dirnames[:] = [d for d in dirnames if d not in (".git", "templates")]
-        for fn in filenames:
+        dirnames[:] = sorted(d for d in dirnames
+                             if d not in ({".git", "templates"} | SKIP_ANYWHERE))
+        for fn in sorted(filenames):
             if not fn.endswith(".md"):
                 continue
             path = os.path.join(dirpath, fn)
             rel = os.path.relpath(path, REPO_ROOT)
-            with open(path, encoding="utf-8") as fh:
+            with open(path, encoding="utf-8-sig") as fh:
                 for lineno, line in enumerate(fh, 1):
                     for _text, target in MD_LINK.findall(line):
                         if target.startswith(("http://", "https://", "#", "mailto:")):
                             continue
-                        target = target.split("#")[0].strip()
-                        if not target:
+                        # Percent-decode: editors and GitHub's "copy link"
+                        # encode spaces and parentheses in filenames.
+                        cleaned = urllib.parse.unquote(target.split("#")[0].strip())
+                        cleaned = cleaned.strip("<>")
+                        if not cleaned:
                             continue
-                        if not os.path.exists(os.path.normpath(os.path.join(dirpath, target))):
+                        if not resolves_exactly(os.path.join(dirpath, cleaned)):
                             errs.append(f"{rel}:{lineno}: broken link -> {target}")
     return errs
 

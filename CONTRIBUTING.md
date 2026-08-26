@@ -102,9 +102,19 @@ Gotchas. Always set `status_checked` to the date you last looked.
 
 1. Run `python3 scripts/build-index.py` and commit the regenerated `INDEX.md`
    and category README tables. CI fails if `INDEX.md` is out of date.
-2. Run `python3 scripts/check-links.py --timeout 10` and fix or mark any dead
-   `url`.
-3. Confirm your frontmatter parses (the build script will complain if not).
+2. Check the output. The build script validates frontmatter, verifies that every
+   relative link resolves (matching case exactly, so a link that works on macOS
+   but not on Linux is caught), and reports any file under a numbered category
+   directory whose frontmatter it could not parse. A tool file it cannot read is
+   an error, never a silent omission.
+3. If you added or changed a `url`, run
+   `python3 scripts/check-links.py --timeout 8` and fix or mark anything
+   reported `DEAD`. Results marked `BLOCKED` are sites refusing an automated
+   client - they are not evidence the tool is gone, so do not change `status`
+   on the strength of one.
 
-CI runs both scripts on every PR. See
+`build-index.py --check` runs on every pull request. The link check does **not**
+run per-PR: nothing in a diff changes whether a third-party site is up, and
+hammering those services from CI is what gets the checker blocked. It runs
+weekly instead, and on demand from the Actions tab. See
 [`.github/workflows/validate.yml`](.github/workflows/validate.yml).
