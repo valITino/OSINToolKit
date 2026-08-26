@@ -1,0 +1,12 @@
+# Python bytecode from running scripts/
+__pycache__/
+*.py[cod]
+
+# Editor and OS noise
+.DS_Store
+*.swp
+.idea/
+.vscode/
+
+# Wordlists are pointed to, never vendored - see 99-resources/wordlists/README.md
+SecLists/
