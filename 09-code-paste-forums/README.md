@@ -17,6 +17,7 @@ Where secrets and identities leak in plain text: source repositories, commit his
 |---|---|---|---|
 | [GitHub code search](code-search/github-code-search.md) | Does this organisation's name, domain, internal hostname, or API key appear anywhere in public source code? | 2 | passive |
 | [Gitleaks](secret-scanning/gitleaks.md) | Does this repository or directory contain anything that matches a known secret pattern - quickly, and in a form I can wire into a... | 2 | passive |
+| [grep.app](code-search/grep-app.md) | Does this exact string - an internal hostname, a key prefix, an employee address - appear in any public GitHub repository, or... | 2 | passive |
 | [paaster](paste-sites/paaster.md) | I have a paaster link, or I have the device of someone who used paaster. What can I still recover? | 2 | passive |
 | [Pastebin](paste-sites/pastebin.md) | Has data relating to my target - credentials, a customer list, internal configuration - been posted publicly, and when did it... | 2 | passive |
 | [PrivateBin](paste-sites/privatebin.md) | I found a PrivateBin link in a chat log, an email, or another paste. Can I read it - and why can I not search for others like it? | 2 | passive |
