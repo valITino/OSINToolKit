@@ -20,17 +20,20 @@ I have an email address. Does this person publish a PGP key - and does that key 
 this address to a real name or to their **other** addresses?
 
 ## When to reach for it
-A public key's User IDs are self-asserted identity, and one key often carries several
-of them: a name, a work address, a personal address, an old university one. That makes
-a keyserver hit a genuine identity-linking pivot, and the creation dates put a floor
-under how long an address has been in use.
+A public key's User IDs are self-asserted identity, and one key often carries several -
+a name, a work address, a personal one, an old university address. That makes a
+keyserver hit a genuine identity-linking pivot, and creation dates put a floor under how
+long an address has been in use.
 
-Know which server you are asking, because they behave very differently now. The old
-SKS network accepted anything from anyone, so **keyserver.ubuntu.com** still answers
-address searches with unverified User IDs - which is exactly what makes it useful here.
-**keys.openpgp.org** deliberately does not: it publishes identity information only
-after the address owner has confirmed it by email. That is a privacy feature, and it
-means an absence there proves nothing.
+Know which server you are asking, because they behave very differently now. The old SKS
+network accepted anything from anyone, so **keyserver.ubuntu.com** still answers address
+searches with unverified User IDs - which is exactly what makes it useful here.
+**keys.openpgp.org** deliberately does not: it publishes identity information only after
+the address owner has confirmed it by email, and strips User IDs from everyone else's
+keys entirely.
+
+**Query both.** Their corpora differ in both directions - each serves keys the other
+returns 404 for - so a miss on one is not a result.
 
 ## Install
 ```bash
@@ -53,20 +56,25 @@ prize - one key showing three addresses links three addresses. Creation and expi
 give you a timeline.
 
 ## Gotchas
-- **pgp.mit.edu is broken for search.** Its front page loads and key-ID lookups answer,
-  but `op=index` searches by address or name return HTTP 500 "Error handling request".
-  Do not rely on it, and do not read a failure there as "no key exists".
-- **keys.openpgp.org returns 404 for an address search unless the owner verified it.**
-  Fingerprint lookups work fine. It also strips third-party signatures, so there is no
-  web-of-trust graph to walk there any more.
-- **SKS-era results are polluted.** The 2019 certificate-flooding attacks left duplicate
-  and spam keys behind: a single address can return several near-identical keys created
-  minutes apart. Name searches on keyserver.ubuntu.com currently return a server error.
-- **Anyone can upload a key claiming any address.** A uid is an assertion, not proof.
-  Corroborate before treating a name as identification.
-- Uploads are effectively permanent and were never deletable on the old network, so a
-  key may reflect an identity from a decade ago.
-- Never import an unknown key into your working keyring. `gpg --show-keys` inspects it
+- **pgp.mit.edu no longer works, despite loading.** The front page and its search form
+  render fine, but queries by address or name return HTTP 500 or hang outright. Testing
+  liveness by fetching `/` will tell you it is healthy. It is not - treat it as dead and
+  fix any script or Dockerfile still passing `--keyserver pgp.mit.edu`.
+- **keys.openpgp.org strips identity, not just search results.** Fetch a key by
+  fingerprint and you get the key material with **zero User ID packets** unless its owner
+  opted in - no name, no address. A 404 by email means "not opted in", never "no such
+  key". Email search is exact-match only, by design, so you cannot enumerate a domain.
+- **Its email lookups are rate-limited to roughly one a minute** (fingerprint and key-ID
+  lookups are far more generous). Bulk address checking there is not viable.
+- **SKS-era results are polluted.** The June 2019 certificate-flooding attack
+  (CVE-2019-13050) left poisoned keys carrying tens of thousands of appended signatures,
+  which can wedge older GnuPG - prefer fetching by full fingerprint over broad searches.
+  Short or generic search terms on keyserver.ubuntu.com also return server errors.
+- **Anyone can upload a key claiming any address**, with no proof of control, and the
+  SKS model is append-only so nothing can ever be deleted. Impersonation keys exist and
+  have been used to attribute statements to people who never held the key. Presence
+  proves upload - not identity, not current ownership.
+- Never import an unknown key into your working keyring - `gpg --show-keys` inspects one
   without touching your trust database.
 
 ## Alternatives

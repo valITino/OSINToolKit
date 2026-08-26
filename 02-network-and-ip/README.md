@@ -28,8 +28,10 @@ You have an IP or a netblock. Who owns it, where is it, is it known-bad, what is
 | [IPVoid](reputation/ipvoid.md) | I have an IP. Is it listed on any of the well-known blacklists, and what do basic lookups say about it? | 2 | passive |
 | [MaxMind GeoLite2](geolocation/geolite2.md) | Where does this IP geolocate - and **how far wrong is that answer likely to be**? | 2 | passive |
 | [nuclei](vuln-scanners/nuclei.md) | I have a list of hosts or URLs I am authorised to test. Which known misconfigurations, exposed panels, and default installs are... | 2 | intrusive |
+| [Rapid7 Nexpose](vuln-scanners/nexpose.md) | My scan returned four thousand "critical" findings. Which of them actually matter enough to fix first? | 2 | intrusive |
 | [RIR databases (ARIN / RIPE / APNIC)](registries-asn/rir-databases.md) | I have an organisation name. Which IP ranges and ASNs are allocated to it - and, given one of its IPs, what else sits in the same... | 2 | passive |
 | [Shodan](device-search/shodan.md) | What is exposed on this host, netblock, or organisation - without me scanning it - and where else on the internet does this same... | 2 | passive |
+| [Tenable Nessus](vuln-scanners/nessus.md) | I am authorised to assess these hosts. What known vulnerabilities and misconfigurations are present, in a report a client will... | 2 | intrusive |
 | [VirusTotal](reputation/virustotal.md) | I have a file hash, URL, domain, or IP. Do security vendors consider it malicious, and what else is associated with it? | 2 | passive |
 | [whois](registries-asn/whois.md) | I have a domain, an IP, or an ASN. Who registered it, when, through whom, and what contact details are on record? | 2 | passive |
 | [WiGLE](device-search/wigle.md) | I have a wireless network name (SSID) or a MAC address (BSSID). Where in the world has that network been observed? | 2 | passive |
