@@ -21,8 +21,11 @@ jobs:
 
   link-check:
     runs-on: ubuntu-latest
-    # Link checking touches third-party servers and is inherently flaky, so it
-    # does not block merge. Read its log to catch tools that have gone dead.
+    # The script only fails on genuinely dead URLs (404/410/DNS failure); sites
+    # that merely refuse an automated client are reported as BLOCKED and do not
+    # fail it. This job still does not block merge, because a transient DNS
+    # blip in CI would otherwise look like a dead host. Read its log to catch
+    # tools that have actually gone away.
     continue-on-error: true
     steps:
       - uses: actions/checkout@v4

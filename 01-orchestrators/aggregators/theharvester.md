@@ -29,15 +29,24 @@ exposure. When you need persistence or correlation, graduate to
 
 ## Install
 ```bash
-pipx install theHarvester    # Kali default
+sudo apt install theharvester        # Kali packages it - the simplest route
+
+# Or from source (upstream uses uv; there is no root theHarvester.py launcher):
+git clone https://github.com/laramies/theHarvester.git
+cd theHarvester && uv sync && uv run theHarvester -h
 ```
+The PyPI name is not the project - install from Kali or from source.
 
 ## Usage
 ```bash
-theHarvester -d example.com -b all              # all sources
-theHarvester -d example.com -l 500 -b bing      # cap results, single source
-theHarvester -d example.com -b crtsh -f out     # CT-log subdomains, save HTML/XML/JSON
+theHarvester -d example.com -b all                     # every source
+theHarvester -d example.com -b subdomains -l 500        # a capability group, capped
+theHarvester -d example.com -b crtsh,certspotter -f out # CT-log subdomains, save report
 ```
+
+`-b` takes source names **or** capability groups (`subdomains`, `emails`, `ips`,
+`asns`, `urls`, `people`, `breaches`, `all`). Run `theHarvester -h` for the source
+list your version actually has - sources are added and removed regularly.
 
 ## Output
 Grouped lists: emails, hosts/subdomains, IPs, and (from some sources) employee
@@ -46,6 +55,9 @@ names and URLs. `-f` writes an HTML report plus machine-readable XML/JSON.
 ## Gotchas
 - `-d` (domain), `-l` (limit), and `-b` (sources) are the three you always set;
   `-b all` is the usual starting point.
+- **Source names change between versions.** `bing`, for example, is no longer in
+  the catalogue. An invalid name is a hard error, so check `-h` rather than
+  copying a source list out of an old tutorial.
 - Several sources need API keys in `~/.theHarvester/api-keys.yaml` to return
   anything useful; without them those sources quietly contribute nothing.
 - Search-engine sources rate-limit and occasionally return partial or empty sets;

@@ -11,6 +11,7 @@ categories: [code-paste-forums, code-search]
 tags: [code-search, multi-forge, legacy]
 status: unverified
 status_checked: 2026-08-26
+superseded_by: github-code-search
 ---
 
 # SearchCode

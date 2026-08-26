@@ -11,6 +11,7 @@ categories: [web-exploration, fingerprinting]
 tags: [fingerprinting, legacy, cms-detection]
 status: stale
 status_checked: 2026-08-26
+superseded_by: whatweb
 ---
 
 # wig

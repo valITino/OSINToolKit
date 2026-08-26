@@ -61,6 +61,16 @@ When a tool spans levels, pick the level of its **primary in-scope use** here
 and explain the boundary in Gotchas. Port scanners and content brute-forcers
 are `intrusive` even in light configurations.
 
+### superseded_by (tier 3 only)
+
+Optional. Add `superseded_by: <slug>` to a tier 3 file **only when one specific
+tool has replaced it** (`gitrob` to `trufflehog`, `dirbuster` to `gobuster`).
+Leave it out when the replacement is a manual technique or a combination of
+tools rather than a single successor - `metagoofil` and `cloudflair` have no
+`superseded_by` for exactly that reason, and their files explain what to do
+instead. The absence of the field is meaningful; do not fill it in with an
+approximate match.
+
 ### Status
 
 Default to `status: unverified`. Only use `active` if you have a concrete,

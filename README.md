@@ -23,6 +23,12 @@ The primary entry point. You arrive with one artifact; follow the chain.
 | A .pcap file | [`11-traffic-capture`](11-traffic-capture/) |
 | Only a company name | [`02-network-and-ip/registries-asn`](02-network-and-ip/registries-asn/) -> [`01-orchestrators`](01-orchestrators/) |
 
+For the three most common cases there are full playbooks in
+[`workflows/`](workflows/) that chain the tools in order and explain why the
+order is what it is: [domain investigation](workflows/domain-investigation.md),
+[phishing email triage](workflows/phishing-email-triage.md), and
+[username to identity](workflows/username-to-identity.md).
+
 ## Tier 1 - the twelve daily drivers
 
 Broad, well-maintained, worth mastering. If you learn twelve tools, learn these.
@@ -121,6 +127,9 @@ sortable list once the build script has run.
   awesome-lists/        # curated external lists
   api-keys/             # which keys are worth paying for
   cheatsheets/          # long-form notes that outgrew a tool file
+workflows/              # end-to-end playbooks chaining the tools in order
+scripts/                # build-index.py, check-links.py (stdlib only)
+templates/              # the empty tool schema
 ```
 
 ## Legal and scope

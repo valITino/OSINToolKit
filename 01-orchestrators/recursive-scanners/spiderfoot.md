@@ -28,9 +28,13 @@ and can live without the web UI.
 
 ## Install
 ```bash
-pipx install spiderfoot           # or: git clone + pip install -r requirements.txt
-# Kali: available via apt but pipx tracks upstream more closely
+# Upstream recommends a packaged release over master:
+wget https://github.com/smicallef/spiderfoot/archive/v4.0.tar.gz
+tar zxvf v4.0.tar.gz && cd spiderfoot-4.0
+pip3 install -r requirements.txt
 ```
+There is no official PyPI package - **do not `pip install spiderfoot`**; the name
+on PyPI is not the project. Kali also packages it as `spiderfoot`.
 
 ## Usage
 ```bash

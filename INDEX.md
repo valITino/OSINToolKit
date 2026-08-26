@@ -92,7 +92,7 @@ Do not edit by hand. Sort in your editor or grep by column.
 | [Sn1per](01-orchestrators/aggregators/sn1per.md) | 3 | intrusive | orchestrators / aggregators | unverified | https://github.com/1N3/Sn1per |
 | [IPLogger / Grabify](08-people-and-identity/ip-luring/iplogger-grabify.md) | 3 | active | people-and-identity / ip-luring | unverified | https://grabify.link/ |
 | [EagleEye](08-people-and-identity/reverse-image/eagleeye.md) | 3 | active | people-and-identity / reverse-image | unverified | https://github.com/ThoughtfulDev/EagleEye |
-| [userrecon](08-people-and-identity/username-enum/userrecon.md) | 3 | active | people-and-identity / username-enum | stale | https://github.com/issamelferkh/userrecon |
+| [userrecon](08-people-and-identity/username-enum/userrecon.md) | 3 | active | people-and-identity / username-enum | broken | https://github.com/issamelferkh/userrecon |
 | [DirBuster](04-web-exploration/content-discovery/dirbuster.md) | 3 | intrusive | web-exploration / content-discovery | archived | https://wiki.owasp.org/index.php/Category:OWASP_DirBuster_Project |
 | [wfuzz](04-web-exploration/content-discovery/wfuzz.md) | 3 | intrusive | web-exploration / content-discovery | stale | https://github.com/xmendez/wfuzz |
 | [inurlbr](04-web-exploration/dorking/inurlbr.md) | 3 | passive | web-exploration / dorking | unverified | https://github.com/googleinurl/SCANNER-INURLBR |

@@ -30,7 +30,11 @@ a structured DB rather than a one-shot sweep, and over
 
 ## Install
 ```bash
-pipx install recon-ng      # Kali ships it; pipx tracks upstream
+sudo apt install recon-ng        # Kali packages it
+
+# Or from source - there is no PyPI package:
+git clone https://github.com/lanmaster53/recon-ng.git
+cd recon-ng && pip3 install -r REQUIREMENTS && ./recon-ng
 ```
 
 ## Usage

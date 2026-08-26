@@ -9,7 +9,7 @@ platforms: [linux]
 url: https://github.com/issamelferkh/userrecon
 categories: [people-and-identity, username-enum]
 tags: [username, legacy, outdated]
-status: stale
+status: broken
 status_checked: 2026-08-26
 superseded_by: sherlock
 ---
@@ -32,8 +32,8 @@ you meet it in older material.
 
 ## Install
 ```bash
-git clone https://github.com/issamelferkh/userrecon.git
-cd userrecon && bash userrecon.sh
+# The upstream repository no longer resolves - see Gotchas. Use Sherlock instead:
+pipx install sherlock-project
 ```
 
 ## Usage
@@ -45,6 +45,10 @@ bash userrecon.sh          # prompts for the username, then checks its site list
 A per-site found/not-found list written to a text file.
 
 ## Gotchas
+- **The upstream repository no longer resolves anonymously** (checked 2026-08-26):
+  `git ls-remote` on it fails to authenticate while peer repositories succeed,
+  which means it has been removed, renamed, or made private. Forks may survive,
+  but there is no maintained upstream to install from.
 - **Detection logic is stale** - both false positives and missed accounts are common.
   Verify every hit by hand, which erodes the point of automating it.
 - Its site list is small and fixed; platforms that matter today may be absent

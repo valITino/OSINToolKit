@@ -11,6 +11,7 @@ categories: [orchestrators, aggregators]
 tags: [automation, scanning, out-of-scope, wrapper]
 status: unverified
 status_checked: 2026-08-26
+superseded_by: bbot
 ---
 
 # Sn1per

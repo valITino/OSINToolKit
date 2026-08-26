@@ -9,6 +9,10 @@ Walks the repository, parses the YAML frontmatter of every tool file, and:
      in every README.md with a table of the tools that live in that README's
      directory subtree (tool, question it answers, tier, contact).
 
+It also validates as it goes: required frontmatter keys, allowed values for
+tier/contact/status, filename-matches-slug, categories-match-directory, and
+that every relative markdown link in the repo resolves to a real file.
+
 Standard library only. Run from the repository root:
 
     python3 scripts/build-index.py            # rewrite files in place
@@ -21,6 +25,7 @@ from __future__ import annotations
 
 import argparse
 import os
+import re
 import sys
 
 REPO_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -38,6 +43,8 @@ VALID_STATUS = {"active", "stale", "broken", "archived", "unverified"}
 
 BEGIN_MARKER = "<!-- BEGIN:TOOLS -->"
 END_MARKER = "<!-- END:TOOLS -->"
+
+MD_LINK = re.compile(r"\[([^\]]*)\]\(([^)]+)\)")
 
 
 # --------------------------------------------------------------------------- #
@@ -238,6 +245,33 @@ def update_readmes(tools, check):
     return stale
 
 
+def check_internal_links():
+    """Report relative markdown links that do not resolve to a file on disk.
+
+    Skips http(s), anchors, and mailto. templates/ is skipped because the
+    template deliberately contains a placeholder link.
+    """
+    errs = []
+    for dirpath, dirnames, filenames in os.walk(REPO_ROOT):
+        dirnames[:] = [d for d in dirnames if d not in (".git", "templates")]
+        for fn in filenames:
+            if not fn.endswith(".md"):
+                continue
+            path = os.path.join(dirpath, fn)
+            rel = os.path.relpath(path, REPO_ROOT)
+            with open(path, encoding="utf-8") as fh:
+                for lineno, line in enumerate(fh, 1):
+                    for _text, target in MD_LINK.findall(line):
+                        if target.startswith(("http://", "https://", "#", "mailto:")):
+                            continue
+                        target = target.split("#")[0].strip()
+                        if not target:
+                            continue
+                        if not os.path.exists(os.path.normpath(os.path.join(dirpath, target))):
+                            errs.append(f"{rel}:{lineno}: broken link -> {target}")
+    return errs
+
+
 def main():
     ap = argparse.ArgumentParser(description=__doc__)
     ap.add_argument("--check", action="store_true",
@@ -263,9 +297,16 @@ def main():
 
     readme_stale = update_readmes(tools, args.check)
 
+    # Run after the READMEs are refreshed so generated tables are checked too.
+    link_errors = check_internal_links()
+    if link_errors:
+        print("Broken internal links:", file=sys.stderr)
+        for e in link_errors:
+            print(f"  - {e}", file=sys.stderr)
+
     print(f"{len(tools)} tools indexed.")
     if args.check:
-        problems = bool(errors) or index_stale or bool(readme_stale)
+        problems = bool(errors) or bool(link_errors) or index_stale or bool(readme_stale)
         if index_stale:
             print("INDEX.md is out of date. Run scripts/build-index.py.", file=sys.stderr)
         for r in readme_stale:
@@ -274,11 +315,12 @@ def main():
             sys.exit(1)
         print("Everything up to date.")
     else:
-        if errors:
-            print(f"{len(errors)} frontmatter error(s); see above.", file=sys.stderr)
-            sys.exit(1)
         print(f"INDEX.md {'updated' if index_stale else 'unchanged'}; "
               f"{len(readme_stale)} README(s) refreshed.")
+        if errors or link_errors:
+            print(f"{len(errors)} frontmatter error(s), "
+                  f"{len(link_errors)} broken link(s); see above.", file=sys.stderr)
+            sys.exit(1)
 
 
 if __name__ == "__main__":
