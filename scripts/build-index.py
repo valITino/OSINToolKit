@@ -96,15 +96,33 @@ def _coerce(value):
     return stripped
 
 
+ANSWER_MAX = 130
+
+
 def first_answer_line(body):
-    """Extract the first non-empty line under 'What question does it answer?'."""
+    """Return the 'What question does it answer?' paragraph, trimmed for a table.
+
+    Reads the whole paragraph rather than its first physical line, because the
+    source is hard-wrapped and a line-based read cuts sentences in half. Long
+    answers are truncated on a word boundary so the table stays scannable.
+    """
     lines = body.splitlines()
     for i, line in enumerate(lines):
         if line.strip().lower().startswith("## what question"):
+            para = []
             for follow in lines[i + 1:]:
-                if follow.strip():
-                    return follow.strip()
-            break
+                if follow.strip().startswith("## "):
+                    break
+                if not follow.strip():
+                    if para:
+                        break
+                    continue
+                para.append(follow.strip())
+            text = " ".join(para)
+            if len(text) <= ANSWER_MAX:
+                return text
+            cut = text[:ANSWER_MAX].rsplit(" ", 1)[0].rstrip(" ,;:-")
+            return f"{cut}..."
     return ""
 
 

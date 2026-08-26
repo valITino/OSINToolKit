@@ -60,7 +60,7 @@ discovery-and-attribution scope.
 <!-- BEGIN:TOOLS -->
 | Tool | Answers | Tier | Contact |
 |---|---|---|---|
-| [inurlbr](inurlbr.md) | Can I run a dork across many search engines at once and automatically process the | 3 | passive |
+| [inurlbr](inurlbr.md) | Can I run a dork across many search engines at once and automatically process the results? | 3 | passive |
 <!-- END:TOOLS -->
 
 ## Related

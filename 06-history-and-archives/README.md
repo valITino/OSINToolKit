@@ -13,8 +13,8 @@ The site as it was, not as it is. Historical URLs and pages, past WHOIS and DNS,
 <!-- BEGIN:TOOLS -->
 | Tool | Answers | Tier | Contact |
 |---|---|---|---|
-| [Wayback CDX API](web-archive/wayback-cdx-api.md) | I have a domain. Every URL the Internet Archive ever captured for it - including | 1 | passive |
-| [gau](web-archive/gau.md) | Every known URL for this domain, gathered from **several** archive and threat-intel | 2 | passive |
-| [SpyOnWeb](analytics-linking/spyonweb.md) | This site carries a Google Analytics or AdSense ID. What **other** sites carry the | 2 | passive |
-| [waybackurls](web-archive/waybackurls.md) | Every URL the Wayback Machine knows for this domain, on stdout, ready to pipe - | 2 | passive |
+| [Wayback CDX API](web-archive/wayback-cdx-api.md) | I have a domain. Every URL the Internet Archive ever captured for it - including deleted pages, old endpoints, and forgotten... | 1 | passive |
+| [gau](web-archive/gau.md) | Every known URL for this domain, gathered from **several** archive and threat-intel sources at once - not just the Wayback... | 2 | passive |
+| [SpyOnWeb](analytics-linking/spyonweb.md) | This site carries a Google Analytics or AdSense ID. What **other** sites carry the same one - meaning the same person or... | 2 | passive |
+| [waybackurls](web-archive/waybackurls.md) | Every URL the Wayback Machine knows for this domain, on stdout, ready to pipe - without me writing a CDX query. | 2 | passive |
 <!-- END:TOOLS -->

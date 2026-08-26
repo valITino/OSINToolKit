@@ -13,5 +13,5 @@ How to run an investigation before you run a tool: the frameworks that structure
 <!-- BEGIN:TOOLS -->
 | Tool | Answers | Tier | Contact |
 |---|---|---|---|
-| [proxychains](opsec/proxychains.md) | How do I route a tool that has no proxy support of its own through Tor or a SOCKS | 2 | passive |
+| [proxychains](opsec/proxychains.md) | How do I route a tool that has no proxy support of its own through Tor or a SOCKS proxy, so the target does not see my real IP? | 2 | passive |
 <!-- END:TOOLS -->

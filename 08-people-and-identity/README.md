@@ -18,15 +18,15 @@ You have a name, username, email, or photo. Search for the person, spread a user
 <!-- BEGIN:TOOLS -->
 | Tool | Answers | Tier | Contact |
 |---|---|---|---|
-| [Canarytokens](ip-luring/canarytokens.md) | Did someone open this document, visit this URL, or access this resource - and from | 2 | active |
-| [Have I Been Pwned](email-osint/hibp.md) | I have an email address. Which public data breaches has it appeared in, and what | 2 | passive |
+| [Canarytokens](ip-luring/canarytokens.md) | Did someone open this document, visit this URL, or access this resource - and from what IP and client? | 2 | active |
+| [Have I Been Pwned](email-osint/hibp.md) | I have an email address. Which public data breaches has it appeared in, and what categories of data were exposed each time? | 2 | passive |
 | [holehe](email-osint/holehe.md) | I have an email address. Which online services is it registered with? | 2 | active |
-| [Maigret](username-enum/maigret.md) | I have a username. Where does it exist, and what do those profiles actually say - | 2 | active |
+| [Maigret](username-enum/maigret.md) | I have a username. Where does it exist, and what do those profiles actually say - names, bios, locations, linked accounts? | 2 | active |
 | [Sherlock](username-enum/sherlock.md) | I have a username. Which of hundreds of sites has an account registered under it? | 2 | active |
-| [ThatsThem](people-search/thatsthem.md) | I have a name, phone number, email, or IP. What publicly aggregated records connect | 2 | passive |
+| [ThatsThem](people-search/thatsthem.md) | I have a name, phone number, email, or IP. What publicly aggregated records connect to it - address, relatives, associated phone... | 2 | passive |
 | [TinEye](reverse-image/tineye.md) | Where did this exact image first appear, and how has it been used and modified since? | 2 | passive |
-| [Yandex Images](reverse-image/yandex-images.md) | I have a photo. Where else does this image - or a visually similar one, or this | 2 | passive |
-| [EagleEye](reverse-image/eagleeye.md) | Given a name and some photos, can automated face comparison find that person's social | 3 | active |
-| [IPLogger / Grabify](ip-luring/iplogger-grabify.md) | If I get someone to click a link I control, what is their IP address, approximate | 3 | active |
+| [Yandex Images](reverse-image/yandex-images.md) | I have a photo. Where else does this image - or a visually similar one, or this person's face - appear online? | 2 | passive |
+| [EagleEye](reverse-image/eagleeye.md) | Given a name and some photos, can automated face comparison find that person's social media profiles? | 3 | active |
+| [IPLogger / Grabify](ip-luring/iplogger-grabify.md) | If I get someone to click a link I control, what is their IP address, approximate location, device, and browser? | 3 | active |
 | [userrecon](username-enum/userrecon.md) | Which social platforms have an account under this username? | 3 | active |
 <!-- END:TOOLS -->

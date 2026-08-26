@@ -14,6 +14,6 @@ You have an .eml or a header block. Trace the path and origin, check the sending
 <!-- BEGIN:TOOLS -->
 | Tool | Answers | Tier | Contact |
 |---|---|---|---|
-| [MXToolbox](header-analysis/mxtoolbox.md) | I have an email header block or a domain. What path did this message take, how long | 2 | passive |
-| [swaks](server-checks/swaks.md) | How does this mail server actually behave - what does it advertise, does it accept | 2 | active |
+| [MXToolbox](header-analysis/mxtoolbox.md) | I have an email header block or a domain. What path did this message take, how long did each hop hold it, and is the sending... | 2 | passive |
+| [swaks](server-checks/swaks.md) | How does this mail server actually behave - what does it advertise, does it accept mail for this address, and how does it... | 2 | active |
 <!-- END:TOOLS -->

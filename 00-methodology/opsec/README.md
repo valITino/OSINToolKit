@@ -43,7 +43,7 @@ See [../../LEGAL.md](../../LEGAL.md) for the legal weight of these.
 <!-- BEGIN:TOOLS -->
 | Tool | Answers | Tier | Contact |
 |---|---|---|---|
-| [proxychains](proxychains.md) | How do I route a tool that has no proxy support of its own through Tor or a SOCKS | 2 | passive |
+| [proxychains](proxychains.md) | How do I route a tool that has no proxy support of its own through Tor or a SOCKS proxy, so the target does not see my real IP? | 2 | passive |
 <!-- END:TOOLS -->
 
 ## Related

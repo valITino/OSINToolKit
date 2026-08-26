@@ -13,6 +13,6 @@ You have a .pcap, or you can capture. See who talks to whom, extract artifacts, 
 <!-- BEGIN:TOOLS -->
 | Tool | Answers | Tier | Contact |
 |---|---|---|---|
-| [Wireshark / tshark](capture/wireshark-tshark.md) | I have a .pcap (or a live interface). What is actually on the wire - which hosts | 1 | passive |
-| [NetworkMiner](analysis/networkminer.md) | What **things** are in this capture - which hosts, what files were transferred, what | 2 | passive |
+| [Wireshark / tshark](capture/wireshark-tshark.md) | I have a .pcap (or a live interface). What is actually on the wire - which hosts talk to which, over what protocols, carrying... | 1 | passive |
+| [NetworkMiner](analysis/networkminer.md) | What **things** are in this capture - which hosts, what files were transferred, what images were viewed, what credentials crossed... | 2 | passive |
 <!-- END:TOOLS -->
