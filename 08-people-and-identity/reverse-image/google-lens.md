@@ -56,8 +56,13 @@ ranked by visual similarity, not by first appearance.
   time, so a colleague may not see what you saw. Screenshot and timestamp anything you
   intend to rely on - see
   [../../00-methodology/documentation/README.md](../../00-methodology/documentation/README.md).
-- **There is no public API** for the consumer product. Anything claiming to offer one is
-  scraping, and will break.
+- **There is no public API** for the consumer product. Anything sold as a "Google Lens
+  API" is a third-party scraper and will break. **Google Cloud Vision is not Lens** - it
+  does labels, OCR and object localisation, but it does not return visually similar
+  images from Google's web index.
+- **An uploaded image has no permalink.** Only the `?url=` flow, on an already-public
+  image, produces a shareable link - so an upload-based finding exists only in your
+  screenshot.
 - **Uploading an image sends it to Google.** For a photograph of a private individual, or
   a document from a case file, that is a disclosure decision, not a search. Consider
   cropping to the object of interest first.

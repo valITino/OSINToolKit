@@ -14,7 +14,7 @@ The site as it was, not as it is. Historical URLs and pages, past WHOIS and DNS,
 | Tool | Answers | Tier | Contact |
 |---|---|---|---|
 | [Wayback CDX API](web-archive/wayback-cdx-api.md) | I have a domain. Every URL the Internet Archive ever captured for it - including deleted pages, old endpoints, and forgotten... | 1 | passive |
-| [archive.today](web-archive/archive-today.md) | This page is about to be edited or deleted. Can I make a timestamped copy right now that the operator cannot reach into and... | 2 | passive |
+| [archive.today](web-archive/archive-today.md) | This page is about to be edited or deleted, and the Wayback Machine will not capture it. Can I still get a timestamped copy? | 2 | passive |
 | [DNSlytics](analytics-linking/dnslytics.md) | This site carries a Google Analytics ID, a Google Tag, or an AdSense ID. What other domains carry the same one - now, and at any... | 2 | passive |
 | [gau](web-archive/gau.md) | Every known URL for this domain, gathered from **several** archive and threat-intel sources at once - not just the Wayback... | 2 | passive |
 | [NerdyData](analytics-linking/nerdydata.md) | Which sites use this technology, tracker, or code snippet - and can I get the answer as a filtered, exportable list rather than a... | 2 | passive |

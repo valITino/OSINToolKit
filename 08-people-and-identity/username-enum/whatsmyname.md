@@ -20,11 +20,16 @@ I have a username. Where does it exist - and can I see the actual detection rule
 each site, so I can judge whether a hit is real?
 
 ## When to reach for it
-When you care about the evidence behind a hit. WhatsMyName is not a checker; it is the
-**dataset** that most checkers read. A single `wmn-data.json` describes each site by
-URL pattern, the HTTP status and response string that mean "found", and the ones that
-mean "not found". That separation is the reason to prefer it: you can read exactly why
-a tool called an account a match, instead of trusting its verdict.
+When you care about the evidence behind a hit. WhatsMyName is not a checker; it is a
+**dataset** that checkers read. A single `wmn-data.json` describes each site by URL
+pattern, the HTTP status and response string that mean "found", and the ones that mean
+"not found". That separation is the reason to prefer it: you can read exactly why a
+tool called an account a match, instead of trusting its verdict.
+
+Note which tools actually use it. [Maigret](maigret.md) and [Sherlock](sherlock.md)
+maintain their own separate site lists and do **not** read this file; Blackbird and
+Naminter do. So a WhatsMyName hit and a Sherlock hit are independent signals, not the
+same one twice.
 
 Use [whatsmyname.app](https://whatsmyname.app/) for a no-install run with category
 filters and CSV export. Use the JSON when you are writing your own tooling or auditing
@@ -53,8 +58,8 @@ behind bot defences. At the time of checking the file covered 716 sites across 2
 categories.
 
 ## Gotchas
-- **The project stopped shipping a checker in May 2023** and now maintains data only.
-  Anything claiming to be "the WhatsMyName tool" is a third-party consumer of the JSON.
+- **The project stopped shipping its checker in May 2023** and focuses on the data.
+  Anything marketed as "the WhatsMyName tool" is a third-party consumer of the JSON.
 - A match means a profile page exists at that URL, **not** that your subject owns it.
   Common handles collide constantly. Corroborate before linking accounts to a person.
 - Sites marked `protection` sit behind Cloudflare or similar; results there are the

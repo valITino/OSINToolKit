@@ -56,6 +56,10 @@ country and ASN are reasonable and city is not.
 - **Everything below the first server you control can be forged**, so the earliest hop -
   the one that looks most like the sender - is precisely the least trustworthy line to
   geolocate.
+- **Webmail removes the premise entirely.** Gmail and Outlook.com strip the sending
+  client's IP from outbound headers, so for a message composed in a browser the
+  "originating IP" is Google or Microsoft infrastructure. A hop geolocating to a
+  provider's datacentre tells you which provider, and nothing about the person.
 - Free-tier geolocation is country- and network-accurate at best. Do not report a city,
   and never a coordinate. See
   [../../02-network-and-ip/geolocation/README.md](../../02-network-and-ip/geolocation/README.md).
