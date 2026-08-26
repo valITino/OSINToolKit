@@ -25,6 +25,7 @@ You have a domain. Resolve its records, enumerate its subdomains (passively firs
 | [hakrevdns](reverse-dns/hakrevdns.md) | I have a netblock rather than a single address. What hostname does every IP in it resolve back to, and which of those names... | 2 | active |
 | [host](query-tools/host.md) | I want one DNS answer, right now, without reading a full response packet. | 2 | active |
 | [massdns](active-enum/massdns.md) | I have a list of millions of candidate names, or a whole netblock. Which of them actually resolve, and can I find out in minutes... | 2 | intrusive |
+| [Namedroppers](typosquatting/namedroppers.md) | Which **registered** domains contain my brand name anywhere in them - not the typos, but the compositions: brand-support... | 2 | passive |
 | [puredns](active-enum/puredns.md) | I brute forced a domain and got thousands of hits. Which of them are real, and which are just a wildcard record answering... | 2 | intrusive |
 | [Robtex](reverse-dns/robtex.md) | I have an IP, a nameserver, or a mail server. What hostnames point at it now, what pointed at it before, and when did that change? | 2 | passive |
 | [subfinder](passive-enum/subfinder.md) | I have a domain. What subdomains exist, gathered from every passive source at once, without sending a single packet to the target? | 2 | passive |

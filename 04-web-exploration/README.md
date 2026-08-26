@@ -21,6 +21,7 @@ You have a URL or web host. What is it built with, what CMS, what hidden content
 | [CMSeeK](cms-scanners/cmseek.md) | I have a URL. Which CMS is behind it, which version, and what can I learn about its users and themes without hammering the site? | 2 | active |
 | [CMSmap](cms-scanners/cmsmap.md) | I have a site running WordPress, Joomla, Drupal, or Moodle. What version, plugins, and themes is it running, and are any of them... | 2 | intrusive |
 | [dirhunt](content-discovery/dirhunt.md) | What directory structure does this site have, worked out **without** brute forcing thousands of paths at it? | 2 | active |
+| [DomainTools](whois-domains/domaintools.md) | I have a registrant detail - an email, a name, a company, a phone number. What else did that person register, including the... | 2 | passive |
 | [feroxbuster](content-discovery/feroxbuster.md) | I am authorised to test this site. What directories and files exist that nothing links to - and what is inside the directories I... | 2 | intrusive |
 | [ffuf](content-discovery/ffuf.md) | I am authorised to test this site. What happens if I substitute a wordlist into *this specific position* - a path, a parameter... | 2 | intrusive |
 | [gobuster](content-discovery/gobuster.md) | I am authorised to test this target. What directories, DNS subdomains, or virtual hosts exist, brute-forced from a wordlist? | 2 | intrusive |
@@ -33,6 +34,7 @@ You have a URL or web host. What is it built with, what CMS, what hidden content
 | [VisualPing](monitoring-visual/visualping.md) | This page matters to my investigation. Tell me when it changes - without me checking it every day, and without my IP appearing in... | 2 | passive |
 | [VisualSiteMapper](monitoring-visual/visualsitemapper.md) | How is this site structured - which pages are central, which are barely linked, and where does the link graph cluster? | 2 | passive |
 | [WhatWeb](fingerprinting/whatweb.md) | I have a URL (or a list of them). What is running on it right now - server, CMS, framework, JavaScript libraries, and versions? | 2 | active |
+| [Whoisology](whois-domains/whoisology.md) | I have one WHOIS record. Which other domains share its registrant email, name, organisation, or address - and who owned them at a... | 2 | passive |
 | [WPScan](cms-scanners/wpscan.md) | This site is WordPress. Exactly which version, plugins, themes, and users does it expose, and which of those have known... | 2 | intrusive |
 | [DirBuster](content-discovery/dirbuster.md) | What directories and files exist on this web server that nothing links to? | 3 | intrusive |
 | [inurlbr](dorking/inurlbr.md) | Can I run a dork across many search engines at once and automatically process the results? | 3 | passive |

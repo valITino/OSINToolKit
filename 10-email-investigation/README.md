@@ -14,6 +14,8 @@ You have an .eml or a header block. Trace the path and origin, check the sending
 <!-- BEGIN:TOOLS -->
 | Tool | Answers | Tier | Contact |
 |---|---|---|---|
+| [checkdmarc](server-checks/checkdmarc.md) | This message claims to come from example.com. **Could** it have? What does that domain's published policy actually say, and would... | 2 | active |
 | [MXToolbox](header-analysis/mxtoolbox.md) | I have an email header block or a domain. What path did this message take, how long did each hop hold it, and is the sending... | 2 | passive |
+| [PGP keyservers](server-checks/pgp-keyservers.md) | I have an email address. Does this person publish a PGP key - and does that key tie this address to a real name or to their... | 2 | passive |
 | [swaks](server-checks/swaks.md) | How does this mail server actually behave - what does it advertise, does it accept mail for this address, and how does it... | 2 | active |
 <!-- END:TOOLS -->

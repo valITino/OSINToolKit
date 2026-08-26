@@ -53,4 +53,6 @@ possible relatives, and sometimes vehicle or property hints.
 
 ## Alternatives
 - [public-records](../public-records/README.md) - authoritative, verifiable sources
-- Pipl, Spokeo, BeenVerified - paid brokers with broader coverage and the same accuracy problems
+- [Spokeo](spokeo.md) - paid, but its free directory pages add relatives and location history
+- [BeenVerified](beenverified.md) - paid brokerage with no free tier at all
+- [Pipl](pipl.md) - enterprise identity resolution; no longer available to individuals
