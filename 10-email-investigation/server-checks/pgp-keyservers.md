@@ -25,15 +25,13 @@ a name, a work address, a personal one, an old university address. That makes a
 keyserver hit a genuine identity-linking pivot, and creation dates put a floor under how
 long an address has been in use.
 
-Know which server you are asking, because they behave very differently now. The old SKS
-network accepted anything from anyone, so **keyserver.ubuntu.com** still answers address
-searches with unverified User IDs - which is exactly what makes it useful here.
-**keys.openpgp.org** deliberately does not: it publishes identity information only after
-the address owner has confirmed it by email, and strips User IDs from everyone else's
-keys entirely.
+Know which server you are asking. The old SKS network accepted anything from anyone, so
+**keyserver.ubuntu.com** still answers address searches with unverified User IDs - which
+is what makes it useful here. **keys.openpgp.org** deliberately does not: it publishes
+identity information only after the address owner confirms it by email.
 
 **Query both.** Their corpora differ in both directions - each serves keys the other
-returns 404 for - so a miss on one is not a result.
+404s - so a miss on one is not a result.
 
 ## Install
 ```bash
@@ -66,10 +64,10 @@ give you a timeline.
   key". Email search is exact-match only, by design, so you cannot enumerate a domain.
 - **Its email lookups are rate-limited to roughly one a minute** (fingerprint and key-ID
   lookups are far more generous). Bulk address checking there is not viable.
-- **SKS-era results are polluted.** The June 2019 certificate-flooding attack
-  (CVE-2019-13050) left poisoned keys carrying tens of thousands of appended signatures,
-  which can wedge older GnuPG - prefer fetching by full fingerprint over broad searches.
-  Short or generic search terms on keyserver.ubuntu.com also return server errors.
+- **SKS-era results are polluted.** The June 2019 flooding attack (CVE-2019-13050) left
+  keys carrying tens of thousands of appended signatures, which can wedge older GnuPG -
+  prefer full fingerprints over broad searches. Short or generic terms on
+  keyserver.ubuntu.com also return server errors.
 - **Anyone can upload a key claiming any address**, with no proof of control, and the
   SKS model is append-only so nothing can ever be deleted. Impersonation keys exist and
   have been used to attribute statements to people who never held the key. Presence

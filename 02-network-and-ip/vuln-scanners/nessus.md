@@ -21,11 +21,10 @@ are present, in a report a client will accept?
 
 ## When to reach for it
 When the deliverable is a report someone else has to act on. Nessus is the commercial
-reference point for vulnerability assessment - its plugin coverage is deep and current,
-and its output is the format most clients and auditors already recognise. Given
-credentials it authenticates to hosts and reads installed package versions and
-configuration directly, which removes most of the guesswork that remote-only scanning
-produces.
+reference point for vulnerability assessment, and its output is the format most clients
+and auditors already recognise. Given credentials it authenticates to hosts and reads
+package versions and configuration directly, removing most of the guesswork that
+remote-only scanning produces.
 
 Use [Greenbone / OpenVAS](greenbone-openvas.md) when the budget is zero and you can
 accept slower feed updates; use [nuclei](nuclei.md) when you want targeted templated
@@ -58,13 +57,12 @@ XML - the XML is the one to keep, because it is what other tools ingest.
   a month behind by design. It also has no reporting, no data export, no compliance or
   configuration checks, and no support. And **scan data is not retained past expiry**;
   treat an Essentials box as a disposable lab scanner, never a system of record.
-- Essentials Plus is $199/year for 20 IPs with real-time plugin updates and basic
-  PDF/HTML reporting - still non-commercial. Verified students and instructors get it
-  free through Tenable's education programme. Nessus Professional, the first edition
-  licensed for commercial work, is around $4,790/year.
-- **The licence scope is a legal trap.** Essentials and Essentials Plus are for personal,
-  educational and non-commercial use only. Running either on a client engagement or on
-  an employer's network breaches the licence, whatever the IP count.
+- Essentials Plus is $199/year for 20 IPs with real-time updates and basic reporting;
+  students and instructors get it free. Nessus Professional, the first edition licensed
+  for commercial work, is around $4,790/year.
+- **The licence scope is a legal trap.** Essentials and Essentials Plus are
+  non-commercial only, so running either on a client engagement or an employer's network
+  breaches the licence whatever the IP count.
 - **This is intrusive scanning and needs written authorisation** covering the exact
   targets and window. Credentialed scans additionally mean handing privileged
   credentials to a scanner. See [../../LEGAL.md](../../LEGAL.md).

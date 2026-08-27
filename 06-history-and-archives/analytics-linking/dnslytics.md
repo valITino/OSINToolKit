@@ -61,12 +61,10 @@ historical depth.
 - **Reverse Analytics and Reverse Adsense return current domains only.** They no longer
   include domains that *used to* carry an ID; that needs the separate, much more
   expensive `ReverseHistory` endpoint. Do not assume a reverse lookup is historical.
-- **Reverse PTR is fully premium-gated**, and other tools have individual fields marked
-  premium. Full historical data and the larger result caps are paid; the entry
-  subscription is advertised from around 30 cents a day.
-- **API credits are prepaid and do not auto-renew** - at zero the API simply stops
-  answering, and every page of a paginated result spends credits again. Rate limiting
-  comes back as either 403 or 429, so handle both.
+- **Reverse PTR is fully premium-gated** and other tools have premium-only fields. Full
+  history and the larger result caps are paid, from around 30 cents a day.
+- **API credits are prepaid and do not auto-renew** - at zero it simply stops answering,
+  and each page of a paginated result spends them again. Throttling returns 403 or 429.
 - **A shared analytics ID is strong evidence, a shared AdSense ID slightly weaker.**
   Agencies, resellers and template vendors legitimately reuse both across unrelated
   clients. Establish the identifier is unique to your subject before drawing a line.
