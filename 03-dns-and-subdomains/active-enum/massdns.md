@@ -38,16 +38,21 @@ make                    # use 'make nolinux' on macOS/BSD; binary lands in ./bin
 ## Usage
 ```bash
 ./bin/massdns -r lists/resolvers.txt -t A -o S -w results.txt domains.txt   # bulk A lookups
+./bin/massdns -r lists/resolvers.txt -t A -o Sr -w audit.txt domains.txt    # ...and which resolver answered
 ./scripts/ptr.py | ./bin/massdns -r lists/resolvers.txt -t PTR -w ptr.txt   # sweep PTR space
 ./scripts/subbrute.py example.com lists/names.txt | ./bin/massdns -r lists/resolvers.txt -t A -o S -w out.txt
 ./bin/massdns -r lists/resolvers.txt -t A --norecurse -o J -w snoop.json names.txt  # cache snooping
 ```
 
 ## Output
-`-o` picks the format: `S` simple text (name, type, value plus the resolver that
-answered), `L` a bare domain list, `F` full text, `J` newline-delimited JSON. The
-resolver IP is included in the output on purpose - it is how you spot one bad resolver
-poisoning a slice of your results.
+`-o` picks the format: `S` simple text (`iana.org. A 192.0.43.8`), `L` a bare domain
+list, `F` full text with a dig-style header, `J` newline-delimited JSON, `B` binary.
+
+**Plain `-o S` does not tell you which resolver answered.** Add the `r` sub-flag -
+`-o Sr` - and each line gains the resolver, a timestamp and the response code
+(`1.1.1.1:53 1787832642 NOERROR iana.org. A`). `F` and `J` carry it too. That
+attribution is how you spot one bad resolver poisoning a slice of your results, so use
+`Sr` whenever the answers matter.
 
 ## Gotchas
 - **Your resolver list is the whole game.** Public resolvers rate-limit, lie, and

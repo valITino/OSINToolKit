@@ -52,8 +52,6 @@ status (deliverable, risky, undeliverable) plus MX, SMTP and catch-all checks.
 ## Gotchas
 - **The free tier is 50 credits a month** - roughly 50 addresses found or 100 verified.
   Paid plans start around $49/month. Fifty credits does not go far in real casework.
-- **Free-tier CSV export is capped at 10 addresses per domain**, so a Domain Search can
-  show you more than you are allowed to take away. Record what you need as you go.
 - **A confidence score is not confirmation**, and a derived address is a hypothesis. A
   `catch-all` domain accepts everything, so "deliverable" there means nothing at all -
   check the catch-all flag before believing a positive.

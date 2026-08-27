@@ -38,11 +38,12 @@ zoomeyeai init -apikey "YOUR-KEY"  # API key auth only
 
 ## Usage
 ```bash
-zoomeyeai search 'app="Cisco ASA SSL VPN" && country="CN"'   # v2 syntax uses '=', not ':'
-zoomeyeai search 'cidr="192.0.2.0/24" && service="ssh"'
-zoomeyeai search 'port=80' -facets product,country           # aggregate the whole result set
-zoomeyeai info                                                # remaining quota
+zoomeyeai init -apikey "YOUR-KEY"          # subcommands: init, info, search
+zoomeyeai search '<dork>' -facets product,country   # aggregate over the whole result set
+zoomeyeai search '<dork>' -sub_type v4 -pagesize 50 # restrict to IPv4, page size
+zoomeyeai info                                       # remaining quota
 ```
+Check the operator reference in ZoomEye's own docs before writing a dork - see Gotchas.
 
 ## Output
 Host records with banners, service and product identification, port, location and ASN.
@@ -57,15 +58,14 @@ web data.
   hardcodes the `.org` API and no longer works. The maintained package is `zoomeyeai`,
   whose console script is also `zoomeyeai` even though its own help text still prints
   "zoomeye".
-- **The v1 dork syntax in most tutorials is wrong now.** `app:`, `port:`, `country:` was
-  the `.org` era. v2 uses `=`: `app="..."`, `port=80`, `country="CN"`. There is no
-  `ver=` operator any more.
-- **`=` is not exact.** A single `=` matches case-insensitively after tokenisation, so
-  it behaves like a substring match and is a large false-positive source; `==` is the
-  exact, case-sensitive form and `!=` negates. `&&`, `||` and parentheses work.
-- **Several response fields are gated by plan** - body, hashes and industry
-  classification need higher tiers - so a missing field may mean "not licensed" rather
-  than "not present".
+- **Do not copy dorks out of old tutorials.** The query language changed between the
+  `.org` and `.ai` generations, and almost every guide online still shows the v1
+  `app:`/`port:`/`country:` colon form. The current operator reference lives only in
+  ZoomEye's own documentation, which renders client-side and is account-gated - I could
+  not read it to confirm the v2 operator list, so check it there rather than trusting
+  this file or any other for exact syntax.
+- Some response fields are gated by subscription tier, so a missing field can mean "not
+  licensed" rather than "not present". Confirm against your own plan.
 - Records come from ZoomEye's stored scan history, not a live probe. **Read
   `update_time`**: a record can be months stale, and the host may have changed hands.
 - **Your queries go to a third party** subject to Chinese jurisdiction. Searching a

@@ -33,10 +33,10 @@ go install -v github.com/projectdiscovery/dnsx/cmd/dnsx@latest
 
 ## Usage
 ```bash
-subfinder -silent -d example.com | dnsx -silent -a -resp        # which names resolve, and to what
-echo 192.0.2.0/24 | dnsx -silent -resp-only -ptr                # reverse-resolve a whole netblock
-echo AS17012      | dnsx -silent -resp-only -ptr                # ...or an entire ASN
-dnsx -l subs.txt -recon -json -o dns.json                       # every record type, structured
+subfinder -silent -d example.com | dnsx -silent -a -resp   # which names resolve, and to what
+echo 192.0.2.0/24 | dnsx -silent -resp-only -ptr           # reverse-resolve a whole netblock
+dnsx -l subs.txt -a -cname -mx -ns -json -o dns.json       # several record types, structured
+dnsx -l subs.txt -a -resp -asn                             # resolve and tag each with its ASN
 ```
 
 ## Output
@@ -57,6 +57,11 @@ per host with every requested type, which is the form worth keeping in a case fi
   you do not own, or you will hammer resolvers.
 - Answers are only as good as the resolver. Public resolvers hijack NXDOMAIN and
   geo-split answers; supply your own with `-r` when accuracy matters.
+- **`-recon` queries eleven record types including AXFR** and is slow enough to look
+  hung on a large list. Name the types you actually want instead.
+- dnsx also accepts an ASN (`AS17012`) as input, which it expands to that ASN's
+  prefixes. That expansion needs an outbound lookup of its own and will return nothing
+  silently where it is blocked - verify it works on your network before relying on it.
 
 ## Alternatives
 - [dig](dig.md) - one name, full authoritative detail, no install

@@ -53,7 +53,9 @@ values later without re-querying.
   working directory, then `~/.config/puredns/`. Trusted resolvers default to `8.8.8.8`
   and `8.8.4.4`; if you change them with `--resolvers-trusted`, re-validate your output
   and adjust `--rate-limit-trusted`.
-- Requires massdns on `PATH` - a missing massdns is the usual first-run failure.
+- **Requires massdns on `PATH`** - a missing one is the usual first-run failure, and it
+  says so plainly: "Unable to execute massdns." Point `-b/--bin` at the binary instead
+  of moving it if you would rather keep it out of `PATH`.
 - Wildcard detection can be defeated by **DNS load balancing**, where each query returns
   a different address; the project documents this as a known limitation.
 - Brute forcing is **intrusive**. Written authorisation - see

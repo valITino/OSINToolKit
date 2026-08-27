@@ -68,6 +68,9 @@ Matching lines with file path, repository, licence, and line-numbered context. T
   [git-history](../git-history/README.md).
 - Index freshness is not published, and the million-repo figure is the pre-indexed set.
   Use the per-repo route when currency matters.
+- Free and account-free for the access documented here - the MCP endpoint answered
+  unauthenticated. Its own pricing and about pages sit behind the same bot challenge, so
+  treat "free" as "free by observation", not as a vendor commitment.
 - **Finding a secret is not licence to use it.** Report exposures through the vendor's
   disclosure process - see [../../LEGAL.md](../../LEGAL.md).
 

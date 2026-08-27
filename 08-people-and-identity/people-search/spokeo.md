@@ -60,9 +60,10 @@ cost extra on top of the membership.
   wrong.
 - **Relatives and aliases are same-name clustering, not verified relationships.** Common
   names produce fused identities. Never cite a Spokeo relative link as attribution.
-- **Prices are not published** - the FAQ says only that membership is "very affordable".
-  At checkout in August 2026 it offered roughly $15-$25 a month depending on term, with
-  variants and promotions in rotation. Assume the figure you see is A/B tested.
+- **Prices are not published anywhere.** Neither the consumer FAQ nor the payment policy
+  carries a single figure - the FAQ says only that membership is "very affordable". The
+  price appears at checkout, varies by term and promotion, and is A/B tested, so budget
+  from what your own checkout shows rather than from any figure quoted elsewhere.
 - **Billing traps are in the policy**: trials auto-convert, plans auto-renew, all sales
   are final and non-refundable, and a subscription caps at 100 searches a month.
 - Spokeo's privacy policy covers removal from "Spokeo.com and/or Thatsthem.com" - budget
