@@ -33,9 +33,10 @@ worth remembering; they are otherwise paywalled almost everywhere.
 
 ## Usage
 ```text
-https://viewdns.info/reverseip/?host=example.com     # other domains on the same IP
-https://viewdns.info/iphistory/?domain=example.com    # historical A records
-https://viewdns.info/whois/?domain=example.com        # registration record
+https://viewdns.info/reverseip/?host=example.com       # other domains on the same IP
+https://viewdns.info/iphistory/?domain=example.com     # historical A records
+https://viewdns.info/reversewhois/?q=admin@example.com  # domains sharing a registrant string
+https://viewdns.info/whois/?domain=example.com         # current registration record
 ```
 
 ## Output
@@ -44,6 +45,10 @@ addresses with the dates observed - the latter is often the single most useful f
 lookup on the site.
 
 ## Gotchas
+- **It has no WHOIS *registration* history.** "IP history" is the address a domain
+  resolved to over time - not who owned it. For past registrant records use
+  [Whoisology](whoisology.md) or [DomainTools](domaintools.md); reverse WHOIS here
+  searches only the record as it stands today.
 - **Reverse IP on shared hosting returns hundreds of unrelated domains.** Co-hosting
   is not a relationship. Check whether the IP belongs to a shared host before drawing
   any line between the domains.

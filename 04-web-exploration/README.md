@@ -8,6 +8,7 @@ You have a URL or web host. What is it built with, what CMS, what hidden content
 - [cms-scanners/](cms-scanners/) - CMSeeK, CMSmap, WPScan - identify and probe the CMS
 - [content-discovery/](content-discovery/) - feroxbuster, ffuf, gobuster - find hidden paths (intrusive)
 - [crawling-spidering/](crawling-spidering/) - katana, Photon - map what is linked
+- [scraping/](scraping/) - HTTrack, Scrapy, trafilatura - take the content away and keep it
 - [dorking/](dorking/) - Search operators, GHDB - targeted retrieval from search engines
 - [monitoring-visual/](monitoring-visual/) - VisualPing, gowitness - screenshots and change tracking
 - [whois-domains/](whois-domains/) - viewdns.info - domain ownership and history

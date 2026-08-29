@@ -6,6 +6,7 @@ You have a domain. Resolve its records, enumerate its subdomains (passively firs
 
 - [query-tools/](query-tools/) - dig, host - resolve any record
 - [passive-enum/](passive-enum/) - subfinder, DNSDumpster - subdomains without touching the target
+- [passive-dns/](passive-dns/) - mnemonic, CIRCL, DNSDB - what it resolved to before
 - [active-enum/](active-enum/) - fierce - resolution and brute forcing (authorised)
 - [reverse-dns/](reverse-dns/) - HackerTarget API - IP back to hostnames
 - [typosquatting/](typosquatting/) - dnstwist - lookalike and homoglyph domains

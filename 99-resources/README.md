@@ -12,5 +12,7 @@ Supporting material: wordlists (pointers, not vendored), curated external lists,
 ## Tools in this category
 
 <!-- BEGIN:TOOLS -->
-_No tool files here yet._
+| Tool | Answers | Tier | Contact |
+|---|---|---|---|
+| [OSINT Cabal Live Center](awesome-lists/osintcabal.md) | I have a selector - an email, a username, a domain - and no working install of the usual tools. Is there a hosted instance I can... | 3 | passive |
 <!-- END:TOOLS -->
