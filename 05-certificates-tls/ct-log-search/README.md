@@ -9,3 +9,7 @@ Subdomains and cert history from Certificate Transparency logs. Passive.
 | [CertWatch](certwatch.md) | I have an organisation's name rather than one domain. Which certificates has it requested **across every TLD** - the .net, the... | 2 | passive |
 | [MerkleMap](merklemap.md) | What certificates and hostnames exist for this domain in the Certificate Transparency logs - especially the ones crt.sh did not... | 2 | passive |
 <!-- END:TOOLS -->
+
+## Related
+
+- [../../12-darkweb/onion-discovery/README.md](../../12-darkweb/onion-discovery/README.md) - onion names appear in CT logs too, which makes this a discovery route

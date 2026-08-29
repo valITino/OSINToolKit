@@ -21,3 +21,8 @@ You have an .eml or a header block. Trace the path and origin, check the sending
 | [PGP keyservers](server-checks/pgp-keyservers.md) | I have an email address. Does this person publish a PGP key - and does that key tie this address to a real name or to their... | 2 | passive |
 | [swaks](server-checks/swaks.md) | How does this mail server actually behave - what does it advertise, does it accept mail for this address, and how does it... | 2 | active |
 <!-- END:TOOLS -->
+
+## Related
+
+- [../13-threat-intel/url-analysis/README.md](../13-threat-intel/url-analysis/README.md) - the link in the mail, fetched by somebody else's browser
+- [../13-threat-intel/file-and-hash/README.md](../13-threat-intel/file-and-hash/README.md) - the attachment, looked up by hash before anyone uploads it

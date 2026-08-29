@@ -56,12 +56,10 @@ then `isreliable` and `sharedanalysis` to judge the row.
 - **The false-negative trap: a sandbox verdict is behavioural, not consensus.**
   One feed row scored 46 ("no specific threat") for a binary that had crashed
   into `WerFault.exe`. Anti-analysis checks, a dead C2 or the wrong environment
-  all produce clean-looking reports; confirm the sample ran before trusting a
-  score.
+  produce clean-looking reports; confirm the sample ran before trusting one.
 - **Everything submitted is public by default**: uploads reach community YARA
   and string search, and "sample not shared" still leaves the metadata indexed.
-  Detonation also makes outbound requests as the sample, reaching the operator's
-  infrastructure.
+  Detonation also sends outbound requests as the sample, reaching the operator.
 - **Two contradictory statements about API keys.** The v2 documentation says
   free non-vetted accounts get restricted search keys; the site's modal says
   vetting is required before any key or sample download. Plan for the stricter

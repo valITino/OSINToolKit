@@ -20,3 +20,8 @@ exactly why they get used.
 | [Pastebin](pastebin.md) | Has data relating to my target - credentials, a customer list, internal configuration - been posted publicly, and when did it... | 2 | passive |
 | [PrivateBin](privatebin.md) | I found a PrivateBin link in a chat log, an email, or another paste. Can I read it - and why can I not search for others like it? | 2 | passive |
 <!-- END:TOOLS -->
+
+## Related
+
+- [../../12-darkweb/onion-discovery/README.md](../../12-darkweb/onion-discovery/README.md) - pastes are one of the main places onion addresses leak to the clearweb
+- [../../12-darkweb/leak-monitoring/README.md](../../12-darkweb/leak-monitoring/README.md) - when the dump has a leak site behind it rather than a paste

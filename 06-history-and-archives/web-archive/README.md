@@ -12,3 +12,8 @@ Historical URLs and page snapshots. Wayback is the fallback since search-engine 
 | [waybackpack](waybackpack.md) | I have a URL. I need every version of it on disk, so I can diff them and find the sentence that quietly changed - or the... | 2 | passive |
 | [waybackurls](waybackurls.md) | Every URL the Wayback Machine knows for this domain, on stdout, ready to pipe - without me writing a CDX query. | 2 | passive |
 <!-- END:TOOLS -->
+
+## Related
+
+- [../../04-web-exploration/scraping/README.md](../../04-web-exploration/scraping/README.md) - keeping your own copy when the archive does not have it
+- [../../12-darkweb/onion-discovery/README.md](../../12-darkweb/onion-discovery/README.md) - archived pages are where onion addresses survive after the site is gone

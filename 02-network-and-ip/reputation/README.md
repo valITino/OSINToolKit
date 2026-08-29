@@ -10,3 +10,9 @@ Is this IP or domain known-bad, and has it been seen abusing anything.
 | [IPVoid](ipvoid.md) | I have an IP. Is it listed on any of the well-known blacklists, and what do basic lookups say about it? | 2 | passive |
 | [VirusTotal](virustotal.md) | I have a file hash, URL, domain, or IP. Do security vendors consider it malicious, and what else is associated with it? | 2 | passive |
 <!-- END:TOOLS -->
+
+## Related
+
+- [../../13-threat-intel/feeds-and-trackers/README.md](../../13-threat-intel/feeds-and-trackers/README.md) - standing feeds naming the same infrastructure, with dates and provenance
+- [../../13-threat-intel/file-and-hash/README.md](../../13-threat-intel/file-and-hash/README.md) - the sample that infrastructure delivered
+- [../../03-dns-and-subdomains/passive-dns/README.md](../../03-dns-and-subdomains/passive-dns/README.md) - what else that address has hosted, and when
