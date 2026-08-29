@@ -57,4 +57,5 @@ ones as unknown, not negative - that distinction matters and is easy to skim pas
 ## Alternatives
 - [Have I Been Pwned](hibp.md) - breach exposure rather than current registration
 - [Sherlock](../username-enum/sherlock.md) - the same question from a username
+- [PGP keyservers](../../10-email-investigation/server-checks/pgp-keyservers.md) - a published key can tie the address to a name and to other addresses
 - [theHarvester](../../01-orchestrators/aggregators/theharvester.md) - find addresses in the first place

@@ -56,4 +56,5 @@ Passwords themselves are never returned.
 
 ## Alternatives
 - [holehe](holehe.md) - current registrations rather than historical breaches
+- [hunter.io](hunter-io.md) - an organisation's address format, to derive addresses to check
 - [../../09-code-paste-forums/paste-sites/README.md](../../09-code-paste-forums/paste-sites/README.md) - where dumps surface first

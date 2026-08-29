@@ -71,4 +71,4 @@ if you need stable output.
 ## Alternatives
 - [HackerTarget reverse DNS](hackertarget-reversedns.md) - no install, ranges supported, rate-limited
 - [Robtex](robtex.md) - the same pivot from a pre-indexed database, zero contact
-- [dnsx](../query-tools/dnsx.md) - `-ptr` over a CIDR or whole ASN, plus every other record type
+- [dnsx](../query-tools/dnsx.md) - `-ptr` over a CIDR, plus every other record type

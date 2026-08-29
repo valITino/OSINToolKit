@@ -46,16 +46,18 @@ curl -O https://raw.githubusercontent.com/WebBreacher/WhatsMyName/main/wmn-data.
 https://whatsmyname.app/          # enter the username; filter by category; export CSV
 ```
 ```bash
-jq '.sites[] | select(.cat=="coding") | .name' wmn-data.json      # which coding sites are covered
-jq '.sites[] | select(.name=="GitHub")' wmn-data.json             # the exact rule behind one check
+jq -r '.sites[] | select(.cat=="coding") | .name' wmn-data.json   # which coding sites are covered
+jq -c '.sites[] | select(.name|test("github";"i"))' wmn-data.json  # the exact rules behind one site
 ```
 
 ## Output
-Each site entry carries `uri_check` (the URL with an `{account}` placeholder), `e_code`
-and `e_string` (the status and body text that mean the account exists), `m_code` and
-`m_string` (the "missing" equivalents), `cat`, and a `protection` field flagging sites
-behind bot defences. At the time of checking the file covered 716 sites across 21
-categories.
+Each site entry carries `uri_check` (the URL the checker requests, `{account}`
+substituted), `e_code` and `e_string` (the status and body text that mean the account
+exists), `m_code` and `m_string` (the "missing" equivalents), `cat`, and a `protection`
+field flagging sites behind bot defences. Note `uri_check` is often an API endpoint -
+where an entry also has `uri_pretty`, that is the human-facing profile URL and the one
+to put in a report. `known` lists real accounts you can use to sanity-check a rule. At
+the time of checking the file covered 716 sites across 21 categories.
 
 ## Gotchas
 - **The project stopped shipping its checker in May 2023** and focuses on the data.
@@ -64,6 +66,9 @@ categories.
   Common handles collide constantly. Corroborate before linking accounts to a person.
 - Sites marked `protection` sit behind Cloudflare or similar; results there are the
   least reliable and vary by checker.
+- **Match on `name` loosely.** Entries are often qualified rather than bare - GitHub
+  appears as `GitHub (User)` and `GitHub (Gists)`, not `GitHub` - so an exact `==`
+  filter quietly returns nothing. Use `test("...";"i")`.
 - Running a full sweep sends a request to hundreds of sites from your IP, which is
   visible to every one of them. See [../../00-methodology/opsec/README.md](../../00-methodology/opsec/README.md).
 - Licensed CC BY-SA 4.0 - attribute it if you redistribute the data.

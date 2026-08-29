@@ -55,4 +55,5 @@ finding came from.
 ## Alternatives
 - [Photon](photon.md) - extracts emails, keys, and files while crawling
 - [Wayback CDX](../../06-history-and-archives/web-archive/wayback-cdx-api.md) - historical URLs, zero contact
+- [hakrawler](hakrawler.md) - lighter and faster when the site is not a SPA
 - [gowitness](../monitoring-visual/gowitness.md) - screenshot what you found

@@ -51,8 +51,8 @@ read on whether an IP is dedicated or shared.
 
 ## Gotchas
 - **The free tier is small** - commonly cited as around 50 queries a month, with WHOIS
-  excluded - and the figure is not published anywhere I could read directly. Treat it as
-  approximate and check before planning around it. Real investigative volume is paid.
+  excluded - but that figure is not published on any reachable vendor page. Treat it as
+  approximate and confirm before planning around it. Real volume is paid.
 - **The DNS-history record type is a strict enum**: `a`, `aaaa`, `mx`, `ns`, `soa`,
   `txt`. There is no `cname` on that endpoint.
 - **Reverse DNS history is shallow** - documented at around 120 days - even though

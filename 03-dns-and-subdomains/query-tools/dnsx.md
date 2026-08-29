@@ -23,8 +23,8 @@ all of them, in a form I can pipe into the next tool?
 When [dig](dig.md) is the right idea but the wrong shape. dig answers one question
 beautifully; dnsx answers ten thousand and writes the answers one per line. It reads
 hosts on stdin, so it slots into a chain between enumeration and whatever comes next,
-and it resolves a whole ASN or CIDR to PTR records in a single command - which is the
-fastest way to turn "I have an IP range" into "I have names".
+and it reverse-resolves a whole CIDR to PTR records in a single command - the fastest
+way to turn "I have an IP range" into "I have names".
 
 ## Install
 ```bash

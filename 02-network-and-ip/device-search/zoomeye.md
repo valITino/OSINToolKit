@@ -38,9 +38,9 @@ zoomeyeai init -apikey "YOUR-KEY"  # API key auth only
 
 ## Usage
 ```bash
-zoomeyeai init -apikey "YOUR-KEY"          # subcommands: init, info, search
-zoomeyeai search '<dork>' -facets product,country   # aggregate over the whole result set
-zoomeyeai search '<dork>' -sub_type v4 -pagesize 50 # restrict to IPv4, page size
+zoomeyeai search '<dork>'                            # subcommands: init, info, search
+zoomeyeai search '<dork>' -facets product,country    # aggregate over the whole result set
+zoomeyeai search '<dork>' -sub_type v4 -pagesize 50  # restrict to IPv4, set page size
 zoomeyeai info                                       # remaining quota
 ```
 Check the operator reference in ZoomEye's own docs before writing a dork - see Gotchas.
@@ -61,9 +61,9 @@ web data.
 - **Do not copy dorks out of old tutorials.** The query language changed between the
   `.org` and `.ai` generations, and almost every guide online still shows the v1
   `app:`/`port:`/`country:` colon form. The current operator reference lives only in
-  ZoomEye's own documentation, which renders client-side and is account-gated - I could
-  not read it to confirm the v2 operator list, so check it there rather than trusting
-  this file or any other for exact syntax.
+  ZoomEye's own documentation, which renders client-side and is account-gated, so the
+  v2 operator list could not be confirmed for this entry. Check it there rather than
+  trusting this file or any other for exact syntax.
 - Some response fields are gated by subscription tier, so a missing field can mean "not
   licensed" rather than "not present". Confirm against your own plan.
 - Records come from ZoomEye's stored scan history, not a live probe. **Read

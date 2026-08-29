@@ -54,4 +54,5 @@ checks. JSON/CSV output for reports.
 
 ## Alternatives
 - [openssl](openssl.md) - quick manual inspection of one connection
+- [SSLyze](sslyze.md) - structured JSON and a pass/fail exit code for automation
 - [Censys](../../02-network-and-ip/device-search/censys.md) - existing scan data, no contact

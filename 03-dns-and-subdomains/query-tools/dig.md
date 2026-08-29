@@ -58,3 +58,5 @@ nameserver is responsible.
 ## Alternatives
 - [host](host.md) - the same lookups, shorter output
 - [subfinder](../passive-enum/subfinder.md) - enumerate names rather than query one
+- [nslookup](nslookup.md) - when you are on a Windows box and dig is not there
+- [dnsx](dnsx.md) - the same questions across thousands of names

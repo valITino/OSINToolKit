@@ -57,10 +57,10 @@ editing minutes, and `Company` / `Manager` are frequently left populated.
 linked templates that cause the document to call out when opened.
 
 ## Gotchas
-- **ZIP entry timestamps and the XML dates are independent and often disagree.** In a
-  file checked while writing this, the ZIP entries read 2019 while `dcterms:created`
-  read 2013. Neither is authoritative; both are trivially forgeable. Report the
-  discrepancy, do not resolve it.
+- **ZIP entry timestamps and the XML dates are independent and often disagree.** In one
+  sample checked for this entry the ZIP entries read 2019 while `dcterms:created` read
+  2013. Neither is authoritative; both are trivially forgeable. Report the discrepancy,
+  do not resolve it.
 - Every field here is user-supplied and editable. A name in `dc:creator` is a lead,
   not an identification.
 - `TotalTime` is Word's own accumulated edit counter. A value of 0 or 1 on a long

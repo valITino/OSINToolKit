@@ -42,7 +42,7 @@ exiv2 photo.jpg                       # default: summary of the Exif
 exiv2 -p a photo.jpg                  # all Exif, IPTC and XMP tags
 exiv2 -p p photo.jpg                  # list embedded previews, largest first
 exiv2 -ep photo.jpg                   # extract those previews to files
-exiv2 -p a --grep -i gps photo.jpg    # just the location tags
+exiv2 -p a --grep gps/i photo.jpg     # just the location tags, case-insensitive
 ```
 
 ## Output
@@ -59,6 +59,10 @@ themselves have been tampered with.
   [docx as ZIP](../office-forensics/docx-as-zip.md).
 - GIF, BMP and TGA are recognised but essentially unsupported - you get dimensions and
   nothing else.
+- **`--grep` is case-sensitive; append `/i` for case-insensitive** (`--grep gps/i`).
+  Do not reach for a `-i` flag to do it: `-i` is exiv2's *insert* action, and
+  `--grep -i gps` silently consumes `-i` as the pattern and then treats `gps` as a
+  filename - "gps: Failed to open the file".
 - **GPS in Exif is what the camera recorded, not proof of where the photographer was.**
   Phones cache locations, and the tag is trivially editable.
 - Beware the write actions. `rm`, `mo`, `ad` and `mv` modify files in place, and `mv`

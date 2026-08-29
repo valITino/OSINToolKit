@@ -59,4 +59,5 @@ TO` response is where mailbox-existence evidence lives.
 
 ## Alternatives
 - [MXToolbox](../header-analysis/mxtoolbox.md) - the same checks from a browser
+- [checkdmarc](checkdmarc.md) - SPF/DMARC/MTA-STS parsed and validated, in bulk
 - [host](../../03-dns-and-subdomains/query-tools/host.md) - SPF/DMARC records without any SMTP contact
