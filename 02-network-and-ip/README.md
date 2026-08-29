@@ -26,7 +26,9 @@ You have an IP or a netblock. Who owns it, where is it, is it known-bad, what is
 | [ipinfo.io](registries-asn/ipinfo-io.md) | I have an IP. In one call: who owns it, what ASN it belongs to, roughly where it is, and is it a hosting provider rather than an... | 2 | passive |
 | [iplocation.net](geolocation/iplocation-net.md) | I have an IP. Roughly where is it, and do the major geolocation providers agree with each other about that? | 2 | passive |
 | [IPVoid](reputation/ipvoid.md) | I have an IP. Is it listed on any of the well-known blacklists, and what do basic lookups say about it? | 2 | passive |
+| [masscan](port-scanning/masscan.md) | I have a whole netblock and nmap would take days. Which addresses have this port open, in minutes? | 2 | intrusive |
 | [MaxMind GeoLite2](geolocation/geolite2.md) | Where does this IP geolocate - and **how far wrong is that answer likely to be**? | 2 | passive |
+| [naabu](port-scanning/naabu.md) | I have a list of hosts from enumeration. Which ports are open, and can the result go straight into nmap without me copying... | 2 | intrusive |
 | [nuclei](vuln-scanners/nuclei.md) | I have a list of hosts or URLs I am authorised to test. Which known misconfigurations, exposed panels, and default installs are... | 2 | intrusive |
 | [Rapid7 Nexpose](vuln-scanners/nexpose.md) | My scan returned four thousand "critical" findings. Which of them actually matter enough to fix first? | 2 | intrusive |
 | [RIR databases (ARIN / RIPE / APNIC)](registries-asn/rir-databases.md) | I have an organisation name. Which IP ranges and ASNs are allocated to it - and, given one of its IPs, what else sits in the same... | 2 | passive |

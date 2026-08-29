@@ -25,9 +25,11 @@ You have a URL or web host. What is it built with, what CMS, what hidden content
 | [feroxbuster](content-discovery/feroxbuster.md) | I am authorised to test this site. What directories and files exist that nothing links to - and what is inside the directories I... | 2 | intrusive |
 | [ffuf](content-discovery/ffuf.md) | I am authorised to test this site. What happens if I substitute a wordlist into *this specific position* - a path, a parameter... | 2 | intrusive |
 | [gobuster](content-discovery/gobuster.md) | I am authorised to test this target. What directories, DNS subdomains, or virtual hosts exist, brute-forced from a wordlist? | 2 | intrusive |
+| [Google Hacking Database](dorking/ghdb.md) | What should I actually search for? Someone has already worked out the query that surfaces exposed backups, login panels, or... | 2 | passive |
 | [gowitness](monitoring-visual/gowitness.md) | I have hundreds of hosts or URLs. What does each one actually look like, so I can spot the interesting ones without opening... | 2 | active |
 | [hakrawler](crawling-spidering/hakrawler.md) | I have a URL (or a thousand). What links, subdomains, and JavaScript files does it reference, right now, in one pipe? | 2 | active |
 | [katana](crawling-spidering/katana.md) | What URLs and endpoints does this site actually expose - including the ones that only appear when JavaScript runs? | 2 | active |
+| [pagodo](dorking/pagodo.md) | I want to run hundreds of GHDB dorks against one domain instead of pasting them into a search box one at a time. Can that be... | 2 | passive |
 | [Photon](crawling-spidering/photon.md) | While crawling this site, what OSINT falls out of it - emails, social handles, API keys, document links, subdomains? | 2 | active |
 | [urlscan.io](fingerprinting/urlscan-io.md) | What does this URL actually do when a browser loads it - what does it look like, what does it request, where does it redirect... | 2 | passive |
 | [viewdns.info](whois-domains/viewdns.md) | I have a domain or IP and no tools installed. Who owns it, what else is on that address, what did it resolve to before, and does... | 2 | passive |

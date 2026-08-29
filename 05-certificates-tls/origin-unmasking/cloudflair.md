@@ -58,5 +58,7 @@ content matching the real site.
   before drawing conclusions - see [../ct-log-search/crt-sh.md](../ct-log-search/crt-sh.md).
 
 ## Alternatives
+- [Favicon hash pivoting](favicon-hash.md) - the origin-discovery angle that still works
+- [CloudFail](cloudfail.md) - unproxied subdomains rather than certificates
 - [crt.sh](../ct-log-search/crt-sh.md) / [MerkleMap](../ct-log-search/merklemap.md) - certificate history, free
 - [../../06-history-and-archives/ip-whois-history/README.md](../../06-history-and-archives/ip-whois-history/README.md) - the IP the domain used *before* it moved behind a CDN

@@ -60,6 +60,8 @@ discovery-and-attribution scope.
 <!-- BEGIN:TOOLS -->
 | Tool | Answers | Tier | Contact |
 |---|---|---|---|
+| [Google Hacking Database](ghdb.md) | What should I actually search for? Someone has already worked out the query that surfaces exposed backups, login panels, or... | 2 | passive |
+| [pagodo](pagodo.md) | I want to run hundreds of GHDB dorks against one domain instead of pasting them into a search box one at a time. Can that be... | 2 | passive |
 | [inurlbr](inurlbr.md) | Can I run a dork across many search engines at once and automatically process the results? | 3 | passive |
 <!-- END:TOOLS -->
 
