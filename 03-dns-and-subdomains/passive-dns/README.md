@@ -39,7 +39,12 @@ provider is routinely present in another. Treat these as partial witnesses:
 ## Tools here
 
 <!-- BEGIN:TOOLS -->
-_No tool files here yet._
+| Tool | Answers | Tier | Contact |
+|---|---|---|---|
+| [CIRCL Passive DNS](circl-pdns.md) | I have a domain or an IP that came out of an incident. What did it resolve to historically, and what else lived on that address... | 2 | passive |
+| [DNSDB (Farsight / DomainTools)](dnsdb.md) | I have a name or an IP and I need the complete record, not a sample: everything it resolved to and everything that ever lived on... | 2 | passive |
+| [mnemonic PassiveDNS](mnemonic-pdns.md) | I have a domain, or the IP it resolves to today. What did that name resolve to before, and what other names have answered from... | 2 | passive |
+| [Validin](validin.md) | I have a domain or an IP. What did it resolve to over the last few years, what else has lived on that address or netblock, and... | 2 | passive |
 <!-- END:TOOLS -->
 
 ## Related

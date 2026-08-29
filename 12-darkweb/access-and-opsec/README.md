@@ -34,7 +34,12 @@ into anything of yours over Tor undoes every layer at once.
 ## Tools here
 
 <!-- BEGIN:TOOLS -->
-_No tool files here yet._
+| Tool | Answers | Tier | Contact |
+|---|---|---|---|
+| [Tails](tails.md) | I have an onion address to open from a machine I do not fully trust, and this session must leave nothing behind on its disk when... | 2 | active |
+| [Tor Browser](tor-browser.md) | I have a .onion address, or a clearweb page I do not want to hand my real IP. What do I open it in so the service sees a Tor exit... | 2 | active |
+| [torsocks](torsocks.md) | I have a CLI tool with no `--proxy` flag and a .onion address to point it at. How do I force its traffic and its DNS through Tor... | 2 | active |
+| [Whonix](whonix.md) | I have a whole toolkit to point at an onion service, not just a browser, and one careless tool or one hostile page must not be... | 2 | active |
 <!-- END:TOOLS -->
 
 ## Related

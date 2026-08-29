@@ -61,7 +61,13 @@ Work these in order. The first four cost nothing and touch nothing.
 ## Tools here
 
 <!-- BEGIN:TOOLS -->
-_No tool files here yet._
+| Tool | Answers | Tier | Contact |
+|---|---|---|---|
+| [Ahmia](ahmia.md) | I have a keyword - a victim name, a brand, a handle. Which indexed Tor hidden services mention it, when was each last seen alive... | 2 | passive |
+| [dark.fail](dark-fail.md) | I have the name of a well-known hidden service and an address someone handed me for it. Is that the real, PGP-signed .onion for... | 2 | passive |
+| [Intelligence X](intelligence-x.md) | I have a selector - an email address, a domain, a .onion host, an IP or a Bitcoin address. Where has it appeared in archived... | 2 | passive |
+| [OnionSearch](onionsearch.md) | I have a keyword and a list of onion search engines. Which of them return a hit for it, collected into one CSV - and, read... | 3 | active |
+| [Tor.taxi](tor-taxi.md) | I have a site name, or only a category - onion search engines, forums, email hosts, information sites. Which addresses does this... | 3 | passive |
 <!-- END:TOOLS -->
 
 ## Related

@@ -50,7 +50,14 @@ exists here", and this directory when the answer is "and I need to keep it".
 ## Tools here
 
 <!-- BEGIN:TOOLS -->
-_No tool files here yet._
+| Tool | Answers | Tier | Contact |
+|---|---|---|---|
+| [HTTrack Website Copier](httrack.md) | I have a site that may change or vanish. Can I take a complete offline copy of it - and, on the current engine, a WARC/WACZ of... | 2 | intrusive |
+| [Playwright](playwright.md) | The page is empty in `curl` and full in my browser. How do I get the DOM after JavaScript runs, and capture what a visitor... | 2 | active |
+| [Scrapy](scrapy.md) | I have a site holding thousands of records - listings, profiles, filings - behind paginated HTML. How do I pull them into JSON or... | 2 | active |
+| [trafilatura](trafilatura.md) | I have a page of HTML and I need the article out of it: the body text without the navigation, cookie banner, share buttons and... | 2 | active |
+| [yt-dlp](yt-dlp.md) | I have a video URL that may be deleted, edited or made private. How do I preserve it and everything around it - channel ID... | 2 | active |
+| [snscrape](snscrape.md) | I have a handle or a channel name and no API key. Can I still pull that account's posts - and, more often now, is a dataset that... | 3 | active |
 <!-- END:TOOLS -->
 
 ## Related

@@ -55,7 +55,12 @@ as anywhere else in this repo.
 ## Tools here
 
 <!-- BEGIN:TOOLS -->
-_No tool files here yet._
+| Tool | Answers | Tier | Contact |
+|---|---|---|---|
+| [TorBot](torbot.md) | I have a .onion address. What does it link out to one or two hops deep, which of those pages are alive right now, and do any of... | 2 | active |
+| [darkdump](darkdump.md) | I have a keyword, a brand or an email address. Which onions come back for it across six dark-web search engines, which of those... | 3 | active |
+| [docker-onion-nmap](onion-nmap.md) | I have a .onion address and the web page is only part of it. What else answers on that service - SSH, SMTP, an admin panel on a... | 3 | intrusive |
+| [OnionScan](onionscan.md) | I have a .onion address. Is the operator leaking themselves - a status page, an open directory, EXIF in an uploaded image, a PGP... | 3 | intrusive |
 <!-- END:TOOLS -->
 
 ## Related
