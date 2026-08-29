@@ -61,3 +61,4 @@ cross-link.
 - [Shodan](shodan.md) - broader banner search, better value
 - [crt.sh](../../05-certificates-tls/ct-log-search/crt-sh.md) - free CT log search
 - [MerkleMap](../../05-certificates-tls/ct-log-search/merklemap.md) - another free CT index
+- [ZoomEye](zoomeye.md) - stronger APAC coverage, as a third opinion

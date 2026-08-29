@@ -60,3 +60,4 @@ Search returns matching hosts across the whole dataset.
 - [Censys](censys.md) - certificate-centric view of the same problem
 - [nmap](../port-scanning/nmap.md) - authoritative but intrusive
 - [nuclei](../vuln-scanners/nuclei.md) - templated checks against what you found
+- [ZoomEye](zoomeye.md) - different crawler coverage; check it when Shodan finds nothing

@@ -53,3 +53,5 @@ Country is normally consistent; city frequently is not.
 ## Alternatives
 - [ipinfo.io](../registries-asn/ipinfo-io.md) - one clean API answer, scriptable
 - [whois](../registries-asn/whois.md) - the registered organisation, which is a fact rather than an estimate
+- [MaxMind GeoLite2](geolite2.md) - offline database, and it publishes an accuracy radius
+- [IP2Location](ip2location.md) - offline database plus a proxy/VPN flag

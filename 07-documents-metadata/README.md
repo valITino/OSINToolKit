@@ -17,7 +17,10 @@ You have a file. Pull its metadata, harvest an org's public documents, and dig i
 |---|---|---|---|
 | [ExifTool](metadata-extraction/exiftool.md) | I have a file - a photo, a PDF, a Word doc, almost anything. What metadata is inside it: who made it, with what, when, and where? | 1 | passive |
 | [binwalk](pdf-forensics/binwalk.md) | Is there another file hidden inside this one - an archive, an image, or a document appended to or embedded in the container I am... | 2 | passive |
+| [DOCX as ZIP](office-forensics/docx-as-zip.md) | I have a modern Office file and no forensics tooling. Who wrote it, on what software, how long did they spend on it, and what... | 2 | passive |
+| [exiv2](metadata-extraction/exiv2.md) | I have an image. What Exif, IPTC and XMP does it carry - and is there an embedded preview that still shows the frame **before**... | 2 | passive |
 | [mat2](metadata-extraction/mat2.md) | I am about to publish or hand over a file. What metadata would leak with it, and how do I remove it without corrupting the... | 2 | passive |
+| [oledump.py](office-forensics/oledump.md) | What is actually stored inside this OLE file, stream by stream - and can I look at a hostile sample without ever unpacking it... | 2 | passive |
 | [oletools](office-forensics/oletools.md) | What is inside this Office document - who authored it, what macros does it carry, and what is embedded in its OLE streams? | 2 | passive |
 | [pdf-parser.py](pdf-forensics/pdf-parser.md) | What is actually inside this PDF at the object level - embedded files, JavaScript, previous revisions, and content the viewer... | 2 | passive |
 | [pdfimages](pdf-forensics/pdfimages.md) | What images are embedded in this PDF, and what metadata do **they** carry - camera, GPS, timestamps - that the PDF itself does... | 2 | passive |

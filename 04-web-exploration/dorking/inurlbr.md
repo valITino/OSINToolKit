@@ -55,5 +55,6 @@ A list of URLs matching the dork, with optional post-processing of each result.
 
 ## Alternatives
 - [Dorking by hand](README.md) - reliable and in-scope
-- [GHDB](https://www.exploit-db.com/google-hacking-database) - curated dork patterns to adapt
+- [GHDB](ghdb.md) - curated dork patterns to adapt
+- [pagodo](pagodo.md) - the maintained way to run those patterns at scale
 - [theHarvester](../../01-orchestrators/aggregators/theharvester.md) - multi-source collection that is maintained

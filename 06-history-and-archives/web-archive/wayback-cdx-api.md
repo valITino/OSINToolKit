@@ -56,4 +56,5 @@ did not change, so you get distinct pages rather than thousands of near-duplicat
 
 ## Alternatives
 - [waybackurls](waybackurls.md) / [gau](gau.md) - CLI wrappers over the same data
+- [archive.today](archive-today.md) - on-demand snapshots of pages Wayback will not take; read its caveats first
 - [SpyOnWeb](../analytics-linking/spyonweb.md) - link sites by shared analytics IDs over time

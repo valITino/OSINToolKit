@@ -53,4 +53,5 @@ and overlays become obvious.
 
 ## Alternatives
 - [Yandex Images](yandex-images.md) - similarity and faces
+- [Google Lens](google-lens.md) - objects, landmarks and text rather than exact copies
 - [Wayback CDX](../../06-history-and-archives/web-archive/wayback-cdx-api.md) - confirm when a page carrying the image existed

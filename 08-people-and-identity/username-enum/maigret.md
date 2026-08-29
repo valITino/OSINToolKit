@@ -54,4 +54,5 @@ that turns a list of URLs into an identity picture.
 
 ## Alternatives
 - [Sherlock](sherlock.md) - faster, cleaner, fewer false positives
+- [WhatsMyName](whatsmyname.md) - the detection rules themselves, for auditing a hit
 - [holehe](../email-osint/holehe.md) - pivot from an email instead

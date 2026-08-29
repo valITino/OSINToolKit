@@ -58,4 +58,5 @@ often as valuable as the code.
 ## Alternatives
 - [TruffleHog](../secret-scanning/trufflehog.md) - full history, with verification
 - [SearchCode](searchcode.md) - other forges, tier 3
-- grep.app, Sourcegraph - alternative cross-repository code search
+- [grep.app](grep-app.md) - fast literal search, and a whole-org sweep via its repo filter
+- [Sourcegraph](sourcegraph.md) - regex and structural search with a scriptable API

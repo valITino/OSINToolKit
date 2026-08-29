@@ -53,4 +53,6 @@ normal, greppable, and XML formats at once for later parsing.
 
 ## Alternatives
 - [Shodan](../device-search/shodan.md) / [Censys](../device-search/censys.md) - passive, no target contact
+- [masscan](masscan.md) - sweeps a whole netblock for one port in minutes
+- [naabu](naabu.md) - fast discovery that hands the open ports straight back to nmap
 - [nuclei](../vuln-scanners/nuclei.md) - templated checks once you know what is exposed

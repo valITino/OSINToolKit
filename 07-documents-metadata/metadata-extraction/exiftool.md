@@ -57,4 +57,5 @@ producer/creator tags can tie a document to software or an author.
 ## Alternatives
 - [mat2](mat2.md) - the inverse: strip metadata safely
 - [pdf-parser.py](../pdf-forensics/pdf-parser.md) - PDF structure beyond metadata
+- [exiv2](exiv2.md) - images only, but it extracts embedded previews
 - [oletools](../office-forensics/oletools.md) - legacy Office internals

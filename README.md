@@ -9,19 +9,44 @@ they tell you what to master and what is safe to run.
 
 ## I have... start here
 
-The primary entry point. You arrive with one artifact; follow the chain.
+The primary entry point. You arrive with one artifact; follow the chain. Every
+destination is a category README that explains what the tools there are for.
+
+### An artifact
 
 | I have... | Start at |
 |---|---|
 | A domain | [`01-orchestrators`](01-orchestrators/) -> [`03-dns-and-subdomains`](03-dns-and-subdomains/) -> [`05-certificates-tls`](05-certificates-tls/) -> [`06-history-and-archives`](06-history-and-archives/) |
 | An IP address | [`02-network-and-ip`](02-network-and-ip/) -> [`03-dns-and-subdomains/reverse-dns`](03-dns-and-subdomains/reverse-dns/) |
+| A netblock or an ASN | [`02-network-and-ip/registries-asn`](02-network-and-ip/registries-asn/) -> [`03-dns-and-subdomains/reverse-dns`](03-dns-and-subdomains/reverse-dns/) |
 | An email address | [`01-orchestrators`](01-orchestrators/) -> [`08-people-and-identity/email-osint`](08-people-and-identity/email-osint/) -> [`10-email-investigation`](10-email-investigation/) |
 | A username or alias | [`08-people-and-identity/username-enum`](08-people-and-identity/username-enum/) -> [`09-code-paste-forums`](09-code-paste-forums/) |
-| A photo | [`08-people-and-identity/reverse-image`](08-people-and-identity/reverse-image/) -> [`07-documents-metadata/metadata-extraction`](07-documents-metadata/metadata-extraction/) |
+| A person's name or phone number | [`08-people-and-identity/people-search`](08-people-and-identity/people-search/) -> [`08-people-and-identity/public-records`](08-people-and-identity/public-records/) |
+| A photo | [`08-people-and-identity/reverse-image`](08-people-and-identity/reverse-image/) -> [`07-documents-metadata/metadata-extraction`](07-documents-metadata/metadata-extraction/) -> [`07-documents-metadata/geo-media`](07-documents-metadata/geo-media/) |
 | A document (PDF/DOCX) | [`07-documents-metadata`](07-documents-metadata/) |
+| An Office file that may carry macros | [`07-documents-metadata/office-forensics`](07-documents-metadata/office-forensics/) |
 | An .eml file | [`10-email-investigation/header-analysis`](10-email-investigation/header-analysis/) |
 | A .pcap file | [`11-traffic-capture`](11-traffic-capture/) |
+| A URL I must not click | [`04-web-exploration/fingerprinting`](04-web-exploration/fingerprinting/) -> [`06-history-and-archives/web-archive`](06-history-and-archives/web-archive/) |
+| A paste or pastebin link | [`09-code-paste-forums/paste-sites`](09-code-paste-forums/paste-sites/) |
+| A tracking, Analytics or AdSense ID | [`06-history-and-archives/analytics-linking`](06-history-and-archives/analytics-linking/) |
+| A registrant name, email or phone | [`04-web-exploration/whois-domains`](04-web-exploration/whois-domains/) -> [`06-history-and-archives/ip-whois-history`](06-history-and-archives/ip-whois-history/) |
 | Only a company name | [`02-network-and-ip/registries-asn`](02-network-and-ip/registries-asn/) -> [`01-orchestrators`](01-orchestrators/) |
+
+### A situation
+
+Sometimes the starting point is a question rather than a thing.
+
+| I need to work out... | Start at |
+|---|---|
+| What this organisation exposes to the internet | [`02-network-and-ip/device-search`](02-network-and-ip/device-search/) -> [`02-network-and-ip/port-scanning`](02-network-and-ip/port-scanning/) |
+| What is really behind this CDN | [`05-certificates-tls/origin-unmasking`](05-certificates-tls/origin-unmasking/) -> [`06-history-and-archives/ip-whois-history`](06-history-and-archives/ip-whois-history/) |
+| What this page used to say | [`06-history-and-archives/web-archive`](06-history-and-archives/web-archive/) |
+| Which lookalike domains target this brand | [`03-dns-and-subdomains/typosquatting`](03-dns-and-subdomains/typosquatting/) -> [`05-certificates-tls/ct-log-search`](05-certificates-tls/ct-log-search/) |
+| Whether mail from this domain can be forged | [`10-email-investigation/server-checks`](10-email-investigation/server-checks/) |
+| Whether this organisation has leaked secrets | [`09-code-paste-forums/code-search`](09-code-paste-forums/code-search/) -> [`09-code-paste-forums/secret-scanning`](09-code-paste-forums/secret-scanning/) -> [`09-code-paste-forums/paste-sites`](09-code-paste-forums/paste-sites/) |
+| Which sites share an owner with this one | [`06-history-and-archives/analytics-linking`](06-history-and-archives/analytics-linking/) -> [`03-dns-and-subdomains/reverse-dns`](03-dns-and-subdomains/reverse-dns/) |
+| What search engines already indexed | [`04-web-exploration/dorking`](04-web-exploration/dorking/) |
 
 For the three most common cases there are full playbooks in
 [`workflows/`](workflows/) that chain the tools in order and explain why the
@@ -56,77 +81,77 @@ sortable list once the build script has run.
 
 ```text
 00-methodology/         # how to work: frameworks, documentation, OPSEC
-  frameworks/           # Kill Chain, MITRE ATT&CK, NIST SP 800-61 / 800-86
   documentation/        # note-taking, screenshots, chain of custody
-  opsec/                # VM setup, sock puppets, proxychains, VPN/Tor
+  frameworks/           # Kill Chain, MITRE ATT&CK, NIST SP 800-61 / 800-86
+  opsec/                # proxychains
 01-orchestrators/       # START HERE: multi-purpose, broad coverage
-  recursive-scanners/   # SpiderFoot, BBOT
-  modular-frameworks/   # recon-ng, Maltego
-  aggregators/          # theHarvester, Amass, Sn1per
+  aggregators/          # OWASP Amass, theHarvester, Sn1per
+  modular-frameworks/   # Maltego, recon-ng
+  recursive-scanners/   # BBOT, SpiderFoot
 02-network-and-ip/
-  registries-asn/       # whois, RIRs, bgp.he.net, ipinfo.io
-  geolocation/          # iplocation.net and multi-source geo
-  reputation/           # AbuseIPDB, VirusTotal, IPVoid, ExoneraTor
-  port-scanning/        # nmap
-  device-search/        # Shodan, Censys, WiGLE
-  vuln-scanners/        # nuclei, Greenbone/OpenVAS
+  device-search/        # Censys, Shodan, WiGLE, ZoomEye
+  geolocation/          # IP2Location, MaxMind GeoLite2, iplocation.net
+  port-scanning/        # nmap, masscan, naabu
+  registries-asn/       # RIR databases (ARIN / RIPE / APNIC), bgp.he.net, ipinfo.io, whois
+  reputation/           # AbuseIPDB, ExoneraTor, IPVoid, VirusTotal
+  vuln-scanners/        # Greenbone / OpenVAS, Rapid7 Nexpose, Tenable Nessus, nuclei
 03-dns-and-subdomains/
-  query-tools/          # dig, host
-  passive-enum/         # subfinder, DNSDumpster, Sublist3r
-  active-enum/          # fierce
-  reverse-dns/          # HackerTarget reverse-DNS API
-  typosquatting/        # dnstwist
+  active-enum/          # dnsmap, fierce, massdns, puredns
+  passive-enum/         # DNSDumpster, subfinder, Sublist3r
+  query-tools/          # dig, dnsx, host, nslookup
+  reverse-dns/          # HackerTarget reverse DNS API, Robtex, hakrevdns
+  typosquatting/        # dnstwist, Namedroppers
 04-web-exploration/
-  fingerprinting/       # BuiltWith, urlscan.io, WhatWeb, wig
   cms-scanners/         # CMSeeK, CMSmap, WPScan
-  content-discovery/    # feroxbuster, ffuf, gobuster, dirhunt, wfuzz, DirBuster
-  crawling-spidering/   # katana, Photon
-  dorking/              # search operators, GHDB, inurlbr
+  content-discovery/    # dirhunt, feroxbuster, ffuf, gobuster, DirBuster, wfuzz
+  crawling-spidering/   # Photon, hakrawler, katana
+  dorking/              # Google Hacking Database, pagodo, inurlbr
+  fingerprinting/       # BuiltWith, WhatWeb, urlscan.io, wig
   monitoring-visual/    # VisualPing, VisualSiteMapper, gowitness
-  whois-domains/        # viewdns.info
+  whois-domains/        # DomainTools, Whoisology, viewdns.info
 05-certificates-tls/
-  ct-log-search/        # crt.sh, MerkleMap
-  cert-analysis/        # testssl.sh, openssl
-  origin-unmasking/     # CloudFlair
+  cert-analysis/        # SSLyze, openssl, testssl.sh
+  ct-log-search/        # crt.sh, CertWatch, MerkleMap
+  origin-unmasking/     # Favicon hash pivoting, CloudFail, CloudFlair
 06-history-and-archives/
-  web-archive/          # Wayback CDX, waybackurls, gau
-  ip-whois-history/     # historical WHOIS / passive DNS
-  analytics-linking/    # SpyOnWeb and shared-ID linking
+  analytics-linking/    # DNSlytics, NerdyData, PublicWWW, SpyOnWeb
+  ip-whois-history/     # Netcraft Site Report, SecurityTrails
+  web-archive/          # Wayback CDX API, archive.today, gau, waybackurls
 07-documents-metadata/
-  metadata-extraction/  # ExifTool, mat2
-  harvest-from-web/     # metagoofil, FOCA
-  pdf-forensics/        # pdf-parser.py, qpdf, pdfimages, binwalk
-  office-forensics/     # oletools
   geo-media/            # geolocating photos and video
+  harvest-from-web/     # FOCA, metagoofil
+  metadata-extraction/  # ExifTool, exiv2, mat2
+  office-forensics/     # DOCX as ZIP, oledump.py, oletools
+  pdf-forensics/        # binwalk, pdf-parser.py, pdfimages, qpdf
 08-people-and-identity/
-  people-search/        # ThatsThem
-  public-records/       # registries and court records
-  username-enum/        # Sherlock, Maigret, userrecon
-  email-osint/          # holehe, HIBP
-  reverse-image/        # Yandex, TinEye, EagleEye
-  social-media/         # platform notes
+  email-osint/          # Have I Been Pwned, holehe, hunter.io
+  ip-luring/            # Canarytokens, IPLogger / Grabify
   password-reset-clues/ # methodology, no tool
-  ip-luring/            # Canarytokens, IPLogger/Grabify
+  people-search/        # BeenVerified, Pipl, Spokeo, ThatsThem
+  public-records/       # registries and court records
+  reverse-image/        # Google Lens, TinEye, Yandex Images, EagleEye
+  social-media/         # platform notes
+  username-enum/        # Maigret, Sherlock, WhatsMyName, userrecon
 09-code-paste-forums/
-  code-search/          # GitHub code search, SearchCode
-  secret-scanning/      # TruffleHog, Gitleaks, Gitrob
-  git-history/          # author/email extraction methodology
-  paste-sites/          # pastebin and paste search
+  code-search/          # GitHub code search, Sourcegraph, grep.app, SearchCode
   forums-wikis/         # forum and wiki history
+  git-history/          # author/email extraction methodology
+  paste-sites/          # Pastebin, PrivateBin, paaster
+  secret-scanning/      # Gitleaks, TruffleHog, Gitrob
 10-email-investigation/
-  header-analysis/      # MXToolbox, Received-header reading
-  server-checks/        # SPF/DKIM/DMARC, callback verification, swaks
-  tracking/             # open-tracking and token methodology
+  header-analysis/      # MXToolbox, Google Messageheader, IP2Location Email Tracer
+  server-checks/        # PGP keyservers, checkdmarc, swaks
   spoofing-testing/     # authorised spoof testing
+  tracking/             # open-tracking and token methodology
 11-traffic-capture/
-  capture/              # Wireshark, tshark
-  analysis/             # NetworkMiner
+  analysis/             # NetworkMiner, Zeek
+  capture/              # Wireshark / tshark, tcpdump
   tls-fingerprinting/   # JA3/JA4 methodology
 99-resources/
-  wordlists/            # pointers to SecLists (not vendored)
-  awesome-lists/        # curated external lists
   api-keys/             # which keys are worth paying for
+  awesome-lists/        # curated external lists
   cheatsheets/          # long-form notes that outgrew a tool file
+  wordlists/            # pointers to SecLists (not vendored)
 workflows/              # end-to-end playbooks chaining the tools in order
 scripts/                # build-index.py, check-links.py (stdlib only)
 templates/              # the empty tool schema

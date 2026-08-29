@@ -57,4 +57,5 @@ Author, company, and last-saved-by fields are the attribution payload.
 ## Alternatives
 - [ExifTool](../metadata-extraction/exiftool.md) - metadata across all Office formats
 - [binwalk](../pdf-forensics/binwalk.md) - embedded content in any container
-- [../README.md](../README.md) - the unzip technique for modern .docx
+- [oledump.py](oledump.md) - stream-level access, and it reads samples inside a password-protected zip
+- [DOCX as ZIP](docx-as-zip.md) - the unzip technique for modern .docx

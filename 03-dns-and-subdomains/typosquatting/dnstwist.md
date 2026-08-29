@@ -57,3 +57,4 @@ investigate first - MX suggests they can receive mail for a phish.
 ## Alternatives
 - [urlscan.io](../../04-web-exploration/fingerprinting/urlscan-io.md) - inspect what a suspicious lookalike actually serves
 - [crt.sh](../../05-certificates-tls/ct-log-search/crt-sh.md) - certs issued to a lookalike domain
+- [Namedroppers](namedroppers.md) - registered names *containing* the brand, which permutations never generate
