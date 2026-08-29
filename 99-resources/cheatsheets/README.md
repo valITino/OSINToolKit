@@ -6,7 +6,11 @@ gets a cheatsheet here and the tool file links to it.
 
 ## Index
 
-_No cheatsheets yet._ Add one as `topic-name.md` and link to it from the relevant
+| Cheatsheet | What it covers |
+|---|---|
+| [search-operators.md](search-operators.md) | The same dork across Google, Bing, Yandex and DuckDuckGo, plus GitHub code search, scan-engine syntax, and the bulk indexes |
+
+Add another as `topic-name.md`, list it above, and link to it from the relevant
 tool file's Gotchas or Usage section.
 
 ## What belongs here

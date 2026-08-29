@@ -27,7 +27,9 @@ destination is a category README that explains what the tools there are for.
 | An Office file that may carry macros | [`07-documents-metadata/office-forensics`](07-documents-metadata/office-forensics/) |
 | An .eml file | [`10-email-investigation/header-analysis`](10-email-investigation/header-analysis/) |
 | A .pcap file | [`11-traffic-capture`](11-traffic-capture/) |
-| A URL I must not click | [`04-web-exploration/fingerprinting`](04-web-exploration/fingerprinting/) -> [`06-history-and-archives/web-archive`](06-history-and-archives/web-archive/) |
+| A URL I must not click | [`13-threat-intel/url-analysis`](13-threat-intel/url-analysis/) -> [`04-web-exploration/fingerprinting`](04-web-exploration/fingerprinting/) -> [`06-history-and-archives/web-archive`](06-history-and-archives/web-archive/) |
+| A .onion address | [`12-darkweb/onion-discovery`](12-darkweb/onion-discovery/) -> [`12-darkweb/active-crawling`](12-darkweb/active-crawling/) |
+| A file, or just its hash | [`13-threat-intel/file-and-hash`](13-threat-intel/file-and-hash/) -> [`07-documents-metadata`](07-documents-metadata/) |
 | A paste or pastebin link | [`09-code-paste-forums/paste-sites`](09-code-paste-forums/paste-sites/) |
 | A tracking, Analytics or AdSense ID | [`06-history-and-archives/analytics-linking`](06-history-and-archives/analytics-linking/) |
 | A registrant name, email or phone | [`04-web-exploration/whois-domains`](04-web-exploration/whois-domains/) -> [`06-history-and-archives/ip-whois-history`](06-history-and-archives/ip-whois-history/) |
@@ -46,7 +48,12 @@ Sometimes the starting point is a question rather than a thing.
 | Whether mail from this domain can be forged | [`10-email-investigation/server-checks`](10-email-investigation/server-checks/) |
 | Whether this organisation has leaked secrets | [`09-code-paste-forums/code-search`](09-code-paste-forums/code-search/) -> [`09-code-paste-forums/secret-scanning`](09-code-paste-forums/secret-scanning/) -> [`09-code-paste-forums/paste-sites`](09-code-paste-forums/paste-sites/) |
 | Which sites share an owner with this one | [`06-history-and-archives/analytics-linking`](06-history-and-archives/analytics-linking/) -> [`03-dns-and-subdomains/reverse-dns`](03-dns-and-subdomains/reverse-dns/) |
-| What search engines already indexed | [`04-web-exploration/dorking`](04-web-exploration/dorking/) |
+| What search engines already indexed | [`04-web-exploration/dorking`](04-web-exploration/dorking/) -> [`99-resources/cheatsheets/search-operators.md`](99-resources/cheatsheets/search-operators.md) |
+| What this name resolved to years ago | [`03-dns-and-subdomains/passive-dns`](03-dns-and-subdomains/passive-dns/) |
+| Whether this organisation is named on a ransomware leak site | [`12-darkweb/leak-monitoring`](12-darkweb/leak-monitoring/) |
+| Which hidden services mention this brand, and where their addresses leak | [`12-darkweb/onion-discovery`](12-darkweb/onion-discovery/) |
+| Whether this infrastructure is already known-bad to someone else | [`13-threat-intel/feeds-and-trackers`](13-threat-intel/feeds-and-trackers/) |
+| How to keep a copy of this site before it changes | [`04-web-exploration/scraping`](04-web-exploration/scraping/) |
 
 For the three most common cases there are full playbooks in
 [`workflows/`](workflows/) that chain the tools in order and explain why the
@@ -168,6 +175,11 @@ This repository documents tools; it does not authorise their use. Read
 - Privacy law shapes the data itself: GDPR redacts WHOIS for EU registrants and
   limits EU public records. Some passive tools (Maltego Transforms, sandbox
   submissions, lure tokens) can still tip off a subject - plan OPSEC first.
+- Dark web work adds exposure the rest of the repo does not have: illegal
+  material appears unbidden and a rendered page is a cached copy, a leak-site
+  dump is still personal data, and registering or buying is not observation.
+  [`12-darkweb`](12-darkweb/) documents observation only - read the dark web
+  section of [LEGAL.md](LEGAL.md) before the first connection.
 - This is a **discovery and attribution** reference. Exploit code, payloads, and
   credential-attack tooling are deliberately out of scope; where a listed tool
   has such features, they are named as out of scope, not documented.
