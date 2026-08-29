@@ -17,19 +17,15 @@ status_checked: 2026-08-29
 
 ## What question does it answer?
 I have a file, or only its hash. Have these thirteen engines ever seen this
-exact file - and if I must scan something, can I do it somewhere quieter than
-VirusTotal?
+exact file - and if I must scan, can I do it somewhere quieter than VirusTotal?
 
 ## Why this is tier 3
-Not broken - Jotti scans today - but narrow and superseded on every axis this
-directory cares about: thirteen engines against VirusTotal's roughly seventy; a
-hash index covering only files previously scanned through Jotti, so misses are
-meaningless; no family tags, no YARA, no sandbox pull-through, no C2, so no
-campaign context; and no free API. The roster is dated too - Cyren is still
-listed although Cyren Ltd. was declared insolvent and ceased operating in
-February 2023. Use [MalwareBazaar](malwarebazaar.md) for family and campaign
-context, [Hybrid Analysis](hybrid-analysis.md) for behaviour, and VirusTotal
-for engine breadth.
+Not broken - Jotti scans today - but narrow and superseded: thirteen engines
+against VirusTotal's roughly seventy; a hash index of only what Jotti itself
+scanned; no family tags, YARA, sandbox or C2 data, so no campaign context; and
+no free API. Cyren is still listed although Cyren Ltd. was declared insolvent
+and ceased operating in February 2023. [MalwareBazaar](malwarebazaar.md) and
+[Hybrid Analysis](hybrid-analysis.md) replace it, VirusTotal for engine breadth.
 
 ## When to reach for it
 Two cases. As a free, no-account, passive second-opinion hash check against a
@@ -38,15 +34,13 @@ a lower-profile scanner when policy forbids VirusTotal, accepting that the file
 still reaches thirteen vendors and human analysts.
 
 ## Install
-None. Web only, no account, and no free API - the API page advertises a paid
-bulk-scanning service obtained by contacting Jotti, so any guide promising a
-free Jotti API is wrong. Everything below is a browser or a curl request.
+None. Web only, no account, and no free API - the API page advertises only a
+paid bulk-scanning service, so any guide promising a free Jotti API is wrong.
 
 ## Usage
 ```text
 https://virusscan.jotti.org/en-US/search/hash/44d88612fea8a8f36de82e1278abb02f
-# PASSIVE lookup, plain GET: MD5, SHA1, SHA256 or SHA512. Returns a report, or
-# an empty form page meaning "not in Jotti's index".
+# PASSIVE plain GET: MD5, SHA1, SHA256 or SHA512. Empty form page = not indexed.
 https://virusscan.jotti.org/en-US/filescanjob/<jobid>
 # The permanent PUBLIC report URL an upload returns - any holder can read it.
 ```
@@ -57,35 +51,30 @@ curl -sL -F 'sample-file[]=@sample.bin' -F 'submit=Submit' \
 ```
 
 ## Output
-An HTML report: name, size, the libmagic type string, Jotti's own first-seen
-date, MD5, SHA1, a status line ("Scan finished. 1/13 scanners reported
-malware."), the scan date, then a row per engine with its signature-database
-date and either "Found nothing" or a detection name. Read the per-engine dates
-first - a clean from an engine whose definitions are stale is not a clean -
-then the ratio, then the detection names, which are the family hints worth
-pivoting on elsewhere. First-seen is Jotti-local, never a global first sighting.
+An HTML report: name, size, libmagic type string, Jotti's own first-seen date,
+MD5, SHA1, a status line ("Scan finished. 1/13 scanners reported malware."),
+the scan date, then a row per engine with its signature-database date and
+either "Found nothing" or a detection name. Read the per-engine dates first - a
+clean from an engine with stale definitions is not a clean - then the ratio,
+then the detection names, the family hints worth pivoting on elsewhere.
+First-seen is Jotti-local, never a global first sighting.
 
 ## Gotchas
-- **Uploading is a disclosure event, not a lookup.** The privacy policy is
-  explicit that files are stored, shared with anti-malware companies and read by
-  security analysts, and the resulting report sits at a public URL retrievable
-  by hash. Operators who watch multiscanners for their own hashes will see it.
-  The hash search is the only passive half of this tool.
+- **Uploading is a disclosure event, not a lookup.** Per the privacy policy,
+  files are stored, shared with anti-malware companies and read by analysts, and
+  the report sits at a public URL retrievable by hash - which operators watch.
 - **A miss proves nothing.** The index covers only files scanned through Jotti,
   and even the canonical EICAR MD5 returns no record. Never write "unknown to
   Jotti" as evidence that a file is novel.
 - **Ratios are not comparable to VirusTotal's:** thirteen engines, and Linux
-  builds, which the FAQ admits give different results from the same vendors'
-  desktop products. Discount the Cyren row entirely.
+  builds the FAQ admits differ from desktop products. Discount the Cyren row.
 - **Reports show only MD5 and SHA1**, no SHA256, though the search box accepts
-  both. Results are asynchronous: a fetch straight after an upload shows a queue
-  position, so you have to re-fetch the job URL.
+  both; a fetch straight after an upload shows a queue position, so re-fetch.
 - **Files are never returned to you** and no rate limit is published, so there
-  is no documented allowance either. Do not let Jotti hold your only copy, and
-  store what you keep in line with [../../LEGAL.md](../../LEGAL.md).
+  is no documented allowance. Do not let Jotti hold your only copy; store what
+  you keep in line with [../../LEGAL.md](../../LEGAL.md).
 
 ## Alternatives
 - [MalwareBazaar](malwarebazaar.md) - family, tags and campaign pivots
 - [Hybrid Analysis](hybrid-analysis.md) - behaviour, processes and C2
-- [MalShare](malshare.md) - where the file was collected in the wild
 - [VirusTotal](../../02-network-and-ip/reputation/virustotal.md) - engine count

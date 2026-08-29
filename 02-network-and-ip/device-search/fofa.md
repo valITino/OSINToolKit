@@ -25,8 +25,8 @@ A second opinion, not a first stop. FOFA's coverage skews towards Chinese IP spa
 and Chinese-market products, so it holds deployments [shodan.md](shodan.md) and
 [censys.md](censys.md) miss - and misses assets they hold. Reach for it when a
 Shodan pivot returns a thin cluster, or for a `body=` or `icon_hash=` pivot in a
-syntax Shodan lacks. Do not, if you cannot hand a Chinese vendor your target list or
-need a workable free API - [netlas.md](netlas.md) is the better free option.
+syntax Shodan lacks. Do not reach for it if you cannot hand a Chinese vendor your
+target list, or if you need a workable free API: [netlas.md](netlas.md) is that.
 
 ## Install
 ```bash

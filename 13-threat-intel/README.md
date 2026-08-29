@@ -54,15 +54,15 @@ sha256sum suspicious.doc      # search this, do not upload the file
 | Tool | Answers | Tier | Contact |
 |---|---|---|---|
 | [ANY.RUN](url-analysis/any-run.md) | I have a URL that only misbehaves for a human. What does it do when somebody clicks through it - past the CAPTCHA, the... | 2 | active |
-| [Hybrid Analysis (Falcon Sandbox)](file-and-hash/hybrid-analysis.md) | I have a file or a hash. Has anyone already detonated it, and what did it actually do - which processes, which domains, which C2... | 2 | passive |
+| [Hybrid Analysis (Falcon Sandbox)](file-and-hash/hybrid-analysis.md) | I have a file or a hash. Has anyone already detonated it, and what did it do - which processes, which domains, which C2 - so that... | 2 | passive |
 | [MalShare](file-and-hash/malshare.md) | I have a hash. Was this file actually collected in the wild - from which URL, under which filenames - and can I get a copy... | 2 | passive |
 | [MalwareBazaar](file-and-hash/malwarebazaar.md) | I have a hash. What family is it, who has already analysed it, and what other samples share its builder, its signing certificate... | 2 | passive |
 | [Recorded Future Triage (tria.ge)](url-analysis/triage.md) | I have a URL or a file hash. Has anyone already detonated it, what family did it turn out to be, and what C2 configuration came... | 2 | active |
-| [ThreatFox](feeds-and-trackers/threatfox.md) | I have an IP, a domain or a URL that looks like callback infrastructure. Is it a published command-and-control or... | 2 | passive |
+| [ThreatFox](feeds-and-trackers/threatfox.md) | I have an IP, domain or URL that looks like callback infrastructure. Is it a published C2 or payload-delivery indicator, for... | 2 | passive |
 | [URLhaus](feeds-and-trackers/urlhaus.md) | I have a URL or a hostname out of a log. Has anyone already published it as a malware distribution site, which family did it... | 2 | passive |
 | [urlquery](url-analysis/urlquery.md) | I have a URL I must not click. What does it serve when a real browser opens it, do any IDS rules or DNS blocklists already call... | 2 | active |
 | [AlienVault OTX (LevelBlue Open Threat Exchange)](feeds-and-trackers/alienvault-otx.md) | I have an indicator another feed already flagged. Who wrote it up, in what report, and what else did they list in the same pulse? | 3 | passive |
-| [Jotti's malware scan](file-and-hash/jotti.md) | I have a file, or only its hash. Have these thirteen engines ever seen this exact file - and if I must scan something, can I do... | 3 | active |
+| [Jotti's malware scan](file-and-hash/jotti.md) | I have a file, or only its hash. Have these thirteen engines ever seen this exact file - and if I must scan, can I do it... | 3 | active |
 | [PhishTank](feeds-and-trackers/phishtank.md) | I have a URL that looks like a credential-harvesting page. Is it already in the community phishing corpus as verified and still... | 3 | passive |
 <!-- END:TOOLS -->
 

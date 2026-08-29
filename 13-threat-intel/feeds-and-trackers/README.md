@@ -34,7 +34,7 @@ sibling domains, which becomes the scope of the incident.
 <!-- BEGIN:TOOLS -->
 | Tool | Answers | Tier | Contact |
 |---|---|---|---|
-| [ThreatFox](threatfox.md) | I have an IP, a domain or a URL that looks like callback infrastructure. Is it a published command-and-control or... | 2 | passive |
+| [ThreatFox](threatfox.md) | I have an IP, domain or URL that looks like callback infrastructure. Is it a published C2 or payload-delivery indicator, for... | 2 | passive |
 | [URLhaus](urlhaus.md) | I have a URL or a hostname out of a log. Has anyone already published it as a malware distribution site, which family did it... | 2 | passive |
 | [AlienVault OTX (LevelBlue Open Threat Exchange)](alienvault-otx.md) | I have an indicator another feed already flagged. Who wrote it up, in what report, and what else did they list in the same pulse? | 3 | passive |
 | [PhishTank](phishtank.md) | I have a URL that looks like a credential-harvesting page. Is it already in the community phishing corpus as verified and still... | 3 | passive |

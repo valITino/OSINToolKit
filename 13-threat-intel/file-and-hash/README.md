@@ -47,10 +47,10 @@ private submission or a local sandbox is for.
 <!-- BEGIN:TOOLS -->
 | Tool | Answers | Tier | Contact |
 |---|---|---|---|
-| [Hybrid Analysis (Falcon Sandbox)](hybrid-analysis.md) | I have a file or a hash. Has anyone already detonated it, and what did it actually do - which processes, which domains, which C2... | 2 | passive |
+| [Hybrid Analysis (Falcon Sandbox)](hybrid-analysis.md) | I have a file or a hash. Has anyone already detonated it, and what did it do - which processes, which domains, which C2 - so that... | 2 | passive |
 | [MalShare](malshare.md) | I have a hash. Was this file actually collected in the wild - from which URL, under which filenames - and can I get a copy... | 2 | passive |
 | [MalwareBazaar](malwarebazaar.md) | I have a hash. What family is it, who has already analysed it, and what other samples share its builder, its signing certificate... | 2 | passive |
-| [Jotti's malware scan](jotti.md) | I have a file, or only its hash. Have these thirteen engines ever seen this exact file - and if I must scan something, can I do... | 3 | active |
+| [Jotti's malware scan](jotti.md) | I have a file, or only its hash. Have these thirteen engines ever seen this exact file - and if I must scan, can I do it... | 3 | active |
 <!-- END:TOOLS -->
 
 ## Related
