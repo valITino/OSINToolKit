@@ -62,7 +62,7 @@ sha256sum suspicious.doc      # search this, do not upload the file
 | [URLhaus](feeds-and-trackers/urlhaus.md) | I have a URL or a hostname out of a log. Has anyone already published it as a malware distribution site, which family did it... | 2 | passive |
 | [urlquery](url-analysis/urlquery.md) | I have a URL I must not click. What does it serve when a real browser opens it, do any IDS rules or DNS blocklists already call... | 2 | active |
 | [AlienVault OTX (LevelBlue Open Threat Exchange)](feeds-and-trackers/alienvault-otx.md) | I have an indicator another feed already flagged. Who wrote it up, in what report, and what else did they list in the same pulse? | 3 | passive |
-| [Jotti's malware scan](file-and-hash/jotti.md) | I have a file, or only its hash. Have these thirteen engines ever seen this exact file - and if I have to scan something, can I... | 3 | active |
+| [Jotti's malware scan](file-and-hash/jotti.md) | I have a file, or only its hash. Have these thirteen engines ever seen this exact file - and if I must scan something, can I do... | 3 | active |
 | [PhishTank](feeds-and-trackers/phishtank.md) | I have a URL that looks like a credential-harvesting page. Is it already in the community phishing corpus as verified and still... | 3 | passive |
 <!-- END:TOOLS -->
 

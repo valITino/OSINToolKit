@@ -25,13 +25,12 @@ A second opinion, not a first stop. FOFA's coverage skews towards Chinese IP spa
 and Chinese-market products, so it holds deployments [shodan.md](shodan.md) and
 [censys.md](censys.md) miss - and misses assets they hold. Reach for it when a
 Shodan pivot returns a thin cluster, or for a `body=` or `icon_hash=` pivot in a
-syntax Shodan lacks. Do not, if you cannot hand a Chinese vendor your target list
-or need a workable free API - [netlas.md](netlas.md) is the better free option.
+syntax Shodan lacks. Do not, if you cannot hand a Chinese vendor your target list or
+need a workable free API - [netlas.md](netlas.md) is the better free option.
 
 ## Install
 ```bash
-go install github.com/FofaInfo/GoFOFA/cmd/fofa@latest   # official CLI (MIT)
-export FOFA_KEY='your_key'
+go install github.com/FofaInfo/GoFOFA/cmd/fofa@latest && export FOFA_KEY='your_key'
 # No Go toolchain? The REST API takes the query base64-encoded in qbase64:
 curl "https://fofa.info/api/v1/search/all?key=$FOFA_KEY&qbase64=$(printf '%s' 'ip="1.1.1.1"' | base64)"
 ```
@@ -42,20 +41,19 @@ fofa account   # always first: credits are spent per query, so read the balance
                # (fofa_point, isvip, remain_api_query) before a broad search
 fofa search -fields host,ip,port,protocol,lastupdatetime \
   'body="loading-wrap" && body="balls" && is_domain=true && cert.is_valid=true && country="US"'
-               # vendor's own example: one HTML fingerprint, narrowed to assets that
-               # hold a domain and a valid cert - real deployments, not throwaway boxes
+               # vendor's own example: one HTML fingerprint, narrowed to assets
+               # holding a domain and a valid cert, not throwaway boxes
 fofa icon ./data/favicon.ico   # hash an icon you ALREADY hold locally, then pivot:
                                # fofa search 'icon_hash="-247388890"'
 ```
 
 ## Output
-CSV, one asset per line; without `-fields` the columns are just `ip,port`, with it
-what you asked for in order (`168.119.197.62:6379,...,redis,2024-08-23 12:00:00`).
-`-format json` gives newline-delimited objects, `fofa count port=80` a bare integer.
-Read a result set as an infrastructure cluster, not a host list - the finding is
-that N hosts share one fingerprint. Always pull `lastupdatetime`: it is the only
-signal that a pivot is live rather than a fossil. Unidentified services are
-labelled `unknown` rather than guessed at.
+CSV, one asset per line: `ip,port` by default, or exactly the `-fields` columns in
+order (`168.119.197.62:6379,...,redis,2024-08-23 12:00:00`). `-format json` gives
+newline-delimited objects, `fofa count port=80` a bare integer. Read a result set as
+an infrastructure cluster, not a host list - the finding is that N hosts share one
+fingerprint. Always pull `lastupdatetime`: it is the only signal that a pivot is live
+rather than a fossil. Services FOFA cannot identify are labelled `unknown`.
 
 ## Gotchas
 - **Filters are gated by membership tier** (44 syntaxes free, 60 Professional, 62
@@ -76,7 +74,7 @@ labelled `unknown` rather than guessed at.
   files instead. Exploitation features of any banner search are out of scope here.
 - `fofa.so` still serves an old build; the live fronts are fofa.info and en.fofa.info.
   `pip install fofa` (fofapro/fofa-py) looks official but was last committed in
-  January 2024; GoFOFA is the maintained client.
+  January 2024, so treat GoFOFA as the maintained client.
 
 ## Alternatives
 - [shodan.md](shodan.md) - broader Western coverage; run both, expect disagreement
