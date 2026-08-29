@@ -104,6 +104,7 @@ sortable list once the build script has run.
   vuln-scanners/        # Greenbone / OpenVAS, Rapid7 Nexpose, Tenable Nessus, nuclei
 03-dns-and-subdomains/
   active-enum/          # dnsmap, fierce, massdns, puredns
+  passive-dns/          # CIRCL, DNSDB, mnemonic PassiveDNS, Validin
   passive-enum/         # DNSDumpster, subfinder, Sublist3r
   query-tools/          # dig, dnsx, host, nslookup
   reverse-dns/          # HackerTarget reverse DNS API, Robtex, hakrevdns
@@ -111,10 +112,11 @@ sortable list once the build script has run.
 04-web-exploration/
   cms-scanners/         # CMSeeK, CMSmap, WPScan
   content-discovery/    # dirhunt, feroxbuster, ffuf, gobuster, DirBuster, wfuzz
-  crawling-spidering/   # Photon, hakrawler, katana
-  dorking/              # Google Hacking Database, pagodo, inurlbr
-  fingerprinting/       # BuiltWith, WhatWeb, urlscan.io, wig
-  monitoring-visual/    # VisualPing, VisualSiteMapper, gowitness
+  crawling-spidering/   # Photon, hakrawler, katana, GoSpider
+  dorking/              # Google Hacking Database, pagodo, GooFuzz, GitDorker, dorkscout
+  fingerprinting/       # BuiltWith, WhatWeb, httpx, urlscan.io, WAFW00F, wig
+  monitoring-visual/    # VisualPing, gowitness
+  scraping/             # HTTrack, Scrapy, trafilatura, Playwright, yt-dlp, snscrape
   whois-domains/        # DomainTools, Whoisology, viewdns.info
 05-certificates-tls/
   cert-analysis/        # SSLyze, openssl, testssl.sh
@@ -123,7 +125,7 @@ sortable list once the build script has run.
 06-history-and-archives/
   analytics-linking/    # DNSlytics, NerdyData, PublicWWW, SpyOnWeb
   ip-whois-history/     # Netcraft Site Report, SecurityTrails
-  web-archive/          # Wayback CDX API, archive.today, gau, waybackurls
+  web-archive/          # Wayback CDX API, Common Crawl, archive.today, gau, waybackpack
 07-documents-metadata/
   geo-media/            # geolocating photos and video
   harvest-from-web/     # FOCA, metagoofil
@@ -154,12 +156,21 @@ sortable list once the build script has run.
   analysis/             # NetworkMiner, Zeek
   capture/              # Wireshark / tshark, tcpdump
   tls-fingerprinting/   # JA3/JA4 methodology
+12-darkweb/             # hidden services: find them, read them, watch what leaks
+  access-and-opsec/     # Tor Browser, Tails, Whonix, torsocks
+  onion-discovery/      # Ahmia, OnionSearch, dark.fail, Tor.taxi, Intelligence X
+  active-crawling/      # TorBot, OnionScan, darkdump, docker-onion-nmap
+  leak-monitoring/      # RansomLook, Ransomware.live, ransomwatch, DarkOwl
+13-threat-intel/        # has anyone seen this file, hash, or URL before
+  file-and-hash/        # Jotti, MalwareBazaar, Hybrid Analysis, MalShare
+  url-analysis/         # urlquery, Recorded Future Triage, ANY.RUN
+  feeds-and-trackers/   # URLhaus, ThreatFox, AlienVault OTX, PhishTank
 99-resources/
   api-keys/             # which keys are worth paying for
   awesome-lists/        # curated external lists
-  cheatsheets/          # long-form notes that outgrew a tool file
+  cheatsheets/          # search operators across engines, and other long-form notes
   wordlists/            # pointers to SecLists (not vendored)
-workflows/              # end-to-end playbooks chaining the tools in order
+workflows/              # six end-to-end playbooks chaining the tools in order
 scripts/                # build-index.py, check-links.py (stdlib only)
 templates/              # the empty tool schema
 ```

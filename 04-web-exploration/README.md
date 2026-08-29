@@ -42,7 +42,6 @@ You have a URL or web host. What is it built with, what CMS, what hidden content
 | [urlscan.io](fingerprinting/urlscan-io.md) | What does this URL actually do when a browser loads it - what does it look like, what does it request, where does it redirect... | 2 | passive |
 | [viewdns.info](whois-domains/viewdns.md) | I have a domain or IP and no tools installed. Who owns it, what else is on that address, what did it resolve to before, and does... | 2 | passive |
 | [VisualPing](monitoring-visual/visualping.md) | This page matters to my investigation. Tell me when it changes - without me checking it every day, and without my IP appearing in... | 2 | passive |
-| [VisualSiteMapper](monitoring-visual/visualsitemapper.md) | How is this site structured - which pages are central, which are barely linked, and where does the link graph cluster? | 2 | passive |
 | [WAFW00F](fingerprinting/wafw00f.md) | I have a URL and a stack listing I do not trust. What WAF, CDN or bot-management product is answering for this site - and so, am... | 2 | intrusive |
 | [WhatWeb](fingerprinting/whatweb.md) | I have a URL (or a list of them). What is running on it right now - server, CMS, framework, JavaScript libraries, and versions? | 2 | active |
 | [Whoisology](whois-domains/whoisology.md) | I have one WHOIS record. Which other domains share its registrant email, name, organisation, or address - and who owned them at a... | 2 | passive |
@@ -56,6 +55,7 @@ You have a URL or web host. What is it built with, what CMS, what hidden content
 | [snscrape](scraping/snscrape.md) | I have a handle or a channel name and no API key. Can I still pull that account's posts - and, more often now, is a dataset that... | 3 | active |
 | [uDork](dorking/udork.md) | I have a domain. Can one bash script walk it through a whole set of prebuilt Google dorks - extensions, URL strings, titles... | 3 | passive |
 | [Visual Site Mapper (sitemapper-nodejs)](crawling-spidering/sitemapper.md) | I have an old methodology write-up or link list naming "Visual Site Mapper" as the way to see a site's link graph. Is that... | 3 | active |
+| [VisualSiteMapper](monitoring-visual/visualsitemapper.md) | Older methodology write-ups name VisualSiteMapper as the quick way to see a site's link graph - which pages are central, which... | 3 | passive |
 | [wfuzz](content-discovery/wfuzz.md) | What happens when I substitute a wordlist into any part of an HTTP request - path, parameter, header, or cookie? | 3 | intrusive |
 | [wig](fingerprinting/wig.md) | What CMS and web platform is this site running, guessed from static file checksums and page markers? | 3 | active |
 <!-- END:TOOLS -->

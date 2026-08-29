@@ -24,15 +24,17 @@ single packet to the target?
 When you want a third party's own copy of the web at a fixed point in time, or a
 question bigger than one site: every host under a TLD, every PDF on a domain.
 Each monthly crawl has its own CDX index (CC-MAIN-2026-34 ran 7-20 August 2026,
-2.14 billion pages), so two crawls bracket a change to a month. Wrong tool for
-"what did this page say last Tuesday" - use [Wayback CDX API](wayback-cdx-api.md)
-- and overkill for a plain URL list, which [gau](gau.md) already sources here.
+2.14 billion pages), so two crawls bracket a change to a month. It is the wrong
+tool for "what did this page say last Tuesday" (use
+[Wayback CDX API](wayback-cdx-api.md)), and overkill for a plain URL list, which
+[gau](gau.md) already pulls from Common Crawl for you.
 
 ## Install
 ```bash
-# The index is plain HTTP - nothing to install for a one-off query.
-pip install cdx_toolkit   # maintained client (0.9.39, June 2026), CLI is `cdxt`
-# Avoid ikreymer/cdx-index-client: no commit since Oct 2018, examples target 2015.
+# Plain HTTP - nothing to install for a one-off query. Maintained client (CLI `cdxt`):
+pip install cdx_toolkit   # 0.9.39, June 2026. Avoid ikreymer/cdx-index-client -
+                          # no commit since Oct 2018, its examples target 2015.
+# Bulk index and WARC pulls, no AWS account needed:
 aws s3 cp --no-sign-request s3://commoncrawl/crawl-data/CC-MAIN-2026-34/cc-index.paths.gz .
 ```
 
@@ -69,15 +71,16 @@ detector - one that flips between crawls dates the edit to that month. `filename
   Iterate `collinfo.json` or use `cdxt --crawl`, which silently caps at one year
   of indexes and 1000 records unless given `--from`/`--to`/`--limit`.
 - **Heavy rate limiting; 503s are routine.** Upstream asks for under 10 requests
-  per second, one thread per IP, a real User-Agent and 10-second retry backoff.
+  per second, one thread per IP, a real User-Agent and 10-second retry backoff;
+  check `status.commoncrawl.org` before blaming your own script.
 - **CCBot obeys robots.txt and there is an opt-out registry**, so zero records may
   mean the site blocked the crawler. Bodies over the fetch limit (5 MiB since
   March 2025) are truncated, so hashes of long pages will not match the original.
 - Open data still carries duties: a local copy of scraped third-party pages has
-  the same copyright and data-protection exposure as anywhere else. See
-  [../../LEGAL.md](../../LEGAL.md) when personal data is in scope.
+  the same copyright and data-protection exposure as anywhere else - see
+  [../../LEGAL.md](../../LEGAL.md).
 
 ## Alternatives
 - [Wayback CDX API](wayback-cdx-api.md) - one site's whole timeline, fresher, and the cross-check when this returns nothing
 - [gau](gau.md) - merges Common Crawl with Wayback and OTX when a URL list is all you need
-- [waybackpack](waybackpack.md) - every capture of one page on disk, not one crawl's index
+- [waybackpack](waybackpack.md) - every capture of one page on disk, rather than one crawl's index

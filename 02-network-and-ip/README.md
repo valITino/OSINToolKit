@@ -21,6 +21,7 @@ You have an IP or a netblock. Who owns it, where is it, is it known-bad, what is
 | [bgp.he.net](registries-asn/bgp-he-net.md) | I have an ASN, IP, or organisation. What prefixes does it actually announce to the internet, who does it peer with, and where... | 2 | passive |
 | [Censys](device-search/censys.md) | Which hosts on the internet present this certificate, this SAN, or this service configuration - and how do those hosts relate to... | 2 | passive |
 | [ExoneraTor](reputation/exonerator.md) | I have an IP and a date from a log. Was that IP a Tor relay at that moment - meaning the traffic may not have originated with... | 2 | passive |
+| [FOFA](device-search/fofa.md) | I have a favicon, a scrap of body HTML, a certificate or a page title, and Shodan and Censys return almost nothing. Which hosts... | 2 | passive |
 | [Greenbone / OpenVAS](vuln-scanners/greenbone-openvas.md) | I am authorised to assess this network. What known vulnerabilities does a full, systematic scan find, in a form I can hand to... | 2 | intrusive |
 | [IP2Location](geolocation/ip2location.md) | I have an IP - or ten thousand. Where does it geolocate, is it a proxy or VPN, and can I answer that **without a third party... | 2 | passive |
 | [ipinfo.io](registries-asn/ipinfo-io.md) | I have an IP. In one call: who owns it, what ASN it belongs to, roughly where it is, and is it a hosting provider rather than an... | 2 | passive |
