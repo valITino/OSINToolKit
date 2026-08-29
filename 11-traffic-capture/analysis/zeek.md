@@ -44,8 +44,9 @@ sudo apt update && sudo apt install zeek     # installs to /opt/zeek, not on PAT
 
 ## Usage
 ```bash
+export PATH=/opt/zeek/bin:$PATH     # the package does not do this for you
 mkdir case-01 && cd case-01
-/opt/zeek/bin/zeek -C -r ../capture.pcap                 # -C is not optional, see Gotchas
+zeek -C -r ../capture.pcap          # -C is not optional, see Gotchas
 cat conn.log | zeek-cut -d ts id.orig_h id.resp_h id.resp_p service duration
 cat dns.log  | zeek-cut query answers | sort | uniq -c | sort -rn
 cat files.log | zeek-cut -d ts uid mime_type md5 filename
@@ -64,8 +65,7 @@ protocol anomalies.
 - **`zeek-cut` cannot read JSON logs, and fails silently** - blank lines, exit 0. It
   parses the TSV `#fields` header. Use `jq` if you enabled `LogAscii::use_json`, and
   never strip the header or feed it grep-filtered fragments.
-- **Not packaged by Debian, Ubuntu or Kali.** `apt install zeek` fails on a stock
-  system, and `/opt/zeek/bin` is not added to `PATH` by the package.
+- **Not packaged by Debian, Ubuntu or Kali** - `apt install zeek` fails on a stock system.
 - Zeek writes logs into the **current directory** and overwrites a previous run. One
   fresh directory per capture, or you will silently mix two cases.
 - Old material says `bro -r` and `/usr/local/bro`; the binary and paths changed at 3.0.

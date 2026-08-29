@@ -21,7 +21,7 @@ report. Can I even get access?
 
 ## When to reach for it
 Usually you cannot, and that is the most useful thing to know about it. **The free Pipl
-search that a decade of OSINT guides still recommends was shut down in June 2019.**
+search that a decade of OSINT guides still recommends was shut down back in 2019.**
 There is no free tier, no trial, no self-serve signup, and no published price -
 `pipl.com/pricing` is a 404 and every route into the product is a login page or a sales
 form. Users are vetted for a stated legitimate purpose, and the terms are written for
@@ -52,8 +52,8 @@ the Search API or through the browser investigation UI. Risk scoring is a separa
 product; Search deliberately does not assign fraud scores.
 
 ## Gotchas
-- **Any guide telling you to "just search pipl.com" is seven years out of date.** The
-  consumer search ended in June 2019, and the company cited bot and abuse prevention.
+- **Any guide telling you to "just search pipl.com" is years out of date.** The consumer
+  search ended in 2019; the company cited bot and abuse prevention at the time.
 - **It is not an alternative to [Spokeo](spokeo.md) or [BeenVerified](beenverified.md).**
   Those sell single reports to individuals; Pipl sells contracts to fraud, compliance,
   trust-and-safety, and law-enforcement teams. Do not present them as substitutes.
