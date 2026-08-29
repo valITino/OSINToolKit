@@ -9,13 +9,21 @@ to every tool file's `url`, then classifies the result into three buckets:
             a Cloudflare or WAF bot challenge, or a connection reset. This says
             nothing about whether the tool is alive, so it is NOT a failure.
   DEAD      404/410, DNS failure, or an explicit "no such host". These are the
-            ones worth acting on.
+            ones worth acting on - unless the file already says `status: broken`,
+            which means someone has checked it by hand and recorded the answer.
 
 That distinction matters. Many tool sites in this repo (Shodan, AbuseIPDB,
 ThatsThem and others) sit behind bot protection and will answer 403 to any
 scripted request forever. An earlier version of this script counted those as
 failures, which would have marked a large fraction of perfectly healthy tools
 as broken. Only DEAD results should ever change a tool's `status`.
+
+A DEAD result on a file that already declares `status: broken` is not a failure.
+Some tools are worth listing precisely because they are gone - a tier-3 entry
+exists so you recognise the name in older material - and once the file records
+that, re-reporting it as an unresolved problem on every run is noise. Those are
+listed separately and do not affect the exit code. A DEAD result on any other
+file still fails the run.
 
 **GitHub URLs:** many networks and CI environments block or rate-limit scripted
 requests to github.com while git itself still works. If a github.com URL reports
@@ -95,7 +103,8 @@ def collect(tier_filter):
                 continue
             if tier_filter and str(meta.get("tier")) != str(tier_filter):
                 continue
-            entries.append((os.path.relpath(path, REPO_ROOT), meta["url"]))
+            entries.append((os.path.relpath(path, REPO_ROOT), meta["url"],
+                            meta.get("status", "")))
     entries.sort()
     return entries
 
@@ -154,19 +163,22 @@ def main():
     entries = collect(args.tier)
     print(f"Checking {len(entries)} URL(s) with timeout={args.timeout}s, delay={args.delay}s\n")
 
-    dead, blocked = [], []
-    for i, (rel, url) in enumerate(entries):
+    dead, recorded, blocked = [], [], []
+    for i, (rel, url, status) in enumerate(entries):
         verdict, info = check(url, args.timeout)
         print(f"[{verdict:<7}] {info!s:>34}  {url}  ({rel})")
         if verdict == DEAD:
-            dead.append((rel, url, info))
+            (recorded if status == "broken" else dead).append((rel, url, info))
         elif verdict == BLOCKED:
             blocked.append((rel, url, info))
         if i < len(entries) - 1:
             time.sleep(args.delay)
 
-    ok = len(entries) - len(dead) - len(blocked)
-    print(f"\n{ok} OK, {len(blocked)} blocked, {len(dead)} dead.")
+    ok = len(entries) - len(dead) - len(recorded) - len(blocked)
+    summary = f"\n{ok} OK, {len(blocked)} blocked, {len(dead) + len(recorded)} dead"
+    if recorded:
+        summary += f" ({len(recorded)} already recorded as broken)"
+    print(summary + ".")
 
     if blocked:
         print(f"\n{len(blocked)} BLOCKED - the server answered but refused an automated")
@@ -174,6 +186,13 @@ def main():
         print("on the strength of it. For github.com URLs confirm with:")
         print("    git ls-remote <url> HEAD")
         for rel, url, info in blocked:
+            print(f"  - {rel}: {url} -> {info}")
+
+    if recorded:
+        print(f"\n{len(recorded)} DEAD but already carrying `status: broken` - the file")
+        print("has been checked by hand and records the answer, so there is nothing")
+        print("left to do here:")
+        for rel, url, info in recorded:
             print(f"  - {rel}: {url} -> {info}")
 
     if dead:
@@ -186,7 +205,7 @@ def main():
     if blocked and args.strict:
         sys.exit(1)
 
-    print("\nNo dead URLs found.")
+    print("\nNo unrecorded dead URLs found." if recorded else "\nNo dead URLs found.")
 
 
 if __name__ == "__main__":
