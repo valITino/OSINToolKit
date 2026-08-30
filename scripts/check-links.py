@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 """HTTP-check every `url` in tool frontmatter and report the ones that fail.
 
-Sends an HTTP HEAD (falling back to a ranged GET for servers that reject HEAD)
+Sends an HTTP HEAD (falling back to a ranged GET whenever HEAD is refused or
+returns 404, which some servers do for URLs that GET serves normally)
 to every tool file's `url`, then classifies the result into three buckets:
 
   OK        2xx/3xx - the page is there.
@@ -124,6 +125,11 @@ def check(url, timeout):
             last = e.code
             # Many servers reject HEAD specifically; retry those with GET.
             if method == "HEAD" and e.code in (403, 405, 406, 501):
+                continue
+            # A 404 to HEAD is not proof of anything either: some sites answer
+            # HEAD with 404 and the very same URL with 200 on GET (intelx.io
+            # does). Only a GET may return DEAD.
+            if method == "HEAD" and e.code in DEAD_CODES:
                 continue
             if e.code in DEAD_CODES:
                 return DEAD, e.code
