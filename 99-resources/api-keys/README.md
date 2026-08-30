@@ -36,11 +36,34 @@ Prices and free-tier limits change constantly. Treat every number here as
 | **urlscan.io** | Higher scan/search limits | Free key raises limits | Paid | fingerprinting |
 | **GitHub token** | Raises code-search rate limits | Free with any account | n/a | code-search, secret-scanning |
 
+## Keys the newer categories need
+
+Threat-intel, passive DNS and scan-search tools are key-gated in a different
+way: most are free but require an account, and several changed policy recently.
+
+| Service | What it adds | Free tier | Notes |
+|---|---|---|---|
+| **abuse.ch** (MalwareBazaar, URLhaus, ThreatFox) | Samples, malicious URLs, C2 indicators | Free `Auth-Key` from auth.abuse.ch | **Now mandatory on the query APIs** - a bare POST returns 401, so every pre-2025 snippet is dead. Signup is OAuth-only, so choose the persona that registers |
+| **Netlas** | Scan data, certificates, WHOIS, subdomains from scans | 50 requests/day, 200 results per download | Free tier is personal use only |
+| **Validin** | Passive DNS plus host-response pivots | Community tier, capped result count | Newer dataset; shallower history than the paid providers |
+| **DNSDB** (Farsight / DomainTools) | The deepest resolution history | none | Paid. Buy only when the question genuinely reaches back years |
+| **CIRCL Passive DNS** | CSIRT-collected resolution history | Free to vetted partners | Access is requested, not self-served - ask before you need it |
+| **mnemonic PassiveDNS** | Resolution history, both directions | Keyless for TLP:white data | The one passive DNS source that needs no account at all |
+| **Intelligence X** | Leaks, pastes, darknet crawls by selector | Free account, limited daily lookups | The API key is separate from the web account |
+| **Recorded Future Triage** | Sandbox reports, family and config extraction | Free research account | Free-tier submissions are public |
+| **ONYPHE** | Scan and threat data, own query language | Free view, standard filters only | Advanced filters are plan-gated; a docs query can return zero because of your licence |
+| **urlquery** | URL scans, IDS and traffic detection | Anonymous search; free key for the CLI | Searching costs nothing and tells the operator nothing |
+
+Assume every submission on a free tier is public unless the provider says
+otherwise, and read [../../13-threat-intel/README.md](../../13-threat-intel/README.md)
+before you upload anything.
+
 ## Buy in this order on a small budget
 
 1. **Free keys first, all of them.** IPinfo, VirusTotal (public), AbuseIPDB,
    GreyNoise community, Hunter.io free tier, SecurityTrails free tier, urlscan.io,
-   and a GitHub personal access token. Zero cost, and they light up most modules.
+   an abuse.ch Auth-Key, Netlas, and a GitHub personal access token. Zero cost,
+   and they light up most modules.
 2. **Shodan membership (~$49, one-time).** The single best paid pickup. It is a
    one-off, not a subscription, and it unlocks device/exposure data that nothing
    free replicates. Watch for the periodic sales.
