@@ -42,7 +42,7 @@ what does it look like - answered by making somebody else's browser fetch it.
 <!-- BEGIN:TOOLS -->
 | Tool | Answers | Tier | Contact |
 |---|---|---|---|
-| [ANY.RUN](any-run.md) | I have a URL that only misbehaves for a human. What does it do when somebody clicks through it - past the CAPTCHA, the... | 2 | active |
+| [ANY.RUN](any-run.md) | I have a URL that only misbehaves for a human. What does it do when somebody clicks through the CAPTCHA or the fake verification... | 2 | active |
 | [Recorded Future Triage (tria.ge)](triage.md) | I have a URL or a file hash. Has anyone already detonated it, what family did it turn out to be, and what C2 configuration came... | 2 | active |
 | [urlquery](urlquery.md) | I have a URL I must not click. What does it serve when a real browser opens it, do any IDS rules or DNS blocklists already call... | 2 | active |
 <!-- END:TOOLS -->

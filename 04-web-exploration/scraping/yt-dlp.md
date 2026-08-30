@@ -24,7 +24,7 @@ thumbnails, subtitles, comments - with a record of what I took?
 Whenever the artefact is hosted media. Even when you do not want the bytes,
 `--skip-download` makes it the fastest way to snapshot a platform's own claims
 about an upload. It is not a general scraper: for page text use
-[trafilatura.md](trafilatura.md), for site structure [httrack.md](httrack.md),
+[trafilatura](trafilatura.md), for site structure [HTTrack Website Copier](httrack.md),
 and for image galleries it reaches almost nothing. Coverage is per-extractor, so
 an unsupported site falls back to generic extraction that grabs the wrong
 element, or nothing.
@@ -79,6 +79,6 @@ display name - names change, IDs do not.
   capture time, and record your wall-clock time next to the platform's.
 
 ## Alternatives
-- [playwright.md](playwright.md) - capture the page around the video, and its network log
-- [httrack.md](httrack.md) - the surrounding site as a mirror plus WARC
-- [snscrape.md](snscrape.md) - post text rather than media, but see why it is tier 3
+- [Playwright](playwright.md) - capture the page around the video, and its network log
+- [HTTrack Website Copier](httrack.md) - the surrounding site as a mirror plus WARC
+- [snscrape](snscrape.md) - post text rather than media, but see why it is tier 3

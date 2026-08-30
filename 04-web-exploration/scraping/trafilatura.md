@@ -24,7 +24,7 @@ claims as its title, author and publication date.
 When the unit of analysis is the text - comparing wording across mirrors,
 feeding a corpus into search, reading 400 saved pages you cannot open by hand.
 It is not really a crawler; it is what you run over the output of
-[httrack.md](httrack.md) or [scrapy.md](scrapy.md). Do not make it your only
+[HTTrack Website Copier](httrack.md) or [Scrapy](scrapy.md). Do not make it your only
 extractor on pages that matter: it returns confident metadata for pages that are
 not articles at all (see Gotchas), so corroborate anything load-bearing against
 the page itself or a second extractor.
@@ -77,6 +77,6 @@ front-matter block above the body. Treat `text` and `date` as claims.
   and `--fast` skips the fallback cascade - quicker, worse on awkward markup.
 
 ## Alternatives
-- [scrapy.md](scrapy.md) - when you want specific fields, not the whole article
-- [httrack.md](httrack.md) - keep the pages first, extract from the mirror after
-- [playwright.md](playwright.md) - get the rendered DOM to feed in on stdin
+- [Scrapy](scrapy.md) - when you want specific fields, not the whole article
+- [HTTrack Website Copier](httrack.md) - keep the pages first, extract from the mirror after
+- [Playwright](playwright.md) - get the rendered DOM to feed in on stdin

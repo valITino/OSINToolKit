@@ -28,13 +28,12 @@ call the defunct public `api.pushshift.io`; `mastodon-profile` crashes with
 `AttributeError` on markup that has since changed; `instagram-user` returned
 429. Only `telegram-channel` still returned data. No free drop-in replacement
 exists: for X, the paid API or an authenticated browser session driven by
-[playwright.md](playwright.md); for Reddit, the official API via PRAW or a
+[Playwright](playwright.md); for Reddit, the official API via PRAW or a
 PullPush-style mirror; for Mastodon and Bluesky, each instance's own open API,
 which needs no scraping; for Telegram, this tool or Telethon. It stays here for
 recognition - it is cited in thousands of papers, and results attributed to it
 after mid-2023 do not add up.
 
-## When to reach for it
 Two honest uses: collecting from a public Telegram channel, where the module
 still works, and reproducing a failure on demand to show a client or an editor
 that a cited dataset could not have been gathered the way it claims. For
@@ -80,6 +79,6 @@ platform refusing an unauthenticated scraper.
   end up holding, is yours personally - see [../../LEGAL.md](../../LEGAL.md).
 
 ## Alternatives
-- [playwright.md](playwright.md) - an authenticated browser session, with the account risk
-- [yt-dlp.md](yt-dlp.md) - platform media and its metadata envelope, still maintained
+- [Playwright](playwright.md) - an authenticated browser session, with the account risk
+- [yt-dlp](yt-dlp.md) - platform media and its metadata envelope, still maintained
 - [Web archives](../../06-history-and-archives/web-archive/README.md) - archived profile pages, no contact

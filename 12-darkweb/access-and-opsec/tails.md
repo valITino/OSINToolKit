@@ -24,9 +24,8 @@ instead of the installed operating system?
 When the host is borrowed, shared or suspect and "no residue" matters more than
 convenience: a live USB that routes everything through Tor and wipes RAM on
 shutdown. It is the wrong tool when you need the same tooling and state across
-many sessions - rebuilding your toolchain at every boot is miserable, and
-[Whonix](whonix.md) gives you a persistent workstation behind the same Tor
-enforcement. For one look at a page from a machine you control, [Tor
+many sessions - [Whonix](whonix.md) gives a persistent workstation behind the
+same Tor enforcement. For one look from a machine you control, [Tor
 Browser](tor-browser.md) alone is enough.
 
 ## Install
@@ -41,10 +40,9 @@ sudo dd if=tails-amd64-7.11.img of=/dev/sdX bs=16M oflag=direct status=progress
 ## Usage
 ```bash
 KEY=A490D0F4D311A4153E2BB7CADBB802B258ACD84F
-gpg --keyid-format 0xlong --check-sigs $KEY  # who certified it? this is the trust step
+gpg --keyid-format 0xlong --check-sigs $KEY  # who certified it? the trust step
 gpg --lsign-key $KEY                         # then sign it locally
-IMG=tails-amd64-7.11.img
-TZ=UTC gpg --no-options --verify "$IMG.sig" "$IMG"  # verify before you dd anything
+TZ=UTC gpg --no-options --verify tails-amd64-7.11.img.sig tails-amd64-7.11.img
 ```
 
 ## Output
@@ -52,29 +50,24 @@ Boots to a Welcome Screen (language, keyboard, optional admin password, MAC
 spoofing, unsafe browser), then a GNOME desktop. The Tor Connection assistant
 runs first and nothing reaches the network until a circuit is up. It ships Tor
 Browser, KeePassXC, Metadata Cleaner, OnionShare and the Persistent Storage
-tool. On shutdown RAM is wiped and the host disk untouched. Read Tails as a
-container, not a source: it yields no findings of its own, it only guarantees
-they came from a machine with no history and no residue.
+tool. On shutdown RAM is wiped and the host disk untouched.
 
 ## Gotchas
 - **Illegal material can appear unbidden on a hidden service, and downloading it
   is an offence in most jurisdictions regardless of intent.** Amnesia is not a
   defence and does not discharge your evidence-handling or reporting duties -
   agree the procedure first, see [../../LEGAL.md](../../LEGAL.md).
-- **It hides residue, not the fact you are using it.** Tails' own warning is that
-  it makes clear you are using Tor and probably Tails; on a small network being
-  the only Tails user is itself identifying.
-- **Amnesia cuts both ways.** Everything you collected dies at shutdown. Plan the
-  export and the hashing before you start, or you will re-run the whole session,
-  and run exported files through the bundled Metadata Cleaner before sharing.
+- **It hides residue, not that you use it.** Tails warns it is obvious you are
+  using Tor and probably Tails; on a small network that alone identifies you.
+- **Amnesia cuts both ways.** Everything collected dies at shutdown. Plan the
+  export and hashing first; clean exports with Metadata Cleaner before sharing.
 - Persistent Storage defeats the amnesia deliberately and is not deniable:
   anyone holding the stick can see it exists, and you can be forced or tricked
   into giving up the passphrase. Tails advises five to seven random words.
 - Hardware limits bite in the field: x86-64 only since 3.0, Apple Silicon Macs,
   phones, tablets and Raspberry Pi unsupported, Nvidia and Radeon flaky.
-- No operating system protects against hardware alterations or firmware attacks:
-  on a borrowed machine with a keylogger the amnesia only holds above the
-  firmware line, and installing from a compromised computer can corrupt it.
+- No OS protects against firmware attacks or hardware alterations such as a
+  keylogger, and installing from a compromised computer can corrupt the stick.
 - One session, one identity: mixing a persona and your own accounts in a single
   boot correlates them through the shared circuit and browser state. End-to-end
   timing correlation is out of scope for Tor entirely.
@@ -84,4 +77,4 @@ they came from a machine with no history and no residue.
 ## Alternatives
 - [Whonix](whonix.md) - the same Tor enforcement, but persistent and scriptable
 - [Tor Browser](tor-browser.md) - when the host is already yours and trusted
-- [OPSEC methodology](../../00-methodology/opsec/README.md) - the wider isolation discipline
+- [OPSEC methodology](../../00-methodology/opsec/README.md) - wider discipline

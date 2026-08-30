@@ -31,7 +31,7 @@ You have a URL or web host. What is it built with, what CMS, what hidden content
 | [Google Hacking Database](dorking/ghdb.md) | What should I actually search for? Someone has already worked out the query that surfaces exposed backups, login panels, or... | 2 | passive |
 | [gowitness](monitoring-visual/gowitness.md) | I have hundreds of hosts or URLs. What does each one actually look like, so I can spot the interesting ones without opening... | 2 | active |
 | [hakrawler](crawling-spidering/hakrawler.md) | I have a URL (or a thousand). What links, subdomains, and JavaScript files does it reference, right now, in one pipe? | 2 | active |
-| [httpx](fingerprinting/httpx.md) | I have a list of hosts or subdomains. Which of them actually serve HTTP, on what status code and title, running what server and... | 2 | active |
+| [httpx](fingerprinting/httpx.md) | I have a list of hosts or subdomains. Which serve HTTP, on what status code and title, running what server - and what favicon or... | 2 | active |
 | [HTTrack Website Copier](scraping/httrack.md) | I have a site that may change or vanish. Can I take a complete offline copy of it - and, on the current engine, a WARC/WACZ of... | 2 | intrusive |
 | [katana](crawling-spidering/katana.md) | What URLs and endpoints does this site actually expose - including the ones that only appear when JavaScript runs? | 2 | active |
 | [pagodo](dorking/pagodo.md) | I want to run hundreds of GHDB dorks against one domain instead of pasting them into a search box one at a time. Can that be... | 2 | passive |
@@ -42,18 +42,18 @@ You have a URL or web host. What is it built with, what CMS, what hidden content
 | [urlscan.io](fingerprinting/urlscan-io.md) | What does this URL actually do when a browser loads it - what does it look like, what does it request, where does it redirect... | 2 | passive |
 | [viewdns.info](whois-domains/viewdns.md) | I have a domain or IP and no tools installed. Who owns it, what else is on that address, what did it resolve to before, and does... | 2 | passive |
 | [VisualPing](monitoring-visual/visualping.md) | This page matters to my investigation. Tell me when it changes - without me checking it every day, and without my IP appearing in... | 2 | passive |
-| [WAFW00F](fingerprinting/wafw00f.md) | I have a URL and a stack listing I do not trust. What WAF, CDN or bot-management product is answering for this site - and so, am... | 2 | intrusive |
+| [WAFW00F](fingerprinting/wafw00f.md) | I have a URL and a stack listing I do not trust. What WAF, CDN or bot-management product is answering for this site - the... | 2 | intrusive |
 | [WhatWeb](fingerprinting/whatweb.md) | I have a URL (or a list of them). What is running on it right now - server, CMS, framework, JavaScript libraries, and versions? | 2 | active |
 | [Whoisology](whois-domains/whoisology.md) | I have one WHOIS record. Which other domains share its registrant email, name, organisation, or address - and who owned them at a... | 2 | passive |
 | [WPScan](cms-scanners/wpscan.md) | This site is WordPress. Exactly which version, plugins, themes, and users does it expose, and which of those have known... | 2 | intrusive |
 | [yt-dlp](scraping/yt-dlp.md) | I have a video URL that may be deleted, edited or made private. How do I preserve it and everything around it - channel ID... | 2 | active |
 | [DirBuster](content-discovery/dirbuster.md) | What directories and files exist on this web server that nothing links to? | 3 | intrusive |
 | [dorkscout](dorking/dorkscout.md) | I have a domain. Can I pull the whole GHDB down as flat category files and fire the lot at that domain from one command? | 3 | passive |
-| [GitDorker](dorking/gitdorker.md) | I have an organisation name or a domain. Which of 500-odd secret-shaped GitHub search patterns return hits when combined with it... | 3 | passive |
+| [GitDorker](dorking/gitdorker.md) | I have an organisation name or a domain. Which of 500-odd secret-shaped GitHub search patterns return hits for it, so I know... | 3 | passive |
 | [GoSpider](crawling-spidering/gospider.md) | I have a domain. What does the site link to, and what did Wayback, Common Crawl and AlienVault OTX already know about it - with... | 3 | active |
 | [inurlbr](dorking/inurlbr.md) | Can I run a dork across many search engines at once and automatically process the results? | 3 | passive |
 | [snscrape](scraping/snscrape.md) | I have a handle or a channel name and no API key. Can I still pull that account's posts - and, more often now, is a dataset that... | 3 | active |
-| [uDork](dorking/udork.md) | I have a domain. Can one bash script walk it through a whole set of prebuilt Google dorks - extensions, URL strings, titles... | 3 | passive |
+| [uDork](dorking/udork.md) | I have a domain. Can one bash script run a whole set of prebuilt Google dorks - extensions, URL strings, titles, admin panels... | 3 | passive |
 | [Visual Site Mapper (sitemapper-nodejs)](crawling-spidering/sitemapper.md) | I have an old methodology write-up or link list naming "Visual Site Mapper" as the way to see a site's link graph. Is that... | 3 | active |
 | [VisualSiteMapper](monitoring-visual/visualsitemapper.md) | Older methodology write-ups name VisualSiteMapper as the quick way to see a site's link graph - which pages are central, which... | 3 | passive |
 | [wfuzz](content-discovery/wfuzz.md) | What happens when I substitute a wordlist into any part of an HTTP request - path, parameter, header, or cookie? | 3 | intrusive |

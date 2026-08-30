@@ -22,11 +22,11 @@ a scanner with a very different vantage point?
 
 ## When to reach for it
 A second opinion, not a first stop. FOFA's coverage skews towards Chinese IP space
-and Chinese-market products, so it holds deployments [shodan.md](shodan.md) and
-[censys.md](censys.md) miss - and misses assets they hold. Reach for it when a
+and Chinese-market products, so it holds deployments [Shodan](shodan.md) and
+[Censys](censys.md) miss - and misses assets they hold. Reach for it when a
 Shodan pivot returns a thin cluster, or for a `body=` or `icon_hash=` pivot in a
 syntax Shodan lacks. Do not reach for it if you cannot hand a Chinese vendor your
-target list, or if you need a workable free API: [netlas.md](netlas.md) is that.
+target list, or if you need a workable free API: [Netlas.io](netlas.md) is that.
 
 ## Install
 ```bash
@@ -77,7 +77,7 @@ rather than a fossil. Services FOFA cannot identify are labelled `unknown`.
   January 2024, so treat GoFOFA as the maintained client.
 
 ## Alternatives
-- [shodan.md](shodan.md) - broader Western coverage; run both, expect disagreement
-- [censys.md](censys.md) - stronger certificate and SAN pivots
-- [zoomeye.md](zoomeye.md) - the other Chinese scanner, overlapping vantage point
-- [../../05-certificates-tls/origin-unmasking/favicon-hash.md](../../05-certificates-tls/origin-unmasking/favicon-hash.md) - `icon_hash` is a third encoding
+- [Shodan](shodan.md) - broader Western coverage; run both, expect disagreement
+- [Censys](censys.md) - stronger certificate and SAN pivots
+- [ZoomEye](zoomeye.md) - the other Chinese scanner, overlapping vantage point
+- [Favicon hash pivoting](../../05-certificates-tls/origin-unmasking/favicon-hash.md) - `icon_hash` is a third encoding

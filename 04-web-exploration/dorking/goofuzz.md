@@ -23,11 +23,10 @@ already indexed for it - found without sending a single request to the target?
 When you want content discovery but cannot touch the target: no authorisation
 yet, an OPSEC constraint, or a first pass before deciding whether to scan at
 all. It asks Google whether a path or extension exists rather than asking the
-server, so nothing appears in the target's logs. That is also its limit - it
-only sees what Google indexed. When you have authorisation and need the truth,
-use [ffuf](../content-discovery/ffuf.md) or
-[feroxbuster](../content-discovery/feroxbuster.md); when you want to run whole
-GHDB dork sets rather than a wordlist, use [pagodo](pagodo.md).
+server, so nothing appears in the target's logs - and it sees only what Google
+indexed. With authorisation, [ffuf](../content-discovery/ffuf.md) or
+[feroxbuster](../content-discovery/feroxbuster.md) gives you the truth; for
+whole GHDB dork sets rather than a wordlist, use [pagodo](pagodo.md).
 
 ## Install
 ```bash
@@ -64,10 +63,9 @@ line is an indexed URL, so it is directly usable as input to
 - **Indexed does not mean present.** Google's copy proves the file was reachable
   when it was crawled, not that it is there now - and fetching it to check is
   the `active` step this tool exists to avoid.
-- **Absence is not evidence.** Anything behind robots.txt, a login, or a
-  no-index header is invisible here, and Google's coverage of a small site is
-  patchy. Re-ask another engine before concluding - see
-  [search-operators.md](../../99-resources/cheatsheets/search-operators.md).
+- **Absence is not evidence.** Anything behind robots.txt, a login or a no-index
+  header is invisible here, and Google's coverage of a small site is patchy. Ask
+  [another engine](../../99-resources/cheatsheets/search-operators.md) too.
 - No tags or releases: a clone of `main` is the artefact, so pin a commit if you
   need the run to be reproducible.
 - Using the API this way is within Google's terms; scraping the same queries

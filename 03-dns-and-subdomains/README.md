@@ -17,7 +17,7 @@ You have a domain. Resolve its records, enumerate its subdomains (passively firs
 | Tool | Answers | Tier | Contact |
 |---|---|---|---|
 | [dnstwist](typosquatting/dnstwist.md) | I have a brand or domain. What lookalike domains - typos, homoglyphs, swapped TLDs - exist or are registered, and which of them... | 1 | passive |
-| [CIRCL Passive DNS](passive-dns/circl-pdns.md) | I have a domain or an IP that came out of an incident. What did it resolve to historically, and what else lived on that address... | 2 | passive |
+| [CIRCL Passive DNS](passive-dns/circl-pdns.md) | I have a domain or an IP from an incident. What did it resolve to historically, and what else lived on that address - as seen by... | 2 | passive |
 | [dig](query-tools/dig.md) | I have a domain. What does DNS actually say about it - any record type, from any resolver I choose? | 2 | active |
 | [DNSDB (Farsight / DomainTools)](passive-dns/dnsdb.md) | I have a name or an IP and I need the complete record, not a sample: everything it resolved to and everything that ever lived on... | 2 | passive |
 | [DNSDumpster](passive-enum/dnsdumpster.md) | I have a domain and want a quick, visual picture of its DNS footprint - subdomains, mail servers, and the hosts they map to... | 2 | passive |

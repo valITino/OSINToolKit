@@ -17,8 +17,8 @@ superseded_by: pagodo
 # dorkscout
 
 ## What question does it answer?
-I have a domain. Can I pull the whole GHDB down as flat category files and
-fire the lot at that domain from one command?
+I have a domain. Can I pull the whole GHDB down as flat category files and fire
+the lot at that domain from one command?
 
 ## Why this is tier 3
 The `scan` half no longer works and does not say so. It parses Google results
@@ -27,18 +27,15 @@ live fetch on 2026-08-29 returned 92 KB with zero matches. It prints "Finished
 scanning", exits 0, and reports nothing whether or not the target has anything
 indexed. Upstream stopped in August 2021 (one release, tag 1.0).
 
-## When to reach for it
-Only for `dorkscout install`, which still fetches the GHDB into flat
-per-category files - a usable dork dump to feed something else. Never for
-`scan`, whose output is indistinguishable from a clean target. To run GHDB
-dorks against a domain use [pagodo](pagodo.md), which handles delays and
-proxies.
+What still works is `dorkscout install`, which fetches the GHDB into flat
+per-category files - a usable dork dump to feed something else. To run dorks
+against a domain use [pagodo](pagodo.md), which handles delays and proxies.
 
 ## Install
 ```bash
-go install github.com/R4yGM/dorkscout@latest   # builds under go1.24.7, verified 2026-08-29
-# The README's `go get github.com/R4yGM/dorkscout` no longer installs binaries.
-# Also: docker pull r4yan/dorkscout:1.0, or the 1.0 release binaries - same 2021 code.
+go install github.com/R4yGM/dorkscout@latest   # builds under go1.24.7, 2026-08-29
+# The README's `go get` no longer installs binaries. The docker image
+# r4yan/dorkscout:1.0 and the 1.0 release binaries are the same 2021 code.
 ```
 
 ## Usage
@@ -51,9 +48,8 @@ dorkscout scan -d "./dorks/Sensitive Directories.dorkscout" -H ./a.html -x socks
 
 ## Output
 `install` prints one `[+] ./<Category>.dorkscout` line per file and drops a
-hidden `.dorkscout` receipt holding JSON like `{"result":"dorks installation
-finished without any errors","payloads":7944}`. Each file is one dork per line,
-ready to feed anything else.
+hidden `.dorkscout` receipt of JSON reporting `"payloads":7944`. Each file is
+one dork per line, ready to feed anything else.
 
 `scan` prints a start line, result URLs, then "Finished scanning"; `-O` writes
 plain text, `-H` an HTML table. A scan of a well-indexed target and a scan of

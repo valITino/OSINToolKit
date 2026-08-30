@@ -25,7 +25,7 @@ site:example.com inurl:backup OR inurl:old
 Start from the patterns in the
 [Google Hacking Database](../04-web-exploration/dorking/ghdb.md) rather than
 inventing dorks from scratch. The operator reference is
-[search-operators.md](../99-resources/cheatsheets/search-operators.md).
+[the search-operators cheatsheet](../99-resources/cheatsheets/search-operators.md).
 
 ## 2. Ask the other engines the same thing
 
@@ -38,7 +38,7 @@ exist on Google at all:
   query.
 
 A negative result on one engine is not a negative result. See the cross-engine
-table in [search-operators.md](../99-resources/cheatsheets/search-operators.md).
+table in [the search-operators cheatsheet](../99-resources/cheatsheets/search-operators.md).
 
 ## 3. Go around the engines entirely
 

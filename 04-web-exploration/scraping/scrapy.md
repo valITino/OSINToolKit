@@ -24,10 +24,10 @@ me unsure what it missed?
 ## When to reach for it
 When the shape of the answer is a table and the volume justifies building a
 spider. Below a few hundred pages a `curl` loop is honest and faster to write.
-For the pages themselves, mirror with [httrack.md](httrack.md); for readable
-article text, pipe HTML into [trafilatura.md](trafilatura.md). Scrapy renders no
+For the pages themselves, mirror with [HTTrack Website Copier](httrack.md); for readable
+article text, pipe HTML into [trafilatura](trafilatura.md). Scrapy renders no
 JavaScript - selectors that work in devtools return empty lists with no error -
-so a client-side site needs scrapy-playwright or [playwright.md](playwright.md).
+so a client-side site needs scrapy-playwright or [Playwright](playwright.md).
 For "what URLs exist here" rather than "what data is in them",
 [katana](../crawling-spidering/katana.md) is the smaller tool.
 
@@ -77,6 +77,6 @@ records" from "it started refusing us halfway". A `finish_reason` of
   version from PyPI. Scraped profiles are personal data - [../../LEGAL.md](../../LEGAL.md).
 
 ## Alternatives
-- [trafilatura.md](trafilatura.md) - article text and metadata, no spider to write
-- [httrack.md](httrack.md) - keep the pages themselves rather than fields
-- [playwright.md](playwright.md) - when the records only exist after JavaScript runs
+- [trafilatura](trafilatura.md) - article text and metadata, no spider to write
+- [HTTrack Website Copier](httrack.md) - keep the pages themselves rather than fields
+- [Playwright](playwright.md) - when the records only exist after JavaScript runs

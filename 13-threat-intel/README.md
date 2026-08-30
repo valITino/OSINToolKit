@@ -53,9 +53,9 @@ sha256sum suspicious.doc      # search this, do not upload the file
 <!-- BEGIN:TOOLS -->
 | Tool | Answers | Tier | Contact |
 |---|---|---|---|
-| [ANY.RUN](url-analysis/any-run.md) | I have a URL that only misbehaves for a human. What does it do when somebody clicks through it - past the CAPTCHA, the... | 2 | active |
+| [ANY.RUN](url-analysis/any-run.md) | I have a URL that only misbehaves for a human. What does it do when somebody clicks through the CAPTCHA or the fake verification... | 2 | active |
 | [Hybrid Analysis (Falcon Sandbox)](file-and-hash/hybrid-analysis.md) | I have a file or a hash. Has anyone already detonated it, and what did it do - which processes, which domains, which C2 - so that... | 2 | passive |
-| [MalShare](file-and-hash/malshare.md) | I have a hash. Was this file actually collected in the wild - from which URL, under which filenames - and can I get a copy... | 2 | passive |
+| [MalShare](file-and-hash/malshare.md) | I have a hash. Was this file collected in the wild - from which URL, under which filenames - and can I get a copy without asking... | 2 | passive |
 | [MalwareBazaar](file-and-hash/malwarebazaar.md) | I have a hash. What family is it, who has already analysed it, and what other samples share its builder, its signing certificate... | 2 | passive |
 | [Recorded Future Triage (tria.ge)](url-analysis/triage.md) | I have a URL or a file hash. Has anyone already detonated it, what family did it turn out to be, and what C2 configuration came... | 2 | active |
 | [ThreatFox](feeds-and-trackers/threatfox.md) | I have an IP, domain or URL that looks like callback infrastructure. Is it a published C2 or payload-delivery indicator, for... | 2 | passive |

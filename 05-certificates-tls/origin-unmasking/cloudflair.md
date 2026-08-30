@@ -55,7 +55,7 @@ content matching the real site.
   Authenticated Origin Pulls, which defeats the technique entirely.
 - **Cloudflare Universal SSL groups unrelated domains under shared SANs**, so
   certificate-based candidates include hosts with no connection to your target. Verify
-  before drawing conclusions - see [../ct-log-search/crt-sh.md](../ct-log-search/crt-sh.md).
+  before drawing conclusions - see [crt.sh](../ct-log-search/crt-sh.md).
 
 ## Alternatives
 - [Favicon hash pivoting](favicon-hash.md) - the origin-discovery angle that still works

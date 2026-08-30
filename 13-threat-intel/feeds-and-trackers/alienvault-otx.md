@@ -28,8 +28,7 @@ day carried zero. False positives and false negatives are both structural, and
 the Python SDK has been untouched since 2021-04-02. Decide known-bad with
 [URLhaus](urlhaus.md) or [ThreatFox](threatfox.md); come here for the write-ups.
 
-## When to reach for it
-When you want the published analysis around an indicator: a good pulse hands you
+Reach for it when you want the published analysis around an indicator: a pulse hands you
 the campaign's other infrastructure for free, which is the real reason to open
 it. Not for triage volume, not for phishing URLs, and not where you would have
 to defend the source in writing. For hosting history use

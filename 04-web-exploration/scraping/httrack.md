@@ -23,40 +23,38 @@ read today is still readable and citable next year?
 ## When to reach for it
 When the whole site is the artefact: a defunct shopfront, a claim page, a forum
 you expect to be pulled. It is wrong for a single page (fetch it and run
-[trafilatura.md](trafilatura.md)), wrong for structured records ([scrapy.md](scrapy.md)),
-and useless on anything rendered client-side - it runs no JavaScript, so a
-single-page app mirrors as an empty shell. Check
+[trafilatura](trafilatura.md)), wrong for structured records
+([Scrapy](scrapy.md)), and useless on anything rendered client-side - it runs
+no JavaScript, so a single-page app mirrors as an empty shell. Check
 [the archives](../../06-history-and-archives/web-archive/README.md) first: if
-someone already captured it, take the copy that touches nobody. Its reputation
-as a 2017 relic is wrong: upstream shipped ten releases in August 2026, ending
-at 3.49.25. Only the Windows stable installer is old.
+someone already captured it, take the copy that touches nobody.
 
 ## Install
 ```bash
-sudo apt install httrack             # kali-rolling has 3.49.23-1; webhttrack is the GUI
-httrack --help 2>&1 | grep -i warc   # packaged builds lag: confirm the flags exist
+sudo apt install httrack   # kali-rolling has 3.49.23-1; webhttrack is the GUI
+httrack --help 2>&1 | grep -i warc  # packaged builds lag: confirm flags exist
 # Current engine: httrack-3.49.25.tar.gz, httrack.com/page/2/en/index.html
 ```
 
 ## Usage
 ```bash
 httrack "http://www.all.net/" -O "/tmp/www.all.net" "+*.all.net/*" -v
-# users-guide example: one site, one output directory, stay in scope, log to screen
+# users-guide example: one site, one output dir, stay in scope, log to screen
 httrack "https://target.example/" -O /cases/001 -%r --warc-file target --warc-cdx --wacz
-# evidence mode: keep the ISO-28500 WARC/1.1 bytes, add a CDXJ index, package as WACZ
+# evidence mode: ISO-28500 WARC/1.1 bytes, a CDXJ index, packaged as WACZ
 httrack "https://target.example/" -O /cases/001 -%d --update
 # re-crawl the case; hts-changes.json lists new, changed, unchanged and gone
 httrack "https://target.example/" -O /cases/001 -c1 -%c1 -A25000 -%G5:10 -F "you@example.org"
-# polite: one socket, 1 conn/sec, 25 KB/s cap, 5-10s random pause, identify yourself
+# polite: one socket, 1 conn/sec, 25 KB/s, 5-10s random pause, identify yourself
 ```
 
 ## Output
-A tree under `-O`: an `index.html` entry point, the rehydrated site, `hts-cache/`
-with the exact option set used, and `hts-log.txt`. Read the log first - the 403s,
-redirect loops, robots exclusions and truncations are recorded only there, and a
-mirror that looks complete in a browser routinely is not. `-%r` adds a WARC file,
-`--warc-cdx` a CDXJ index, `--wacz` one package. The tree is for reading; the
-WARC is for citing.
+A tree under `-O`: an `index.html` entry point, the rehydrated site,
+`hts-cache/` with the exact option set used, and `hts-log.txt`. Read the log
+first - the 403s, redirect loops, robots exclusions and truncations are recorded
+only there, and a mirror that looks complete in a browser routinely is not.
+`-%r` adds a WARC file, `--warc-cdx` a CDXJ index, `--wacz` one package. The
+tree is for reading; the WARC is for citing.
 
 ## Gotchas
 - **The download page is not the repo.** Windows stable is httrack-3.49.2.exe
@@ -75,7 +73,7 @@ WARC is for citing.
   behaviour, not evidence the content never existed.
 
 ## Alternatives
-- [playwright.md](playwright.md) - JavaScript-rendered pages HTTrack cannot see
-- [scrapy.md](scrapy.md) - records in JSON, rather than a browsable tree
-- [katana](../crawling-spidering/katana.md) - map the URLs without keeping the bytes
-- [Web archives](../../06-history-and-archives/web-archive/README.md) - somebody else's copy, no contact
+- [Playwright](playwright.md) - JavaScript-rendered pages HTTrack cannot see
+- [Scrapy](scrapy.md) - records in JSON, rather than a browsable tree
+- [katana](../crawling-spidering/katana.md) - map URLs without keeping the bytes
+- [Web archives](../../06-history-and-archives/web-archive/README.md) - someone else's copy, no contact

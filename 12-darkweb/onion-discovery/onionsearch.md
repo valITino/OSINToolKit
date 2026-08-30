@@ -20,18 +20,16 @@ I have a keyword and a list of onion search engines. Which of them return a hit
 for it, collected into one CSV - and, read honestly in 2026, which of those
 engines still exist at all?
 
-## When to reach for it
-Only for a one-command sweep of the historical onion search engines, read
-sceptically. For discovery today query [Ahmia](ahmia.md) or use darkdump; for a
-site you can already name, use [dark.fail](dark-fail.md).
-
 ## Why this is tier 3
 Last functional commit October 2022, last PyPI release October 2021, and nine of
 its seventeen engines are provably unreachable: eight are 16-character v2
 addresses, refused by Tor since 0.4.6.x in October 2021, and darksearch.io has
-no DNS record as of 2026-08-29. The pip build is worse - its `ahmia` entry is
-the dead v2 address. Keep it for name recognition and as a historical map of the
-onion search engines; today use darkdump (https://github.com/josh0xA/darkdump).
+no DNS record as of 2026-08-29. Keep it as a historical map of the onion search
+engines; for discovery today use [darkdump](../active-crawling/darkdump.md).
+
+Use it only for a one-command sweep of the historical engines, read sceptically. For
+live keyword search use [Ahmia](ahmia.md); for a site you can already name, use
+[dark.fail](dark-fail.md).
 
 ## Install
 ```bash
@@ -47,8 +45,8 @@ pip3 install onionsearch   # PyPI 1.3 from 2021-10-22, ships the dead v2 Ahmia
 onionsearch "acme corp" --engines ahmia onionland tor66 haystack --limit 5
 # the only sane modern invocation: restrict to engines that could still exist
 onionsearch "computer" --continuous_write True --fields engine name link domain
-# stream results to disk as they arrive and add a bare-domain column; add
-# --mp_units 1 so one hung onion cannot scramble the progress bars
+# stream to disk as results arrive, plus a bare-domain column; add --mp_units 1
+# so one hung onion cannot scramble the progress bars
 ```
 
 ## Output
@@ -58,8 +56,8 @@ stderr. Pivot on the engine column: if one or two engines gave you every row,
 that is one source with duplicates, not corroboration. Deduplicate on domain.
 
 ## Gotchas
-- **Empty results mean dead engines, not an absent target.** Nine of seventeen
-  cannot answer, and they surface as connection errors, never as "retired".
+- **Empty results mean dead engines, not an absent target.** They surface as
+  connection errors, never as "retired".
 - **pip and GitHub ship different code.** Check with `grep '"ahmia"'
   <site-packages>/onionsearch/core.py`; it must show the 56-character v3 address
   starting `juhanurmihxlp77`, not a 16-character v2 one.
@@ -68,10 +66,9 @@ that is one source with duplicates, not corroboration. Deduplicate on domain.
   searching a target's name discloses your interest.
 - `--continuous_write` is argparse `type=bool`, so any value is truthy, even
   `False`; `core.py` runs argparse at import, so it is not importable either.
-- Results point at services hosting illegal material, which appears unbidden
-  when you open one; downloading it is an offence in most jurisdictions whatever
-  your intent, and finding it brings reporting duties -
-  [../../LEGAL.md](../../LEGAL.md).
+- Results point at services hosting illegal material, which arrives unbidden
+  when you open one. Downloading it is an offence in most jurisdictions whatever
+  your intent - [../../LEGAL.md](../../LEGAL.md) covers the reporting duties.
 
 ## Alternatives
 - [Ahmia](ahmia.md) - the one engine in the table that is definitely alive

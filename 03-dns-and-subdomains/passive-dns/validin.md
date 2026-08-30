@@ -24,8 +24,8 @@ favicon, body or header hash to the rest of the operator's infrastructure.
 ## When to reach for it
 When you want resolution history and host fingerprints from one place, and a
 handful of careful lookups is all you need: the free tier is a triage budget, not
-an automation budget. Use [dnsdb.md](dnsdb.md) when the question reaches back
-before roughly 2022, and [mnemonic-pdns.md](mnemonic-pdns.md) for a keyless answer.
+an automation budget. Use [DNSDB (Farsight / DomainTools)](dnsdb.md) when the question reaches back
+before roughly 2022, and [mnemonic PassiveDNS](mnemonic-pdns.md) for a keyless answer.
 
 ## Install
 ```bash
@@ -79,6 +79,6 @@ answers "which domains used this nameserver", often the pivot that opens a case.
   only on the base endpoint, and failed auth returns 403 rather than 401.
 
 ## Alternatives
-- [dnsdb.md](dnsdb.md) - paid, back to 2010, when depth is the point
-- [mnemonic-pdns.md](mnemonic-pdns.md) - keyless, no account, quick pivots
+- [DNSDB (Farsight / DomainTools)](dnsdb.md) - paid, back to 2010, when depth is the point
+- [mnemonic PassiveDNS](mnemonic-pdns.md) - keyless, no account, quick pivots
 - [favicon-hash](../../05-certificates-tls/origin-unmasking/favicon-hash.md) - the same hash pivot by hand

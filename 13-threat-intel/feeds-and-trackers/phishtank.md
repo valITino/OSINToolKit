@@ -29,9 +29,9 @@ say, and the published statistics stop at May 2017. For a live phishing feed use
 OpenPhish (https://openphish.com/feed.txt); report sites to Netcraft
 (https://report.netcraft.com/report) or APWG (reportphishing@apwg.org).
 
-## When to reach for it
-As a cheap second opinion on one URL, or to get the impersonated brand named for
-you - `target` tells you which campaign you are in. Never to prove a URL clean.
+Use it as a cheap second opinion on one URL, or to get the impersonated brand
+named for you - `target` tells you which campaign you are in. Never to prove a
+URL clean.
 
 ## Install
 ```bash

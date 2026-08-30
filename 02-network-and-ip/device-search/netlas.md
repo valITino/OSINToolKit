@@ -26,7 +26,7 @@ API key on a free account, splits its data into five indices (response, cert,
 domain, whois-ip, whois-domain) and takes Apache Lucene syntax. The domain index
 gives subdomain enumeration out of scan data, with no DNS traffic to the target.
 
-It is not the deepest dataset: [shodan.md](shodan.md) and [censys.md](censys.md)
+It is not the deepest dataset: [Shodan](shodan.md) and [Censys](censys.md)
 carry longer history and richer host detail, CVE and tag filters sit behind the
 Business plan, and 50 requests a day rules Netlas out for a large mapping job.
 
@@ -78,7 +78,7 @@ and path, so deduplicate on `ip` before reporting host counts.
   what you keep - see [../../LEGAL.md](../../LEGAL.md).
 
 ## Alternatives
-- [shodan.md](shodan.md) - deeper host detail and history, thinner free tier
-- [censys.md](censys.md) - the stronger certificate dataset if you can pay
-- [onyphe.md](onyphe.md) - server-side aggregation instead of raw rows
-- [fofa.md](fofa.md) - a different vantage point when Netlas coverage looks thin
+- [Shodan](shodan.md) - deeper host detail and history, thinner free tier
+- [Censys](censys.md) - the stronger certificate dataset if you can pay
+- [ONYPHE](onyphe.md) - server-side aggregation instead of raw rows
+- [FOFA](fofa.md) - a different vantage point when Netlas coverage looks thin

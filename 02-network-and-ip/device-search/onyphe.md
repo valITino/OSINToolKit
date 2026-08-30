@@ -27,7 +27,7 @@ distinct domains in one call. It also sweeps from three vantage points, so geo-f
 and split-horizon infrastructure shows up as rows that disagree.
 
 Reach elsewhere for freshness: the weekly sweep means short-lived assets belong to
-[shodan.md](shodan.md) or [censys.md](censys.md), and history depth is purchased here
+[Shodan](shodan.md) or [Censys](censys.md), and history depth is purchased here
 (7 to 30 days), so long look-backs are not what this tool is for.
 
 ## Install
@@ -80,7 +80,7 @@ one call is a page, not the population.
   resolver and WHOIS rows as personal data - see [../../LEGAL.md](../../LEGAL.md).
 
 ## Alternatives
-- [shodan.md](shodan.md) - continuous scanning when weekly cadence is too coarse
-- [censys.md](censys.md) - certificate-led pivots and longer host history
-- [netlas.md](netlas.md) - Lucene instead of OQL, with a published free quota
-- [fofa.md](fofa.md) - Chinese vantage point where ONYPHE's European sweep is thin
+- [Shodan](shodan.md) - continuous scanning when weekly cadence is too coarse
+- [Censys](censys.md) - certificate-led pivots and longer host history
+- [Netlas.io](netlas.md) - Lucene instead of OQL, with a published free quota
+- [FOFA](fofa.md) - Chinese vantage point where ONYPHE's European sweep is thin

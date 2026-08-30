@@ -28,9 +28,8 @@ rendering and current maintenance, while
 [gau](../../06-history-and-archives/web-archive/gau.md) and waybackurls cover the
 archive half with data that did not stop in 2019.
 
-## When to reach for it
-When you want one pass that separates forms, JavaScript-derived paths, subdomains
-and S3 bucket names from ordinary links. Not for a JavaScript-heavy site - no
+Reach for it when you want one pass that separates forms, JavaScript-derived
+paths, subdomains and S3 bucket names from ordinary links. Not for a JavaScript-heavy site - no
 headless mode, so use katana - nor for judging archive coverage, where gau is
 correct. For a flat URL list to pipe onward, [hakrawler](hakrawler.md) is lighter.
 

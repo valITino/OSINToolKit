@@ -65,19 +65,19 @@ This repo documents observation only.
 | [Ahmia](onion-discovery/ahmia.md) | I have a keyword - a victim name, a brand, a handle. Which indexed Tor hidden services mention it, when was each last seen alive... | 2 | passive |
 | [dark.fail](onion-discovery/dark-fail.md) | I have the name of a well-known hidden service and an address someone handed me for it. Is that the real, PGP-signed .onion for... | 2 | passive |
 | [Intelligence X](onion-discovery/intelligence-x.md) | I have a selector - an email address, a domain, a .onion host, an IP or a Bitcoin address. Where has it appeared in archived... | 2 | passive |
-| [RansomLook](leak-monitoring/ransomlook.md) | I have an organisation name or domain. Which ransomware crew has claimed it, when did the claim appear, and what else does that... | 2 | passive |
-| [Ransomware.live](leak-monitoring/ransomware-live.md) | I have a company name, a country or an encrypted-file extension. Has this organisation been named on a leak site, in which... | 2 | passive |
+| [RansomLook](leak-monitoring/ransomlook.md) | I have an organisation name or domain. Which crew has claimed it, when, and what else do they publish - without me ever loading... | 2 | passive |
+| [Ransomware.live](leak-monitoring/ransomware-live.md) | I have a company name, a country or an encrypted-file extension. Has this organisation been named on a leak site, and what do... | 2 | passive |
 | [Tails](access-and-opsec/tails.md) | I have an onion address to open from a machine I do not fully trust, and this session must leave nothing behind on its disk when... | 2 | active |
 | [Tor Browser](access-and-opsec/tor-browser.md) | I have a .onion address, or a clearweb page I do not want to hand my real IP. What do I open it in so the service sees a Tor exit... | 2 | active |
 | [TorBot](active-crawling/torbot.md) | I have a .onion address. What does it link out to one or two hops deep, which of those pages are alive right now, and do any of... | 2 | active |
 | [torsocks](access-and-opsec/torsocks.md) | I have a CLI tool with no `--proxy` flag and a .onion address to point it at. How do I force its traffic and its DNS through Tor... | 2 | active |
 | [Whonix](access-and-opsec/whonix.md) | I have a whole toolkit to point at an onion service, not just a browser, and one careless tool or one hostile page must not be... | 2 | active |
 | [darkdump](active-crawling/darkdump.md) | I have a keyword, a brand or an email address. Which onions come back for it across six dark-web search engines, which of those... | 3 | active |
-| [DarkOwl](leak-monitoring/darkowl.md) | I have a client name, domain, executive or credential. Across leak sites, darknet markets, forums and Telegram - not only... | 3 | passive |
+| [DarkOwl](leak-monitoring/darkowl.md) | I have a client name, domain or credential. Where does it appear across leak sites, markets, forums and Telegram, and can I still... | 3 | passive |
 | [docker-onion-nmap](active-crawling/onion-nmap.md) | I have a .onion address and the web page is only part of it. What else answers on that service - SSH, SMTP, an admin panel on a... | 3 | intrusive |
 | [OnionScan](active-crawling/onionscan.md) | I have a .onion address. Is the operator leaking themselves - a status page, an open directory, EXIF in an uploaded image, a PGP... | 3 | intrusive |
 | [OnionSearch](onion-discovery/onionsearch.md) | I have a keyword and a list of onion search engines. Which of them return a hit for it, collected into one CSV - and, read... | 3 | active |
-| [ransomwatch](leak-monitoring/ransomwatch.md) | I need a baseline. What did the leak-site ecosystem look like before mid-2025, and where do I get a free, citable, timestamped... | 3 | active |
+| [ransomwatch](leak-monitoring/ransomwatch.md) | I need a baseline. What did the leak-site ecosystem look like before mid-2025, and where is a free, citable, timestamped record... | 3 | active |
 | [Tor.taxi](onion-discovery/tor-taxi.md) | I have a site name, or only a category - onion search engines, forums, email hosts, information sites. Which addresses does this... | 3 | passive |
 <!-- END:TOOLS -->
 

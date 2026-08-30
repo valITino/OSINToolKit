@@ -23,9 +23,9 @@ requests behind it, not just a picture?
 ## When to reach for it
 When the content only exists after client-side rendering, when a capture must
 show the page as rendered, or when a site varies by locale or geography. For
-static HTML it is overkill - [scrapy.md](scrapy.md), or `curl` into
-[trafilatura.md](trafilatura.md), is faster and quieter. For a whole-site copy
-use [httrack.md](httrack.md); for screenshot sweeps across many hosts
+static HTML it is overkill - [Scrapy](scrapy.md), or `curl` into
+[trafilatura](trafilatura.md), is faster and quieter. For a whole-site copy
+use [HTTrack Website Copier](httrack.md); for screenshot sweeps across many hosts
 [gowitness](../monitoring-visual/gowitness.md) is smaller. Playwright is what
 you build on when none of those can see the content.
 
@@ -78,6 +78,6 @@ timestamp, so alone it proves only that somebody produced an image.
   Python docs also still claim 3.8+ while PyPI 1.62.0 requires 3.10+.
 
 ## Alternatives
-- [httrack.md](httrack.md) - a whole-site mirror plus WARC, where no JavaScript is needed
-- [trafilatura.md](trafilatura.md) - feed it the rendered DOM to get clean article text
+- [HTTrack Website Copier](httrack.md) - a whole-site mirror plus WARC, where no JavaScript is needed
+- [trafilatura](trafilatura.md) - feed it the rendered DOM to get clean article text
 - [gowitness](../monitoring-visual/gowitness.md) - bulk screenshots across many hosts

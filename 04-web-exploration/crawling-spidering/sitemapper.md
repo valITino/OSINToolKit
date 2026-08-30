@@ -30,7 +30,6 @@ directory is about, use [katana](katana.md) or [hakrawler](hakrawler.md), or
 SiteOne Crawler (`https://github.com/janreges/siteone-crawler`), maintained and
 writing `sitemap.xml` and `sitemap.txt`.
 
-## When to reach for it
 Do not reach for it to do work. Read this entry when the name surfaces in someone
 else's methodology, confirm it is dead, and move on. Nothing free and maintained
 reproduces its visual link graph, so if you want the picture rather than the
@@ -73,7 +72,7 @@ connected pages at the edge. Nothing about it is diffable: no sitemap, no CLI.
   like any crawl (see [../../LEGAL.md](../../LEGAL.md)). AGPL-3.0 also obliges you
   to offer source to anyone you expose an instance to.
 - This repo's entry at
-  [../monitoring-visual/visualsitemapper.md](../monitoring-visual/visualsitemapper.md)
+  [VisualSiteMapper](../monitoring-visual/visualsitemapper.md)
   still describes the hosted service as usable; it pre-dates the outage.
 
 ## Alternatives

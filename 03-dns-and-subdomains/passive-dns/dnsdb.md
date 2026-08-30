@@ -23,8 +23,7 @@ across 400+ sensors, with dates precise enough to defend a timeline in a report.
 ## When to reach for it
 When the timeline is the finding - a takedown, an attribution, a report someone
 will contest - and a partial answer is worse than none. Nothing free comes close
-to the depth. Not for a quick pivot [mnemonic-pdns.md](mnemonic-pdns.md) answers
-in one curl, and not without a budget: no free tier, no self-service signup.
+to the depth; nothing else needs a budget approved before you can query it.
 
 ## Install
 ```bash
@@ -50,34 +49,31 @@ curl -H "Accept: application/x-ndjson" -H "X-API-Key: $DNSDB_API_KEY" \
 ```
 
 ## Output
-Newline-delimited JSON in the Streaming API Framing protocol: `{"cond":"begin"}`,
-one `{"obj":{...}}` per RRset, then `{"cond":"succeeded"}` or `{"cond":"limited"}`.
-Each object carries `count`, `time_first`/`time_last` (or `zone_time_*`), `rrname`,
-`rrtype`, `bailiwick` and an `rdata` array: the time pair places the mapping on a
-timeline, `count` separates production infrastructure from one-off lookups, and
-`bailiwick` names the zone that answered.
+Newline-delimited JSON in the Streaming API Framing protocol:
+`{"cond":"begin"}`, one `{"obj":{...}}` per RRset, then `{"cond":"succeeded"}`
+or `{"cond":"limited"}`. Each object carries `count`, `time_first`/`time_last`
+(or `zone_time_*`), `rrname`, `rrtype`, `bailiwick` - the zone that answered -
+and an `rdata` array. The time pair places the mapping on a timeline; `count`
+separates production infrastructure from one-off lookups.
 
 ## Gotchas
-- **The product page everyone bookmarked is gone**: `/products/farsight-dnsdb/`
-  redirects to a generic platform page and `/products/dnsdb` 404s. Work from
+- **The bookmarked product pages are gone** (`/products/dnsdb` 404s). Work from
   `docs.domaintools.com/api/dnsdb/`, or `scout.dnsdb.info` for the web UI.
-- **Paid, no free tier, no self-service** - trial keys come through sales, though
-  academics and unpaid anti-abuse volunteers can request free or discounted keys.
-- **2010-06-24 is the floor of the dataset**, the NMSG cutover - not the date the
-  domain started using that host. Collection began in 2007 but is not exposed, so
-  reading the floor as a start date invents history.
+- **Paid, no free tier, no self-service.** Trial keys come through sales;
+  academics and unpaid anti-abuse volunteers can get free or discounted keys.
+- **2010-06-24 is the floor of the dataset**, the NMSG cutover - not the date
+  the domain started using that host. Reading it as a start date invents history.
 - **Read the final `cond` and your `results_max`.** `{"cond":"limited"}` means a
-  partial answer, and the key's `results_max` silently overrides `?limit=` with no
-  error. Check `/dnsdb/v2/rate_limit` (free) and size big pulls with `-V summarize`.
+  partial answer, and `results_max` on the key silently overrides `?limit=`.
+  Check `/dnsdb/v2/rate_limit` (free) and size big pulls with `-V summarize`.
 - **`dnsdbq -a` is an OPSEC leak**: ASN annotation fires a live DNS lookup per
-  address, which the vendor's own docs call a potential "intolerable information
-  leak", and it pairs historical records with today's routing.
+  address, which the vendor's own docs call an "intolerable information leak".
 - Quotas come in three shapes (daily, block, unlimited) with a burst limit as
   tight as 5 requests per 360 seconds; over quota is 429, too many streams 503.
   `time_*` (sensors) and `zone_time_*` (zone files) are different evidence, and
   the web UI caps at 10,000 results against 1,000,000 for the API and CLI.
 
 ## Alternatives
-- [mnemonic-pdns.md](mnemonic-pdns.md) - free and keyless for a quick pivot
-- [validin.md](validin.md) - free tier, about four years deep, adds host pivots
-- [circl-pdns.md](circl-pdns.md) - free to vetted partners, CSIRT-shaped coverage
+- [mnemonic PassiveDNS](mnemonic-pdns.md) - free and keyless for a quick pivot
+- [Validin](validin.md) - free tier, about four years deep, adds host pivots
+- [CIRCL Passive DNS](circl-pdns.md) - free to vetted partners, CSIRT coverage

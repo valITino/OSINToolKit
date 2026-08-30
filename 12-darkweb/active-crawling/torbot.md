@@ -25,10 +25,8 @@ The default first crawl once you hold an address and want adjacency rather than
 one page: it walks the link tree, records a status per node and pulls contact
 strings as it goes. Not for triaging search hits - that is
 [darkdump](darkdump.md), one front page each - nor for fingerprinting, which is
-[OnionScan](onionscan.md) and the rewrite it names. And not when a crawl must
-stay inside one host: TorBot has no scope filter and no delay, so point
-[katana](../../04-web-exploration/crawling-spidering/katana.md) at a SOCKS proxy
-instead.
+[OnionScan](onionscan.md). When the crawl must stay inside one host, use
+[katana](../../04-web-exploration/crawling-spidering/katana.md) instead.
 
 ## Install
 ```bash
@@ -40,29 +38,26 @@ sudo apt install tor  # TorBot never starts Tor; it expects 127.0.0.1:9050
 ## Usage
 ```bash
 torbot -u http://<v3addr>.onion --depth 1 --visualize table
-# one hop of outbound links as a table; --depth defaults to 1
-torbot -u http://<v3addr>.onion --depth 2 --save json
-# writes the tree to '<page title> - Depth 2.json' - check where it landed
+# one hop of outbound links; --depth defaults to 1
+torbot -u http://<v3addr>.onion --depth 2 --save json   # two hops, tree to JSON
 torbot --host 127.0.0.1 --port 9150 -u http://<v3addr>.onion --info
 # emails, file links, robots.txt, scripts - via Tor Browser's SOCKS port
 ```
 
 ## Output
 One row per node - Title / URL / Status / Phone Numbers / Emails / Category -
-colour-coded green 2xx, amber 3xx, red for the rest. `--visualize tree` prints
-the same nodes as an ASCII tree, `--save json` as treelib JSON. Read it as
-reachability plus adjacency: which mirrors answer, what links to what, and where
-contact strings surface.
+colour-coded green 2xx, amber 3xx, red for the rest; `--visualize tree` gives an
+ASCII tree, `--save json` treelib JSON. Read it as reachability plus adjacency:
+which mirrors answer, what links to what, and where contact strings surface.
 
 ## Gotchas
-- **The Category column is junk here.** A TF-IDF classifier trained on a bundled
-  1,408-row clearnet dataset of 16 generic labels, with no marketplace, forum or
-  ransomware class; a test run labelled example.com "Business/Corporate" and a
-  bare 301 page "Computers and Technology". Never cite it in a report.
-- **No scope, no delay, no robots.txt.** It takes every absolute http(s) href
-  with no host filter - depth 1 on example.com followed off-site to iana.org -
-  so `--depth 2` fans out across other onions and the clearweb, unpaused and
-  conspicuous in the operator's logs.
+- **The Category column is junk here.** A TF-IDF classifier over a bundled
+  1,408-row clearnet dataset of 16 generic labels - no marketplace, forum or
+  ransomware class - and it labelled a bare 301 page "Computers and Technology".
+  Never cite it in a report.
+- **No scope, no delay, no robots.txt.** It follows every absolute http(s) href
+  with no host filter, so `--depth 2` fans out across other onions and the
+  clearweb, unpaused and conspicuous in the operator's logs.
 - **The PyPI build does not match its own README.** `analyze`, `--save result`,
   `--keyword` and the LLM flags landed after the 4.3.0 tag, which offers only
   `--save {tree,json}`; check `torbot --help` before copying from the docs.
@@ -82,5 +77,3 @@ contact strings surface.
 - [OnionScan](onionscan.md) - fingerprint a service instead of mapping its links
 - [katana](../../04-web-exploration/crawling-spidering/katana.md) - scoped,
   maintained crawler pointed at a SOCKS proxy
-- [torsocks](../access-and-opsec/torsocks.md) - torify a crawler with no proxy
-  support of its own

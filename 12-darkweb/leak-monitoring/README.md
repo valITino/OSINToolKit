@@ -46,10 +46,10 @@ Everything here is passive. Somebody else's crawler took the risk.
 <!-- BEGIN:TOOLS -->
 | Tool | Answers | Tier | Contact |
 |---|---|---|---|
-| [RansomLook](ransomlook.md) | I have an organisation name or domain. Which ransomware crew has claimed it, when did the claim appear, and what else does that... | 2 | passive |
-| [Ransomware.live](ransomware-live.md) | I have a company name, a country or an encrypted-file extension. Has this organisation been named on a leak site, in which... | 2 | passive |
-| [DarkOwl](darkowl.md) | I have a client name, domain, executive or credential. Across leak sites, darknet markets, forums and Telegram - not only... | 3 | passive |
-| [ransomwatch](ransomwatch.md) | I need a baseline. What did the leak-site ecosystem look like before mid-2025, and where do I get a free, citable, timestamped... | 3 | active |
+| [RansomLook](ransomlook.md) | I have an organisation name or domain. Which crew has claimed it, when, and what else do they publish - without me ever loading... | 2 | passive |
+| [Ransomware.live](ransomware-live.md) | I have a company name, a country or an encrypted-file extension. Has this organisation been named on a leak site, and what do... | 2 | passive |
+| [DarkOwl](darkowl.md) | I have a client name, domain or credential. Where does it appear across leak sites, markets, forums and Telegram, and can I still... | 3 | passive |
+| [ransomwatch](ransomwatch.md) | I need a baseline. What did the leak-site ecosystem look like before mid-2025, and where is a free, citable, timestamped record... | 3 | active |
 <!-- END:TOOLS -->
 
 ## Related

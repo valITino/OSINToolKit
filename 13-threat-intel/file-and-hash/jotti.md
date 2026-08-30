@@ -25,9 +25,8 @@ against VirusTotal's roughly seventy; a hash index of only what Jotti itself
 scanned; no family tags, YARA, sandbox or C2 data, so no campaign context; and
 no free API. Cyren is still listed although Cyren Ltd. was declared insolvent
 and ceased operating in February 2023. [MalwareBazaar](malwarebazaar.md) and
-[Hybrid Analysis](hybrid-analysis.md) replace it, VirusTotal for engine breadth.
+[Hybrid Analysis](hybrid-analysis.md) replace it; VirusTotal covers breadth.
 
-## When to reach for it
 Two cases. As a free, no-account, passive second-opinion hash check against a
 corpus almost nobody else indexes - a hit is a genuine extra data point. And as
 a lower-profile scanner when policy forbids VirusTotal, accepting that the file
