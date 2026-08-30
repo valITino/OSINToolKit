@@ -32,9 +32,10 @@ same host. Its value is convenience; for depth use a passive DNS provider.
 
 ## Usage
 ```bash
-curl "https://api.hackertarget.com/reversedns/?q=8.8.8.8"        # names for one IP
-curl "https://api.hackertarget.com/reversedns/?q=8.8.8.0/24"      # across a range
-curl "https://api.hackertarget.com/hostsearch/?q=example.com"     # hosts for a domain
+curl "https://api.hackertarget.com/reversedns/?q=8.8.8.8"          # PTR records for one IP
+curl "https://api.hackertarget.com/reversedns/?q=8.8.8.0/24"        # PTR across a range
+curl "https://api.hackertarget.com/reverseiplookup/?q=8.8.8.8"      # sites whose A record points here
+curl "https://api.hackertarget.com/hostsearch/?q=example.com"       # hosts for a domain
 ```
 
 ## Output
@@ -43,8 +44,14 @@ in the body (rather than an HTTP error) is how it signals rate limiting, so chec
 content, not just the status code.
 
 ## Gotchas
-- **Free use is rate-limited per source IP** and the limit is low; sustained use
-  needs a paid key. The API returns a text error message rather than failing loudly.
+- **Two different questions, two different endpoints.** `reversedns/` returns PTR
+  records - what the address owner says the IP is called. `reverseiplookup/` searches
+  a database of A records - what other people point *at* the IP. Co-hosted sites show
+  up in the second and almost never in the first; quoting one as the other is the
+  classic mistake here.
+- **Free use is rate-limited per source IP**: the site documents 20 API queries a day
+  and 50 results per request for unauthenticated use, with pagination reserved for
+  paid members. The API returns a text error message rather than failing loudly.
 - PTR records are set by whoever controls the IP's reverse zone, which is often the
   hosting provider, not your target - a name here is a lead, not proof of ownership.
 - Shared hosting means dozens of unrelated domains on one address. Do not infer a

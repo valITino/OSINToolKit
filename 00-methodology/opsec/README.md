@@ -23,6 +23,11 @@ lookup, not after.
 - **Network**: route through a VPN or Tor so the target's logs do not show your
   real IP. [proxychains](proxychains.md) chains tools that do not natively support a
   proxy through one. Understand what each hop does and does not hide.
+- **Dark web work needs more than this.** An amnesic or compartmentalised system,
+  not a browser setting - see
+  [../../12-darkweb/access-and-opsec/](../../12-darkweb/access-and-opsec/), and
+  the dark web section of [../../LEGAL.md](../../LEGAL.md) for the exposure that
+  isolation does not remove.
 
 ## Remember which "passive" tools still tip off the subject
 

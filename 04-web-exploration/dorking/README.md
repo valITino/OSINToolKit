@@ -60,9 +60,14 @@ discovery-and-attribution scope.
 <!-- BEGIN:TOOLS -->
 | Tool | Answers | Tier | Contact |
 |---|---|---|---|
+| [DorkSearch](dorksearch.md) | I have a target and a rough idea of what I want to find, but not the operator syntax. Can something build the dork for me, and... | 2 | passive |
+| [GooFuzz](goofuzz.md) | I have a domain. Which files, paths, extensions and subdomains has Google already indexed for it - found without sending a single... | 2 | passive |
 | [Google Hacking Database](ghdb.md) | What should I actually search for? Someone has already worked out the query that surfaces exposed backups, login panels, or... | 2 | passive |
 | [pagodo](pagodo.md) | I want to run hundreds of GHDB dorks against one domain instead of pasting them into a search box one at a time. Can that be... | 2 | passive |
+| [dorkscout](dorkscout.md) | I have a domain. Can I pull the whole GHDB down as flat category files and fire the lot at that domain from one command? | 3 | passive |
+| [GitDorker](gitdorker.md) | I have an organisation name or a domain. Which of 500-odd secret-shaped GitHub search patterns return hits for it, so I know... | 3 | passive |
 | [inurlbr](inurlbr.md) | Can I run a dork across many search engines at once and automatically process the results? | 3 | passive |
+| [uDork](udork.md) | I have a domain. Can one bash script run a whole set of prebuilt Google dorks - extensions, URL strings, titles, admin panels... | 3 | passive |
 <!-- END:TOOLS -->
 
 ## Related

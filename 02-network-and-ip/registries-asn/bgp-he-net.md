@@ -36,6 +36,7 @@ network edge before any active work.
 https://bgp.he.net/AS15169          # prefixes, peers, and upstreams for an ASN
 https://bgp.he.net/ip/8.8.8.8        # which ASN and prefix an IP falls under
 https://bgp.he.net/net/8.8.8.0/24    # the prefix view
+https://bgp.he.net/certs              # certificate transparency search, with a subdomain toggle
 # The site also supports searching by organisation name.
 ```
 
@@ -45,6 +46,9 @@ and upstreams/downstreams, and related DNS records. Per-prefix pages show the
 origin AS and announcement history.
 
 ## Gotchas
+- The `/certs` view is a second CT-log front end, useful when you are already on the
+  site, but it is not the one to build on: [crt.sh](../../05-certificates-tls/ct-log-search/crt-sh.md)
+  exposes a queryable database and a JSON endpoint, and this does not.
 - Announced prefixes change; this is a live view, so record what you saw and when
   ([documentation](../../00-methodology/documentation/README.md)).
 - An announced prefix can be larger than the organisation's actual usage, and
@@ -56,3 +60,4 @@ origin AS and announcement history.
 ## Alternatives
 - [RIR databases](rir-databases.md) - the allocation record behind the announcement
 - [ipinfo.io](ipinfo-io.md) - the same ASN answer in one API call
+- [crt.sh](../../05-certificates-tls/ct-log-search/crt-sh.md) - CT logs, scriptable

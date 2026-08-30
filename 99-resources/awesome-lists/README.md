@@ -22,3 +22,16 @@ to reach for. They are the complement to this repo, not a substitute for its
 - A tool being on an awesome-list is not evidence it still works. Check its repo
   activity and set `status` honestly - half the value of this repo is saying which
   of these are dead.
+
+## Hosted collections listed here
+
+Some collections are not lists but running instances of other people's tools.
+They get a file because the OPSEC trade-off is worth writing down: the
+convenience is real, and so is the fact that your selector goes to a stranger's
+server.
+
+<!-- BEGIN:TOOLS -->
+| Tool | Answers | Tier | Contact |
+|---|---|---|---|
+| [OSINT Cabal Live Center](osintcabal.md) | I have a selector - an email, a username, a domain - and no working install of the usual tools. Is there a hosted instance I can... | 3 | passive |
+<!-- END:TOOLS -->

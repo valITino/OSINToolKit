@@ -53,7 +53,7 @@ hostname list.
   certificate, not the target's, and you will analyse the wrong thing.
 - **The Cloudflare shared-SAN trap**: Universal SSL certificates list unrelated
   customers' domains together, so a shared SAN is **not** evidence of shared
-  ownership. See [../ct-log-search/crt-sh.md](../ct-log-search/crt-sh.md).
+  ownership. See [crt.sh](../ct-log-search/crt-sh.md).
 - A handshake is contact with the target - normal, but logged.
 - Behind a CDN you see the edge certificate, not the origin's.
 

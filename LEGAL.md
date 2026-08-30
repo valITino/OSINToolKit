@@ -62,6 +62,39 @@ Passive does not always mean invisible to the subject.
 If tipping off the subject would compromise an investigation, plan your OPSEC
 before the first query, not after.
 
+## Dark web work carries specific legal exposure
+
+Reaching a hidden service is not itself an offence in most jurisdictions. What
+you may run into while doing it is, and the boundary is easier to cross there
+than anywhere else in this repo.
+
+- **Illegal material appears unbidden.** Indexes, forums, and leak sites mix
+  ordinary content with material whose mere possession is a criminal offence.
+  A browser caches what it renders, so "I only looked" is not the defence people
+  assume it is. Work from a disposable VM, and if you encounter child sexual
+  abuse material: stop, do not download, do not screenshot, and report it
+  through the route your jurisdiction requires (NCMEC in the US, the IWF in the
+  UK) and to your own legal counsel. Preserving it yourself is not your job.
+- **A leaked corpus is still personal data.** Ransomware leak sites publish
+  stolen data about real people. Downloading a dump to "check our exposure" is
+  processing personal data, usually without a lawful basis, and may also be
+  handling criminal property. Work from the aggregators' metadata - victim name,
+  claimed volume, dates - rather than the dump itself, and take legal advice
+  before anyone pulls a file.
+- **Interaction is not observation.** Loading a hidden service is `active`
+  contact: the operator sees a request. Registering an account, posting,
+  messaging a seller, or buying anything is undercover activity, which in many
+  jurisdictions is reserved for law enforcement acting under authorisation.
+  This repo documents observation only, and nothing here supports transacting
+  with a criminal service.
+- **Your access route matters.** Some employers and some countries treat Tor
+  use itself as a policy or legal problem. Check before you install it on a
+  work machine, not after.
+- **Record as you go.** Hidden services disappear without notice and the
+  archives do not cover them. Timestamped notes and hashes taken at the moment
+  of observation are often the only evidence that will survive - see
+  [00-methodology/documentation/README.md](00-methodology/documentation/README.md).
+
 ## Out of scope for this repository
 
 This repo is a discovery and attribution reference. It documents how to find

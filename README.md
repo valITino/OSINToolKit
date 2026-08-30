@@ -27,7 +27,9 @@ destination is a category README that explains what the tools there are for.
 | An Office file that may carry macros | [`07-documents-metadata/office-forensics`](07-documents-metadata/office-forensics/) |
 | An .eml file | [`10-email-investigation/header-analysis`](10-email-investigation/header-analysis/) |
 | A .pcap file | [`11-traffic-capture`](11-traffic-capture/) |
-| A URL I must not click | [`04-web-exploration/fingerprinting`](04-web-exploration/fingerprinting/) -> [`06-history-and-archives/web-archive`](06-history-and-archives/web-archive/) |
+| A URL I must not click | [`13-threat-intel/url-analysis`](13-threat-intel/url-analysis/) -> [`04-web-exploration/fingerprinting`](04-web-exploration/fingerprinting/) -> [`06-history-and-archives/web-archive`](06-history-and-archives/web-archive/) |
+| A .onion address | [`12-darkweb/onion-discovery`](12-darkweb/onion-discovery/) -> [`12-darkweb/active-crawling`](12-darkweb/active-crawling/) |
+| A file, or just its hash | [`13-threat-intel/file-and-hash`](13-threat-intel/file-and-hash/) -> [`07-documents-metadata`](07-documents-metadata/) |
 | A paste or pastebin link | [`09-code-paste-forums/paste-sites`](09-code-paste-forums/paste-sites/) |
 | A tracking, Analytics or AdSense ID | [`06-history-and-archives/analytics-linking`](06-history-and-archives/analytics-linking/) |
 | A registrant name, email or phone | [`04-web-exploration/whois-domains`](04-web-exploration/whois-domains/) -> [`06-history-and-archives/ip-whois-history`](06-history-and-archives/ip-whois-history/) |
@@ -46,7 +48,12 @@ Sometimes the starting point is a question rather than a thing.
 | Whether mail from this domain can be forged | [`10-email-investigation/server-checks`](10-email-investigation/server-checks/) |
 | Whether this organisation has leaked secrets | [`09-code-paste-forums/code-search`](09-code-paste-forums/code-search/) -> [`09-code-paste-forums/secret-scanning`](09-code-paste-forums/secret-scanning/) -> [`09-code-paste-forums/paste-sites`](09-code-paste-forums/paste-sites/) |
 | Which sites share an owner with this one | [`06-history-and-archives/analytics-linking`](06-history-and-archives/analytics-linking/) -> [`03-dns-and-subdomains/reverse-dns`](03-dns-and-subdomains/reverse-dns/) |
-| What search engines already indexed | [`04-web-exploration/dorking`](04-web-exploration/dorking/) |
+| What search engines already indexed | [`04-web-exploration/dorking`](04-web-exploration/dorking/) -> [`99-resources/cheatsheets/search-operators.md`](99-resources/cheatsheets/search-operators.md) |
+| What this name resolved to years ago | [`03-dns-and-subdomains/passive-dns`](03-dns-and-subdomains/passive-dns/) |
+| Whether this organisation is named on a ransomware leak site | [`12-darkweb/leak-monitoring`](12-darkweb/leak-monitoring/) |
+| Which hidden services mention this brand, and where their addresses leak | [`12-darkweb/onion-discovery`](12-darkweb/onion-discovery/) |
+| Whether this infrastructure is already known-bad to someone else | [`13-threat-intel/feeds-and-trackers`](13-threat-intel/feeds-and-trackers/) |
+| How to keep a copy of this site before it changes | [`04-web-exploration/scraping`](04-web-exploration/scraping/) |
 
 For the three most common cases there are full playbooks in
 [`workflows/`](workflows/) that chain the tools in order and explain why the
@@ -97,6 +104,7 @@ sortable list once the build script has run.
   vuln-scanners/        # Greenbone / OpenVAS, Rapid7 Nexpose, Tenable Nessus, nuclei
 03-dns-and-subdomains/
   active-enum/          # dnsmap, fierce, massdns, puredns
+  passive-dns/          # CIRCL, DNSDB, mnemonic PassiveDNS, Validin
   passive-enum/         # DNSDumpster, subfinder, Sublist3r
   query-tools/          # dig, dnsx, host, nslookup
   reverse-dns/          # HackerTarget reverse DNS API, Robtex, hakrevdns
@@ -104,10 +112,11 @@ sortable list once the build script has run.
 04-web-exploration/
   cms-scanners/         # CMSeeK, CMSmap, WPScan
   content-discovery/    # dirhunt, feroxbuster, ffuf, gobuster, DirBuster, wfuzz
-  crawling-spidering/   # Photon, hakrawler, katana
-  dorking/              # Google Hacking Database, pagodo, inurlbr
-  fingerprinting/       # BuiltWith, WhatWeb, urlscan.io, wig
-  monitoring-visual/    # VisualPing, VisualSiteMapper, gowitness
+  crawling-spidering/   # Photon, hakrawler, katana, GoSpider
+  dorking/              # Google Hacking Database, pagodo, GooFuzz, GitDorker, dorkscout
+  fingerprinting/       # BuiltWith, WhatWeb, httpx, urlscan.io, WAFW00F, wig
+  monitoring-visual/    # VisualPing, gowitness
+  scraping/             # HTTrack, Scrapy, trafilatura, Playwright, yt-dlp, snscrape
   whois-domains/        # DomainTools, Whoisology, viewdns.info
 05-certificates-tls/
   cert-analysis/        # SSLyze, openssl, testssl.sh
@@ -116,7 +125,7 @@ sortable list once the build script has run.
 06-history-and-archives/
   analytics-linking/    # DNSlytics, NerdyData, PublicWWW, SpyOnWeb
   ip-whois-history/     # Netcraft Site Report, SecurityTrails
-  web-archive/          # Wayback CDX API, archive.today, gau, waybackurls
+  web-archive/          # Wayback CDX API, Common Crawl, archive.today, gau, waybackpack
 07-documents-metadata/
   geo-media/            # geolocating photos and video
   harvest-from-web/     # FOCA, metagoofil
@@ -147,12 +156,21 @@ sortable list once the build script has run.
   analysis/             # NetworkMiner, Zeek
   capture/              # Wireshark / tshark, tcpdump
   tls-fingerprinting/   # JA3/JA4 methodology
+12-darkweb/             # hidden services: find them, read them, watch what leaks
+  access-and-opsec/     # Tor Browser, Tails, Whonix, torsocks
+  onion-discovery/      # Ahmia, OnionSearch, dark.fail, Tor.taxi, Intelligence X
+  active-crawling/      # TorBot, OnionScan, darkdump, docker-onion-nmap
+  leak-monitoring/      # RansomLook, Ransomware.live, ransomwatch, DarkOwl
+13-threat-intel/        # has anyone seen this file, hash, or URL before
+  file-and-hash/        # Jotti, MalwareBazaar, Hybrid Analysis, MalShare
+  url-analysis/         # urlquery, Recorded Future Triage, ANY.RUN
+  feeds-and-trackers/   # URLhaus, ThreatFox, AlienVault OTX, PhishTank
 99-resources/
   api-keys/             # which keys are worth paying for
   awesome-lists/        # curated external lists
-  cheatsheets/          # long-form notes that outgrew a tool file
+  cheatsheets/          # search operators across engines, and other long-form notes
   wordlists/            # pointers to SecLists (not vendored)
-workflows/              # end-to-end playbooks chaining the tools in order
+workflows/              # six end-to-end playbooks chaining the tools in order
 scripts/                # build-index.py, check-links.py (stdlib only)
 templates/              # the empty tool schema
 ```
@@ -168,6 +186,11 @@ This repository documents tools; it does not authorise their use. Read
 - Privacy law shapes the data itself: GDPR redacts WHOIS for EU registrants and
   limits EU public records. Some passive tools (Maltego Transforms, sandbox
   submissions, lure tokens) can still tip off a subject - plan OPSEC first.
+- Dark web work adds exposure the rest of the repo does not have: illegal
+  material appears unbidden and a rendered page is a cached copy, a leak-site
+  dump is still personal data, and registering or buying is not observation.
+  [`12-darkweb`](12-darkweb/) documents observation only - read the dark web
+  section of [LEGAL.md](LEGAL.md) before the first connection.
 - This is a **discovery and attribution** reference. Exploit code, payloads, and
   credential-attack tooling are deliberately out of scope; where a listed tool
   has such features, they are named as out of scope, not documented.
