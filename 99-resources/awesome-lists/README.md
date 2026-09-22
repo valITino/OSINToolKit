@@ -34,4 +34,5 @@ server.
 | Tool | Answers | Tier | Contact |
 |---|---|---|---|
 | [OSINT Cabal Live Center](osintcabal.md) | I have a selector - an email, a username, a domain - and no working install of the usual tools. Is there a hosted instance I can... | 3 | passive |
+| [OSINT Tools for the Dark Web](dark-web-osint-tools.md) | I need to discover candidate tools for searching, finding, scanning, or crawling onion services. Which projects and services... | 3 | passive |
 <!-- END:TOOLS -->

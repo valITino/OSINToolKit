@@ -67,6 +67,7 @@ This repo documents observation only.
 | [Intelligence X](onion-discovery/intelligence-x.md) | I have a selector - an email address, a domain, a .onion host, an IP or a Bitcoin address. Where has it appeared in archived... | 2 | passive |
 | [RansomLook](leak-monitoring/ransomlook.md) | I have an organisation name or domain. Which crew has claimed it, when, and what else do they publish - without me ever loading... | 2 | passive |
 | [Ransomware.live](leak-monitoring/ransomware-live.md) | I have a company name, a country or an encrypted-file extension. Has this organisation been named on a leak site, and what do... | 2 | passive |
+| [Robin](active-crawling/robinonroids.md) | I have a topic or selector. Which results from multiple onion search engines are relevant, what do their pages say, and can an... | 2 | active |
 | [Tails](access-and-opsec/tails.md) | I have an onion address to open from a machine I do not fully trust, and this session must leave nothing behind on its disk when... | 2 | active |
 | [Tor Browser](access-and-opsec/tor-browser.md) | I have a .onion address, or a clearweb page I do not want to hand my real IP. What do I open it in so the service sees a Tor exit... | 2 | active |
 | [TorBot](active-crawling/torbot.md) | I have a .onion address. What does it link out to one or two hops deep, which of those pages are alive right now, and do any of... | 2 | active |
